@@ -1,0 +1,24 @@
+{
+  "name" : "Konv",
+  "projectDirectory" : "/home/skyzohkey/Dev/Vala/Konv",
+  "projectType" : 0,
+  "version" : "",
+  "executablePath" : "",
+  "packages" : [
+  ],
+  "sources" : [
+  ],
+  "dependencies" : [
+  ],
+  "valaOptions" : [
+  ],
+  "buildSystem" : {
+    "cleanCmd" : "",
+    "prebuildCmd" : "",
+    "buildCmd" : "",
+    "installCmd" : "",
+    "runCmd" : ""
+  },
+  "debugSystem" : {
+  }
+}
