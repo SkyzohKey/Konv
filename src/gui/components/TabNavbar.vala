@@ -1,109 +1,159 @@
 using Konv;
 using Gtk;
 
-//[GtkTemplate (ui="/im/konv/desktop/interfaces/components/TabNavbar.ui")]
-public class Konv.Gui.Components.TabNavbar : Gtk.Box {
-  /**
-  * @public {Gtk.Stack[]?} pages - The current pages the TabNavbar component hold.
-  * @notes `null` by default, please avoid setting it to null.
-  **/
-  public Gtk.Stack[]? pages { get; internal set; default = null; }
-
-  /**
-  * @public {int} current_page - The currently selected page in read/write mode.
-  * @notes 1. Setting this to an invalide `page_index` will throw an error.
-  *        2. A signal is connected when value change and it will focus the requested page.
-  **/
-  public int current_page { get; set; default = 0; }
-
-  /**
-  * @public {Gtk.PackDirection} direction - The compoment packing direction.
-  * @notes 1. Defaults to Top-to-bottom.
-  *        2. A signal is connected when value change and it repack the component.
-  **/
-  public Gtk.PackDirection direction { get; set; default = Gtk.PackDirection.TTB; }
-
-  /**
-  * @constructor TabNavbar - The TabNavbar component constructor.
-  **/
-  public TabNavbar () {
-    this.init_widgets ();
-    this.connect_signals ();
-    this.run_logic ();
+namespace Konv.Gui.Components {
+  public errordomain TabError {
+    TITLE_ALREADY_USED,
+    TITLE_BLANK,
+    WIDGET_NULL,
+    NULL_TAB,
+    UNKNOWN
   }
 
-  /**
-  * @private init_widgets - Initialize the widgets, only that. KISS.
-  **/
-  private void init_widgets () {
-    /**
-    * TODO: Initialize the widgets here.
-    * @notes Widgets properties MUST be defined in the UI file, if possible.
-    **/
-  }
 
-  /**
-  * @private connect_signals - Connect the signals, only that. KISS.
-  **/
-  private void connect_signals () {
+  //[GtkTemplate (ui="/im/konv/desktop/interfaces/components/TabNavbar.ui")]
+  public class TabNavbar : Gtk.Box {
     /**
-    * TODO: Connect the signals here.
+    * @private {Gtk.StackSwitcher} tab_header - The navbar container.
     **/
+    private Gtk.StackSwitcher tabs_header { get; set; default = new Gtk.StackSwitcher (); }
 
-    this.notify["current-page"].connect ((obj, props) => {
+    /**
+    * @public {Gtk.Stack} tabs - The current tabs the TabNavbar component hold.
+    * @notes `null` by default, please avoid setting it to null.
+    **/
+    public Gtk.Stack tabs { get; internal set; default = new Gtk.Stack (); }
+
+    /**
+    * @public {string} current_page - The currently selected page title in read/write mode.
+    * @notes 1. Setting this to an invalide `page_title` will throw an error.
+    *        2. A signal is connected when value change and it will focus the requested page.
+    **/
+    public string current_tab { get; set; default = ""; }
+
+    /**
+    * @public {Gtk.PackDirection} direction - The compoment packing direction.
+    * @notes 1. Defaults to Top-to-bottom.
+    *        2. A signal is connected when value change and it repack the component.
+    **/
+    public Gtk.PackDirection direction { get; set; default = Gtk.PackDirection.TTB; }  
+
+    /**
+    * @constructor TabNavbar - The TabNavbar component constructor.
+    **/
+    public TabNavbar () {
+      this.init_widgets ();
+      this.connect_signals ();
+      this.run_logic ();
+    }
+
+    /**
+    * @private init_widgets - Initialize the widgets, only that. KISS.
+    **/
+    private void init_widgets () {
       /**
-      * TODO: Do handle when current page has to be changed, focus the right one.
+      * TODO: Initialize the widgets here.
+      * @notes Widgets properties MUST be defined in the UI file, if possible.
       **/
-    });
+      
+      this.tabs_header.set_stack (this.tabs);
+      this.tabs_header.icon_size = 36;
+      this.tabs_header.homogeneous = true;
+      
+      this.tabs.hhomogeneous = true;
+      
+      this.set_orientation (Gtk.Orientation.VERTICAL);
+      this.pack_start (this.tabs_header, false, true, 0);
+      this.pack_start (this.tabs, true, true, 0);
+      
+      this.show_all ();
+    }
 
-    this.notify["direction"].connect ((obj, props) => {
-      /**
-      * TODO: Do handle direction changes, then repack the component.
-      **/
-
-      // At the end of the operation call `this.init_widgets` to redraw.
-    });
-  }
-
-  /**
-  * @private run_logic - Run the component logic, only that. KISS!
-  **/
-  private void run_logic () {
     /**
-    * TODO: Run the logic here.
+    * @private connect_signals - Connect the signals, only that. KISS.
     **/
+    private void connect_signals () {
+      /**
+      * TODO: Connect the signals here.
+      **/
 
-    this.show_all ();
-  }
+      this.notify["current-tab"].connect ((obj, props) => {
+        /**
+        * TODO: Do handle when current page has to be changed, focus the right one.
+        **/
+        
+        if (this.get_tab (this.current_tab) == null) {
+          throw new TabError.NULL_TAB ("No tab with given tab_title exists.");
+        }
+        
+        this.tabs.set_visible_child_name (this.current_tab);
+      });
 
-  /**
-  * @public {int} add_page - Add a page to the component.
-  * @param {string} title - The page title, displayed in the NavBar.
-  * @param {Gtk.Widget?} content - The page content, can be any supported `Gtk.Widget`.
-  * @return Return the newly created page index.
-  **/
-  public int add_page (string title, Gtk.Widget? content) {
-    // return new page index.
-    return 0;
-  }
+      this.notify["direction"].connect ((obj, props) => {
+        /**
+        * TODO: Do handle direction changes, then repack the component.
+        **/
 
-  /**
-  * @public {bool} remove_page - Remove a page from the component.
-  * @param {int} index - The page index within the `this.pages`.
-  * @return Return true or false, depending if the page has been removed.
-  **/
-  public bool remove_page (int index) {
-    // return true or false, is page has been removed.
-    return false;
-  }
+        // At the end of the operation call `this.init_widgets` to redraw.
+      });
+    }
 
-  /**
-  * @public {Gtk.Widget?} get_page - Get a page from the component.
-  * @param {int} index - The page index within the `this.pages` to get.
-  * @return Return the `page_content` related to given `index`. Can be null if `index` isn't present on `this.pages`.
-  **/
-  public Gtk.Widget? get_page (int index) {
-    // return the given page from index, or null it no page found.
-    return new Gtk.Label ("");
+    /**
+    * @private run_logic - Run the component logic, only that. KISS!
+    **/
+    private void run_logic () {
+      /**
+      * TODO: Run the logic here.
+      **/
+
+      this.show_all ();
+    }
+
+    /**
+    * @public {Gtk.Widget} add_tab - Add a tab to the component.
+    * @param {string} title - The tab title, displayed in the NavBar.
+    * @param {Gtk.Widget?} content - The tab content, can be any supported `Gtk.Widget`.
+    * @return Return the newly created tab.
+    **/
+    public Gtk.Widget add_tab (string tab_title, Gtk.Widget? tab_content, string icon_name) throws TabError {
+      if (this.get_tab (tab_title) != null) {
+        throw new TabError.TITLE_ALREADY_USED ("The title specified is already used by another tab. Try to delete that tab before, or use another title.");
+      }
+    
+      // Let's wrap our content widget inside a Box.
+      Gtk.Box container = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+      container.pack_start (tab_content, true, true, 0);
+      
+      this.tabs.add_titled (container, tab_title, tab_title);
+      this.tabs.child_set_property (container, "icon-name", icon_name);
+
+      // return new page index.
+      return this.get_tab (tab_title);
+    }
+
+    /**
+    * @public {bool} remove_tab - Remove a tab from the component.
+    * @param {string} tab_title - The tab index within the `this.tabs`.
+    * @return Return true or false, depending if the tab has been removed.
+    **/
+    public bool remove_tab (string tab_title) throws TabError {
+      Gtk.Widget? tab = this.get_tab (tab_title);
+      if (tab == null) {
+        throw new TabError.NULL_TAB ("No tab with given tab_title exists.");
+      }
+      
+      tab.destroy ();
+      return true;
+    }
+
+    /**
+    * @public {Gtk.Widget?} get_tab - Get a tab from the component.
+    * @param {string} tab_title - The tab index within the `this.tabs` to get.
+    * @return Return the `tab_content` related to given `tab_title`. Can be null if `tab_title` isn't present on `this.tabs`.
+    **/
+    public Gtk.Widget? get_tab (string tab_title) {
+      Gtk.Widget? tab = this.tabs.get_child_by_name (tab_title);
+      return tab;
+    }
   }
 }
