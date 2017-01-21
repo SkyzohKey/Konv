@@ -16,13 +16,20 @@ namespace Konv.Gui.Components {
     /**
     * @private {Gtk.StackSwitcher} tab_header - The navbar container.
     **/
-    private Gtk.StackSwitcher tabs_header { get; set; default = new Gtk.StackSwitcher (); }
+    private Gtk.StackSwitcher tabs_header { get; internal set; default = new Gtk.StackSwitcher (); }
 
     /**
     * @public {Gtk.Stack} tabs - The current tabs the TabNavbar component hold.
     * @notes `null` by default, please avoid setting it to null.
     **/
     public Gtk.Stack tabs { get; internal set; default = new Gtk.Stack (); }
+    
+    /**
+    * @public {Gtk.SearchEntry} searchentry - The search entry, search in contacts, transfers, groups, etc...
+    **/
+    public Gtk.SearchEntry searchentry { get; internal set; }
+    
+    public Gtk.Box search_container { get; internal set; }
 
     /**
     * @public {string} current_page - The currently selected page title in read/write mode.
@@ -60,10 +67,29 @@ namespace Konv.Gui.Components {
       this.tabs_header.icon_size = 36;
       this.tabs_header.homogeneous = true;
       
+      this.searchentry = new Gtk.SearchEntry ();
+      this.searchentry.placeholder_text = "Search or add a contact...";
+      
+      this.search_container = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+      Gtk.Label search = new Gtk.Label.with_mnemonic ("Search results loading here...");
+      Gtk.Spinner spinner = new Gtk.Spinner ();
+      spinner.active = true;
+      
+      Gtk.Box vbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+      vbox.pack_start (spinner, false, false, 10);
+      vbox.pack_start (search, false, false, 0);
+      vbox.halign = Gtk.Align.CENTER;
+
+      this.search_container.pack_start (vbox, true, true, 0);
+      
+      this.add_tab ("Search results", this.search_container, "system-search-symbolic");
+      
       this.tabs.hhomogeneous = true;
+      this.tabs.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
       
       this.set_orientation (Gtk.Orientation.VERTICAL);
       this.pack_start (this.tabs_header, false, true, 0);
+      this.pack_start (this.searchentry, false, true, 0);
       this.pack_start (this.tabs, true, true, 0);
       
       this.show_all ();
@@ -86,7 +112,7 @@ namespace Konv.Gui.Components {
           throw new TabError.NULL_TAB ("No tab with given tab_title exists.");
         }
         
-        this.tabs.set_visible_child_name (this.current_tab);
+        this.tabs.visible_child_name = this.current_tab;
       });
 
       this.notify["direction"].connect ((obj, props) => {
@@ -95,6 +121,18 @@ namespace Konv.Gui.Components {
         **/
 
         // At the end of the operation call `this.init_widgets` to redraw.
+      });
+      
+      this.searchentry.search_changed.connect (() => {
+        string search_text = this.searchentry.get_text ().down ();
+        
+        if (search_text.strip () != "") {
+          this.search_container.visible = true;
+          this.current_tab = "Search results";
+        } else {
+          this.search_container.visible = false;
+          this.current_tab = "";
+        }
       });
     }
 

@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
   <gresource prefix="/im/konv/desktop">
+    <!--
+      Windows:
+    -->
     <file preprocess="xml-stripblanks" compressed="true">interfaces/windows/MainWindow.ui</file>
+    
+    <!--
+      Components:
+    -->
+    <file preprocess="xml-stripblanks" compressed="true">interfaces/components/HeaderBar.ui</file>
   </gresource>
 </gresources>

@@ -4,9 +4,11 @@ using Konv.Gui.Components;
 
 [GtkTemplate (ui="/im/konv/desktop/interfaces/windows/MainWindow.ui")]
 public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
+  [GtkChild] private Gtk.MenuBar menubar_main;
   [GtkChild] private Gtk.Box box_left_side;
   [GtkChild] private Gtk.Box box_right_side;
   
+  private Konv.Gui.Components.HeaderBar header { get; set; }
   private Konv.Gui.Components.TabNavbar navbar { get; set; }
 
   public MainWindow (Gtk.Application app) {
@@ -24,20 +26,23 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
     **/
 
     this.set_title (Konv.App.NAME + " - v." + Konv.App.VERSION);
-    //this.set_default_size (this.width_request, this.height_request);
     this.set_default_size (800, 400);
     
+    this.header = new Konv.Gui.Components.HeaderBar ();
     this.navbar = new Konv.Gui.Components.TabNavbar ();
     
-    Gtk.Label profile_content = new Gtk.Label.with_mnemonic ("This is a test tab.");
-    Gtk.Label logo_content = new Gtk.Label.with_mnemonic ("So much swag you'd think you're SkyzohKey !");    
-    Gtk.Label settings_content = new Gtk.Label.with_mnemonic ("This should allow to view settings.");
+    Gtk.Label recent_conversations = new Gtk.Label.with_mnemonic ("Recent conversations shows here.");
+    Gtk.Label contacts_list = new Gtk.Label.with_mnemonic ("Contact list displays here.");    
+    Gtk.Label file_transfers = new Gtk.Label.with_mnemonic ("All file transfers goes here.");
+    Gtk.Label missed_calls = new Gtk.Label.with_mnemonic ("Missed calls will be listed here.");
     
-    this.navbar.add_tab ("Profile", profile_content, "view-list-symbolic");
-    this.navbar.add_tab ("Konv logo", logo_content, "user-status-pending-symbolic");
-    this.navbar.add_tab ("Settings", settings_content, "open-menu-symbolic");
-    
-    this.box_left_side.pack_start (navbar, true, true, 0);
+    this.navbar.add_tab ("Recent conversations", recent_conversations, "document-open-recent-symbolic");
+    this.navbar.add_tab ("Contacts", contacts_list, "system-users-symbolic");
+    this.navbar.add_tab ("File transfers", file_transfers, "mail-send-receive-symbolic");
+    this.navbar.add_tab ("Missed calls", missed_calls, "call-missed-symbolic");
+
+    this.box_left_side.pack_start (this.header, false, true, 0);
+    this.box_left_side.pack_start (this.navbar, true, true, 0);
   }
 
   private void connect_signals () {
