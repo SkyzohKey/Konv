@@ -41,6 +41,24 @@ secure communication platforms. It is maintained by [The TokTok Project].
 I'm not using the old [irungentoo/toxcore] library for convenience and
 security related concerns.
 
+## Install
+
+You can run and install Konv with a few lines, just type the following in a
+shell
+
+```bash
+# Download it!
+$ git clone https://github.com/SkyzohKey/Konv.git && cd Konv
+
+# Build it!
+$ mkdir build && cd build
+$ cmake .. -DCMAKE_INSTALL_PREFIX=/usr
+$ make
+
+# [Optional] If you want to install it system-wide
+$ sudo make install
+```
+
 ## License
 
 Konv.im is released under [The MIT License] while the ToxCore binaries are
