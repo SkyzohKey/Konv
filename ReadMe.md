@@ -10,6 +10,8 @@ primordial in this post-Snowden era. Free speech enables **real** sharing of
 ideas, concepts, researchs, etc. That's how I want to contribute saving what
 stays of people liberties and rights.
 
+![A screenshot of Konv's MainWindow running 0.1.0-looneypig](misc/screens/main-window-0.1.0.png)
+
 ## Features
 
 Here is a tentative list of the features that Konv.im must have in order to be
