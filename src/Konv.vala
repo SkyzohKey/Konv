@@ -1,29 +1,12 @@
 using Konv;
-// using Konv.Core; // Uncomment later once core is ready.
 using Konv.Gui;
+// using Konv.Core; // Uncomment later once core is ready.
 
 /**
 * @class Konv.App - Entrypoint of the application.
 **/
 namespace Konv {
 	public class App : Gtk.Application {
-		/**
-		* The application name.
-		**/
-		public static string NAME = "Konv";
-
-		/**
-		* The application current version.
-		* TODO: Use something like `config.vapi.in` in order to have the version
-		*		linked to the build system (ie. allows git builds to have version).
-		**/
-		public static string VERSION = "0.1.0-alpha";
-
-		/**
-		* Resources base path (gresources).
-		**/
-		public static string RES_PATH = "/im/konv/desktop";
-
 		/**
 		* @private {string} args - The arguments used in this instance.
 		**/
@@ -40,9 +23,14 @@ namespace Konv {
 		**/
 		public App (string[] args) {
 			GLib.Object (
-	      application_id: "im.konv.desktop",
+	      application_id: "im.konv.client",
 	      flags: ApplicationFlags.FLAGS_NONE
 	    );
+
+			Intl.setlocale(LocaleCategory.MESSAGES, "");
+	    Intl.textdomain(Konv.Constants.GETTEXT_PACKAGE);
+	    Intl.bind_textdomain_codeset(Konv.Constants.GETTEXT_PACKAGE, "utf-8");
+	    Intl.bindtextdomain(Konv.Constants.GETTEXT_PACKAGE, Konv.Constants.GETTEXT_PATH);
 
 			this.args = args;
 		}
@@ -56,7 +44,7 @@ namespace Konv {
 		* @return {int} - Returns 0 if no error, any number if errored.
 		**/
 		public int start () {
-			stdout.printf ("%s v.%s started...", Konv.App.NAME, Konv.App.VERSION);
+			stdout.printf (_("%s v.%s started..."), Konv.Constants.APP_NAME, Konv.Constants.VERSION);
 
 			/**
 			* TODO: Parse this.args and dispatch.

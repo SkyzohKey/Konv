@@ -1,0 +1,19 @@
+[Desktop Entry]
+Encoding=UTF-8
+_Name=@APP_NAME@
+_Comment=@RELEASE_NAME@
+_Keywords=Konv;Messaging;Tox;P2P;Internet;
+Exec=@EXEC_NAME@ %U
+Icon=@DESKTOP_ICON@
+Categories=GTK;Internet;Communication
+MimeType=x-scheme-handler/tox;
+Terminal=false
+Type=Application
+X-GNOME-Gettext-Domain=@GETTEXT_PACKAGE@
+X-GNOME-UsesNotifications=true
+X-UserData=$CONFIG/konv;
+Actions=AboutDialog;
+
+[Desktop Action AboutDialog]
+_Name=About @APP_NAME@
+Exec=@EXEC_NAME@ --about

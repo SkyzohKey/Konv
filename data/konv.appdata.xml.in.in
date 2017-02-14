@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2015 Skyzohkey <skyzohkey_at_protonmail.com> -->
+<component type="desktop">
+  <id>im.konv.client.desktop</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_group>SkyzohKey</project_group>
+  <project_license>MIT</project_license>
+  <_name>@APP_NAME@</_name>
+  <_summary>@RELEASE_NAME@</_summary>
+  <description>
+    <_p>
+      Konv.im is an open-source, libre and secure instant messaging application that
+      aims to replace Skype, Whatsapp, and other proprietary services. I believe that
+      bringing a free (as in freedom, aswell as in price) software that enable
+      individuals to communicate freely, without the fear to be censored or sued, is
+      primordial in this post-Snowden era. Free speech enables **real** sharing of
+      ideas, concepts, researchs, etc. That's how I want to contribute saving what
+      stays of people liberties and rights.
+    </_p>
+  </description>
+  <releases>
+    <release timestamp="1487076076" version="@VERSION@-@VERSION_INFO@"/>
+  </releases>
+  <provides>
+    <binary>@EXEC_NAME@</binary>
+  </provides>
+  <developer_name>SkyzohKey</developer_name>
+  <url type="homepage">https://konv.im</url>
+  <url type="bugtracker">https://github.com/SkyzohKey/Konv/issues</url>
+  <url type="donation">https://github.com/SkyzohKey/Konv#funding</url>
+  <url type="help">https://github.com/SkyzohKey/Konv/wiki</url>
+  <update_contact>contact_at_konv.im</update_contact>
+</component>

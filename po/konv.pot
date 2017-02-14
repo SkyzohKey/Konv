@@ -1,0 +1,202 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-14 15:14+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/gui/components/TabNavbar.vala:93
+msgid "Search or add a contact..."
+msgstr ""
+
+#: ../src/gui/components/TabNavbar.vala:99
+msgid "Search results loading here..."
+msgstr ""
+
+#: ../src/gui/components/TabNavbar.vala:119
+msgid "Search results"
+msgstr ""
+
+#: ../src/gui/windows/MainWindow.vala:90
+msgid "Recent conversations shows here."
+msgstr ""
+
+#: ../src/gui/windows/MainWindow.vala:92
+msgid "Recent conversations"
+msgstr ""
+
+#: ../src/gui/windows/MainWindow.vala:96
+msgid "Contact list displays here."
+msgstr ""
+
+#: ../src/gui/windows/MainWindow.vala:98
+msgid "Contacts"
+msgstr ""
+
+#: ../src/gui/windows/MainWindow.vala:102
+msgid "All file transfers goes here."
+msgstr ""
+
+#: ../src/gui/windows/MainWindow.vala:104
+msgid "File transfers"
+msgstr ""
+
+#: ../src/gui/windows/MainWindow.vala:108
+msgid "Missed calls will be listed here."
+msgstr ""
+
+#: ../src/gui/windows/MainWindow.vala:110
+msgid "Missed calls"
+msgstr ""
+
+#: ../src/Konv.vala:47
+msgid "%s v.%s started..."
+msgstr ""
+
+#: ../data/interfaces/components/HeaderBar.ui:14
+msgid "My profile"
+msgstr ""
+
+#. This is the status message by default, please keep it short and logic.
+#: ../data/interfaces/components/HeaderBar.ui:50
+msgctxt "status message"
+msgid "Proud user of Konv.im"
+msgstr ""
+
+#: ../data/interfaces/components/HeaderBar.ui:91
+msgid "Status (online)"
+msgstr ""
+
+#: ../data/interfaces/windows/MainWindow.ui:87
+msgid "_File"
+msgstr ""
+
+#: ../data/interfaces/windows/MainWindow.ui:95
+msgid "_Load profile..."
+msgstr ""
+
+#: ../data/interfaces/windows/MainWindow.ui:112
+msgid "_New profile..."
+msgstr ""
+
+#: ../data/interfaces/windows/MainWindow.ui:128
+msgid "_Quit"
+msgstr ""
+
+#: ../data/interfaces/windows/MainWindow.ui:144
+msgid "_Edit"
+msgstr ""
+
+#: ../data/interfaces/windows/MainWindow.ui:152
+msgid "_Copy ToxID in clipboard"
+msgstr ""
+
+#: ../data/interfaces/windows/MainWindow.ui:162
+msgid "_Save ToxID as QrCode..."
+msgstr ""
+
+#: ../data/interfaces/windows/MainWindow.ui:165
+msgid ""
+"Generates a QrCode containing your ToxID allowing you to share it easier "
+"with your future contacts."
+msgstr ""
+
+#: ../data/interfaces/windows/MainWindow.ui:179
+msgid "_Change Nospam..."
+msgstr ""
+
+#: ../data/interfaces/windows/MainWindow.ui:182
+msgid ""
+"Nospam is a value contained in your ToxID that helps to prevent against "
+"contact requests spam. Changing it will update your ToxID, making the older "
+"one invalid, you will have to give your new ToxID to people in order for "
+"them to add you."
+msgstr ""
+
+#: ../data/interfaces/windows/MainWindow.ui:196
+msgid "_Preferences..."
+msgstr ""
+
+#: ../data/interfaces/windows/MainWindow.ui:212
+msgid "_View"
+msgstr ""
+
+#: ../data/interfaces/windows/MainWindow.ui:222
+msgid "Display list with a minimal height to allow viewing more items."
+msgstr ""
+
+#: ../data/interfaces/windows/MainWindow.ui:223
+msgid "_Compact list"
+msgstr ""
+
+#: ../data/interfaces/windows/MainWindow.ui:232
+msgid "Display bubbles messages instead of plain text."
+msgstr ""
+
+#: ../data/interfaces/windows/MainWindow.ui:233
+msgid "_Use bubbles in chat"
+msgstr ""
+
+#: ../data/interfaces/windows/MainWindow.ui:246
+msgid "_Text formating"
+msgstr ""
+
+#: ../data/interfaces/windows/MainWindow.ui:249
+msgid "Choose how Konv formats messages and texts."
+msgstr ""
+
+#: ../data/interfaces/windows/MainWindow.ui:261
+msgid "Everything except links will be displayed as it."
+msgstr ""
+
+#: ../data/interfaces/windows/MainWindow.ui:262
+msgid "_Plain text"
+msgstr ""
+
+#: ../data/interfaces/windows/MainWindow.ui:272
+msgid "Display messages and texts as markdown."
+msgstr ""
+
+#: ../data/interfaces/windows/MainWindow.ui:273
+msgid "_Markdown"
+msgstr ""
+
+#: ../data/interfaces/windows/MainWindow.ui:284
+msgid "Display messages and texts as markdown but also display Markdown tags."
+msgstr ""
+
+#: ../data/interfaces/windows/MainWindow.ui:285
+msgid "_Plain markdown"
+msgstr ""
+
+#: ../data/interfaces/windows/MainWindow.ui:303
+msgid "_Help"
+msgstr ""
+
+#: ../data/interfaces/windows/MainWindow.ui:311
+msgid "_Konv website..."
+msgstr ""
+
+#: ../data/interfaces/windows/MainWindow.ui:321
+msgid "_Source code..."
+msgstr ""
+
+#: ../data/interfaces/windows/MainWindow.ui:331
+msgid "_Report an issue..."
+msgstr ""
+
+#: ../data/interfaces/windows/MainWindow.ui:347
+msgid "_About Konv..."
+msgstr ""

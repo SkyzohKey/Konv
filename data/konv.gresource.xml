@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
-  <gresource prefix="/im/konv/desktop">
-    <!--
-      Windows:
-    -->
+  <gresource prefix="/im/konv/client/">
+    <!-- Windows -->
     <file preprocess="xml-stripblanks" compressed="true">interfaces/windows/MainWindow.ui</file>
-    
-    <!--
-      Components:
-    -->
+
+    <!-- Components -->
     <file preprocess="xml-stripblanks" compressed="true">interfaces/components/HeaderBar.ui</file>
+
+    <!-- Pixmaps -->
+    <file>pixmaps/status/online.png</file>
+    <file>pixmaps/avatar.jpg</file>
+
+    <!-- Stylesheets -->
+    <file compressed="true">resources/styles/helpers.css</file>
   </gresource>
 </gresources>

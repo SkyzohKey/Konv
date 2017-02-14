@@ -5,17 +5,31 @@
   <object class="GtkImage" id="image1">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="stock">gtk-missing-image</property>
+    <property name="icon_name">document-import</property>
+  </object>
+  <object class="GtkImage" id="image10">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="icon_name">edit-copy</property>
+  </object>
+  <object class="GtkImage" id="image11">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="icon_name">view-refresh</property>
+  </object>
+  <object class="GtkImage" id="image12">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
   </object>
   <object class="GtkImage" id="image2">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="stock">gtk-missing-image</property>
+    <property name="icon_name">document-new</property>
   </object>
   <object class="GtkImage" id="image3">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="stock">gtk-missing-image</property>
+    <property name="icon_name">system-run</property>
   </object>
   <object class="GtkImage" id="image4">
     <property name="visible">True</property>
@@ -35,12 +49,17 @@
   <object class="GtkImage" id="image7">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="stock">gtk-missing-image</property>
+    <property name="icon_name">application-exit</property>
   </object>
   <object class="GtkImage" id="image8">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="stock">gtk-missing-image</property>
+  </object>
+  <object class="GtkImage" id="image9">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="icon_name">document-save-as</property>
   </object>
   <object class="GtkRadioMenuItem" id="radiomenuitem4">
     <property name="visible">True</property>
@@ -62,28 +81,35 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <child>
-              <object class="GtkMenuItem" id="menuitem1">
+              <object class="GtkMenuItem" id="menuitem_file">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">_Fichier</property>
+                <property name="label" translatable="yes">_File</property>
                 <property name="use_underline">True</property>
                 <child type="submenu">
-                  <object class="GtkMenu" id="menu1">
+                  <object class="GtkMenu" id="menu_file">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
-                      <object class="GtkImageMenuItem" id="imagemenuitem3">
-                        <property name="label" translatable="yes">_Load another profile...</property>
+                      <object class="GtkImageMenuItem" id="menuitem_load_profile">
+                        <property name="label" translatable="yes">_Load profile...</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_underline">True</property>
                         <property name="image">image1</property>
                         <property name="use_stock">False</property>
+                        <child type="submenu">
+                          <object class="GtkRecentChooserMenu" id="recentchoosermenu1">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="limit">10</property>
+                          </object>
+                        </child>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkImageMenuItem" id="imagemenuitem4">
-                        <property name="label" translatable="yes">_Create a new profile...</property>
+                      <object class="GtkImageMenuItem" id="menuitem_new_profile">
+                        <property name="label" translatable="yes">_New profile...</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_underline">True</property>
@@ -98,7 +124,7 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkImageMenuItem" id="imagemenuitem5">
+                      <object class="GtkImageMenuItem" id="menuitem_quit">
                         <property name="label" translatable="yes">_Quit</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
@@ -112,18 +138,62 @@
               </object>
             </child>
             <child>
-              <object class="GtkMenuItem" id="menuitem2">
+              <object class="GtkMenuItem" id="menuitem_edit">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">É_dition</property>
+                <property name="label" translatable="yes">_Edit</property>
                 <property name="use_underline">True</property>
                 <child type="submenu">
-                  <object class="GtkMenu" id="menu2">
+                  <object class="GtkMenu" id="menu_edit">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
-                      <object class="GtkImageMenuItem" id="imagemenuitem9">
-                        <property name="label" translatable="yes">_Preferences</property>
+                      <object class="GtkImageMenuItem" id="menuitem_copy_toxid">
+                        <property name="label" translatable="yes">_Copy ToxID in clipboard</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="use_underline">True</property>
+                        <property name="image">image10</property>
+                        <property name="use_stock">False</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menuitem_save_qrcode">
+                        <property name="label" translatable="yes">_Save ToxID as QrCode...</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="tooltip_text" translatable="yes">Generates a QrCode containing your ToxID allowing you to share it easier with your future contacts.</property>
+                        <property name="use_underline">True</property>
+                        <property name="image">image9</property>
+                        <property name="use_stock">False</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem" id="separatormenuitem5">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menuitem_change_nospam">
+                        <property name="label" translatable="yes">_Change Nospam...</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="tooltip_text" translatable="yes">Nospam is a value contained in your ToxID that helps to prevent against contact requests spam. Changing it will update your ToxID, making the older one invalid, you will have to give your new ToxID to people in order for them to add you.</property>
+                        <property name="use_underline">True</property>
+                        <property name="image">image11</property>
+                        <property name="use_stock">False</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkSeparatorMenuItem" id="separatormenuitem4">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkImageMenuItem" id="menuitem_preferences">
+                        <property name="label" translatable="yes">_Preferences...</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_underline">True</property>
@@ -136,17 +206,17 @@
               </object>
             </child>
             <child>
-              <object class="GtkMenuItem" id="menuitem3">
+              <object class="GtkMenuItem" id="menuitem_view">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">_Affichage</property>
+                <property name="label" translatable="yes">_View</property>
                 <property name="use_underline">True</property>
                 <child type="submenu">
-                  <object class="GtkMenu" id="menu4">
+                  <object class="GtkMenu" id="menu_view">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
-                      <object class="GtkCheckMenuItem" id="checkmenuitem1">
+                      <object class="GtkCheckMenuItem" id="checkmenuitem_enable_compact_list">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="tooltip_text" translatable="yes">Display list with a minimal height to allow viewing more items.</property>
@@ -156,7 +226,7 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkCheckMenuItem" id="checkmenuitem2">
+                      <object class="GtkCheckMenuItem" id="checkmenuitem_enable_bubbles">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="tooltip_text" translatable="yes">Display bubbles messages instead of plain text.</property>
@@ -172,18 +242,20 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkMenuItem" id="menuitem5">
+                      <object class="GtkImageMenuItem" id="menuitem_text_format">
+                        <property name="label" translatable="yes">_Text formating</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="tooltip_text" translatable="yes">Select how Konv should render messages and texts.</property>
-                        <property name="label" translatable="yes">_Text formating</property>
+                        <property name="tooltip_text" translatable="yes">Choose how Konv formats messages and texts.</property>
                         <property name="use_underline">True</property>
+                        <property name="image">image12</property>
+                        <property name="use_stock">False</property>
                         <child type="submenu">
-                          <object class="GtkMenu" id="menu5">
+                          <object class="GtkMenu" id="menu_text_format">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <child>
-                              <object class="GtkRadioMenuItem" id="radiomenuitem1">
+                              <object class="GtkRadioMenuItem" id="radiomenuitem_plain_text">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="tooltip_text" translatable="yes">Everything except links will be displayed as it.</property>
@@ -194,7 +266,7 @@
                               </object>
                             </child>
                             <child>
-                              <object class="GtkRadioMenuItem" id="radiomenuitem2">
+                              <object class="GtkRadioMenuItem" id="radiomenuitem_markdown">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="tooltip_text" translatable="yes">Display messages and texts as markdown.</property>
@@ -206,7 +278,7 @@
                               </object>
                             </child>
                             <child>
-                              <object class="GtkRadioMenuItem" id="radiomenuitem3">
+                              <object class="GtkRadioMenuItem" id="radiomenuitem_plain_markdown">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="tooltip_text" translatable="yes">Display messages and texts as markdown but also display Markdown tags.</property>
@@ -225,18 +297,18 @@
               </object>
             </child>
             <child>
-              <object class="GtkMenuItem" id="menuitem4">
+              <object class="GtkMenuItem" id="menuitem_help">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Aid_e</property>
+                <property name="label" translatable="yes">_Help</property>
                 <property name="use_underline">True</property>
                 <child type="submenu">
-                  <object class="GtkMenu" id="menu3">
+                  <object class="GtkMenu" id="menu_help">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
-                      <object class="GtkImageMenuItem" id="imagemenuitem10">
-                        <property name="label" translatable="yes">_Konv website</property>
+                      <object class="GtkImageMenuItem" id="menuitem_help_website">
+                        <property name="label" translatable="yes">_Konv website...</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_underline">True</property>
@@ -245,8 +317,8 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkImageMenuItem" id="imagemenuitem1">
-                        <property name="label" translatable="yes">_Source code</property>
+                      <object class="GtkImageMenuItem" id="menuitem_help_source">
+                        <property name="label" translatable="yes">_Source code...</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_underline">True</property>
@@ -255,8 +327,8 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkImageMenuItem" id="imagemenuitem2">
-                        <property name="label" translatable="yes">_Report an issue</property>
+                      <object class="GtkImageMenuItem" id="menuitem_help_bugs">
+                        <property name="label" translatable="yes">_Report an issue...</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_underline">True</property>
@@ -271,8 +343,8 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkImageMenuItem" id="imagemenuitem6">
-                        <property name="label" translatable="yes">_About</property>
+                      <object class="GtkImageMenuItem" id="menuitem_help_about">
+                        <property name="label" translatable="yes">_About Konv...</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_underline">True</property>

@@ -1,0 +1,8 @@
+.no-radius, .no-radius * {
+  border-radius: 0;
+}
+
+.no-border, .no-border * {
+  border-image: none;
+  border: none;
+}

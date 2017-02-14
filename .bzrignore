@@ -1,0 +1,8 @@
+# Build files.
+build/*
+
+# Glade temp files.
+*.ui~
+*.ui#
+*.vala~
+*~
