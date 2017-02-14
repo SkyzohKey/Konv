@@ -32,7 +32,6 @@ cmake_minimum_required (VERSION 2.6)
 # Tell CMake where it can find modules.
 list (APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 list (APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/src")
-list (APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake-modules")
 
 # Let's define some useful vars.
 set (DATADIR "${CMAKE_INSTALL_PREFIX}/share")

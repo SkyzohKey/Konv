@@ -1,0 +1,13 @@
+
+FIND_PROGRAM(GLIB-GENMARSHAL_EXECUTABLE NAMES glib-genmarshal)
+
+FIND_PROGRAM(GLIB-MKENUMS_EXECUTABLE NAMES glib-mkenums)
+        
+FIND_PROGRAM(GDBUS-CODEGEN_EXECUTABLE NAMES gdbus-codegen)
+
+# handle the QUIETLY and REQUIRED arguments and set GLIB-MKENUMS_FOUND to TRUE if
+# all listed variables are TRUE
+INCLUDE(FindPackageHandleStandardArgs)
+FIND_PACKAGE_HANDLE_STANDARD_ARGS(GLibTools
+                                  REQUIRED_VARS GLIB-MKENUMS_EXECUTABLE GLIB-GENMARSHAL_EXECUTABLE
+                                  GDBUS-CODEGEN_EXECUTABLE)
