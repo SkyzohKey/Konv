@@ -93,7 +93,11 @@ namespace Konv.Gui.Components {
       this.searchentry.placeholder_text = _("Search or add a contact...");
 
       this.tabs_header.get_style_context ().add_class ("no-radius");
+      this.tabs_header.get_style_context ().add_class ("no-borders-h-sides");
+
       this.searchentry.get_style_context ().add_class ("no-radius");
+      this.searchentry.get_style_context ().add_class ("no-borders-horizontal");
+      this.searchentry.get_style_context ().add_class ("no-border-top");
 
       this.search_container = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
       Gtk.Label search = new Gtk.Label.with_mnemonic (_("Search results loading here..."));

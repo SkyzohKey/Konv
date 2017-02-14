@@ -85,7 +85,6 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
 
     this.navbar = new Components.TabNavbar ();
     this.header = new Components.HeaderBar ();
-    this.header.get_style_context ().add_class ("no-radius");
 
     Gtk.Label label_recent = new Gtk.Label.with_mnemonic (_("Recent conversations shows here."));
     TabContainer recent = new TabContainer ("recent", Gtk.Orientation.VERTICAL);

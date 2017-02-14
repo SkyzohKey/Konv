@@ -1,8 +1,21 @@
-.no-radius, .no-radius * {
-  border-radius: 0;
-}
-
+.no-radius, .no-radius * { border-radius: 0; }
 .no-border, .no-border * {
   border-image: none;
   border: none;
 }
+.no-borders-horizontal {
+  border-left: 0;
+  border-right: 0;
+}
+.no-borders-vertical {
+  border-bottom: 0;
+  border-top: 0;
+}
+.no-borders-h-sides:first-child { border-left: 0; }
+.no-borders-h-sides:last-child { border-right: 0; }
+.no-borders-v-sides:first-child { border-top: 0; }
+.no-borders-v-sides:last-child { border-bottom: 0; }
+.no-border-top { border-top: 0; }
+.no-border-bottom { border-bottom: 0; }
+.no-border-left { border-left: 0; }
+.no-border-right { border-right: 0; }
