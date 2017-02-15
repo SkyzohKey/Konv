@@ -1,8 +1,9 @@
 machine:
 
 dependencies:
-  post:
-    - sudo apt-get install libgtk-3-dev libjson-glib-dev libsoup2.4-dev
+  pre:
+    - sudo apt-get update
+    - sudo apt-get install build-essentials valac libgtk-3-dev libjson-glib-dev libsoup2.4-dev
 
 compile:
   override:
