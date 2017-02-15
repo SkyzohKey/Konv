@@ -78,6 +78,8 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
   }
 
   private void init_widgets () {
+    //this.ntm_laput ();
+
     /**
     * TODO: Initialize the window widgets here.
     * @note Widgets properties MUST be defined in the UI file, if possible.

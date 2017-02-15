@@ -6,7 +6,7 @@ configure_file(
 
 # Compile resources.
 include (GResource)
-GLIB_COMPILE_RESOURCES (GLIB_RESOURCES_KONV
+glib_compile_resources (GLIB_RESOURCES_KONV
   SOURCE
     ../data/konv.gresource.xml
 )

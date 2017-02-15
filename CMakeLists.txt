@@ -75,4 +75,4 @@ add_subdirectory ("po")
 add_subdirectory ("src")
 
 # Install the .desktop file.
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/${PROJECT_NAME}.desktop DESTINATION ${DATADIR}/applications/)
+install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/im.konv.client.desktop DESTINATION ${DATADIR}/applications/)
