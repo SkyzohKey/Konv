@@ -14,7 +14,7 @@ function build {
 }
 
 if [[ "$1" == "--deps" ]]; then
-  deps
+  install_deps
 elif [[ "$1" == "--build" ]]; then
   build
 fi
