@@ -219,7 +219,7 @@
                       <object class="GtkCheckMenuItem" id="checkmenuitem_enable_compact_list">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="tooltip_text" translatable="yes">Display list with a minimal height to allow viewing more items.</property>
+                        <property name="tooltip_text" translatable="yes">Lists are rendered as taller than possible to display more items.</property>
                         <property name="label" translatable="yes">_Compact list</property>
                         <property name="use_underline">True</property>
                         <property name="active">True</property>

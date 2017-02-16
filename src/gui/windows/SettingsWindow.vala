@@ -72,7 +72,7 @@ public class Konv.Gui.Windows.SettingsWindow : Gtk.Window {
 
     this.stack.add_titled (this.general_box, "general", _("General"));
     this.stack.add_titled (this.interface_box, "interface", _("Interface"));
-    this.stack.add_titled (this.chatview_box, "chatview", _("Chat view"));
+    this.stack.add_titled (this.chatview_box, "conversations", _("Conversations"));
     this.stack.add_titled (this.notifications_box, "notifications", _("Notifications"));
     this.stack.add_titled (this.network_box, "network", _("Network"));
     this.stack.add_titled (this.files_box, "files", _("File transfers"));
@@ -94,9 +94,8 @@ public class Konv.Gui.Windows.SettingsWindow : Gtk.Window {
   }
 
   private void make_general_box () {
-    this.general_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
-
     Components.SettingsListBox listbox = new Components.SettingsListBox ();
+    this.general_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
     this.general_box.pack_start (listbox, true, true, 0);
 
     // Language section.
@@ -135,9 +134,8 @@ public class Konv.Gui.Windows.SettingsWindow : Gtk.Window {
   }
 
   private void make_interface_box () {
-    this.interface_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
-
     Components.SettingsListBox listbox = new Components.SettingsListBox ();
+    this.interface_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
     this.interface_box.pack_start (listbox, true, true, 0);
 
     // Font section.
@@ -176,14 +174,169 @@ public class Konv.Gui.Windows.SettingsWindow : Gtk.Window {
       _("Custom theme"),
       _("Choose a custom theme between those installed.")
     );
+
+    listbox.new_section ("Misc");
+
+    Gtk.Switch switch_compact_list = new Gtk.Switch ();
+    switch_compact_list.active = true;
+    listbox.new_row (switch_compact_list,
+      _("Compact list"),
+      _("Lists are rendered as taller than possible to display more items.")
+    );
   }
 
   private void make_chatview_box () {
+    Components.SettingsListBox listbox = new Components.SettingsListBox ();
     this.chatview_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+    this.chatview_box.pack_start (listbox, true, true, 0);
+
+    // Font section.
+    listbox.new_section ("Font");
+
+    Gtk.FontButton button_font = new Gtk.FontButton ();
+    listbox.new_row (button_font,
+      _("Conversations font"),
+      _("Choose which font should be used in the conversations.")
+    );
+
+    // Messages section.
+    listbox.new_section ("Messages");
+
+    Gtk.Switch switch_bubbles = new Gtk.Switch ();
+    switch_bubbles.active = true;
+    listbox.new_row (switch_bubbles,
+      _("Enable bubbles"),
+      _("Display messages in bubbles instead of plaintext.")
+    );
+
+    Gtk.Switch switch_avatars = new Gtk.Switch ();
+    switch_avatars.active = true;
+    listbox.new_row (switch_avatars,
+      _("Avatar instead of username"),
+      _("Display avatar in place of username, and username in a tooltip.")
+    );
+
+    // Time section
+    listbox.new_section ("Timestamps");
+
+    /**
+    * TODO: Find a better way to display the different formats to end-user.
+    **/
+
+    Gtk.ComboBoxText combo_time_format = new Gtk.ComboBoxText ();
+    combo_time_format.append_text ("HH:mm");
+    combo_time_format.append_text ("HH:mm:ss t");
+    combo_time_format.append_text ("hh:mm AP");
+    combo_time_format.append_text ("hh:mm:ss AP");
+    combo_time_format.append_text ("hh:mm");
+    combo_time_format.active = 0;
+    listbox.new_row (combo_time_format,
+      _("Timestamp format"),
+      _("Select your prefered timestamp format.")
+    );
+
+    Gtk.ComboBoxText combo_date_format = new Gtk.ComboBoxText ();
+    combo_date_format.append_text ("yyyy-MM-dd");
+    combo_date_format.append_text ("dddd d MMMM yyyy");
+    combo_date_format.append_text ("dd/MM/yyyy");
+    combo_date_format.append_text ("dd-MM-yyyy");
+    combo_date_format.append_text ("d-MM-yyyy");
+    combo_date_format.append_text ("dddd dd-MM-yyyy");
+    combo_date_format.append_text ("dddd d-MM");
+    combo_date_format.active = 1;
+    listbox.new_row (combo_date_format,
+      _("Date format"),
+      _("Select your prefered date format.")
+    );
+
   }
 
   private void make_notifications_box () {
+    Components.SettingsListBox listbox = new Components.SettingsListBox ();
     this.notifications_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+    this.notifications_box.pack_start (listbox, true, true, 0);
+
+    // Contacts section.
+    listbox.new_section ("Contacts");
+
+    Gtk.Switch switch_notify_contacts = new Gtk.Switch ();
+    switch_notify_contacts.active = true;
+    listbox.new_row (switch_notify_contacts,
+      _("Presence"),
+      _("Show notification when contacts connects or disconnect.")
+    );
+
+    Gtk.Switch switch_notify_contacts_messages = new Gtk.Switch ();
+    switch_notify_contacts_messages.active = true;
+    listbox.new_row (switch_notify_contacts_messages,
+      _("Message"),
+      _("Show notification when you receive a message from a contact.")
+    );
+
+    Gtk.Switch switch_notify_contacts_name = new Gtk.Switch ();
+    switch_notify_contacts_name.active = false;
+    listbox.new_row (switch_notify_contacts_name,
+      _("Name"),
+      _("Show notification when contacts name changes.")
+    );
+
+    Gtk.Switch switch_notify_contacts_mood = new Gtk.Switch ();
+    switch_notify_contacts_mood.active = false;
+    listbox.new_row (switch_notify_contacts_mood,
+      _("Status message"),
+      _("Show notification when contacts status message changes.")
+    );
+
+    // Calls section.
+    listbox.new_section ("Calls");
+
+    Gtk.Switch switch_notify_audio_call = new Gtk.Switch ();
+    switch_notify_audio_call.active = true;
+    listbox.new_row (switch_notify_audio_call,
+      _("Audio call"),
+      _("Show a notification when you receive an audio call.")
+    );
+
+    Gtk.Switch switch_notify_video_call = new Gtk.Switch ();
+    switch_notify_video_call.active = true;
+    listbox.new_row (switch_notify_video_call,
+      _("Video call"),
+      _("Show notification when you receive a video call")
+    );
+
+    // Group chats section.
+    listbox.new_section ("Notifications");
+
+    Gtk.Switch switch_notify_group_messages = new Gtk.Switch ();
+    switch_notify_group_messages.active = true;
+    listbox.new_row (switch_notify_group_messages,
+      _("Messages"),
+      _("Show notification for each messages in a group chat.")
+    );
+
+    Gtk.Switch switch_notify_group_mentions = new Gtk.Switch ();
+    switch_notify_group_mentions.active = true;
+    listbox.new_row (switch_notify_group_mentions,
+      _("Mentions"),
+      _("Show notification when you are mentioned in a group chat.")
+    );
+
+    // File transfers section.
+    listbox.new_section ("File transfers");
+
+    Gtk.Switch switch_notify_file_complete = new Gtk.Switch ();
+    switch_notify_file_complete.active = true;
+    listbox.new_row (switch_notify_file_complete,
+      _("Transfer complete"),
+      _("Show notification when file transfer is complete.")
+    );
+
+    Gtk.Switch switch_notify_file_fail = new Gtk.Switch ();
+    switch_notify_file_fail.active = true;
+    listbox.new_row (switch_notify_file_fail,
+      _("Transfer failed"),
+      _("Show notification when file transfer fails.")
+    );
   }
 
   private void make_network_box () {

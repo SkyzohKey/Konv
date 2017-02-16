@@ -75,6 +75,11 @@ namespace Konv {
 		public override void activate () {
 			Gtk.Settings.get_default().set("gtk-application-prefer-dark-theme", true);
 			this.main_window = new Konv.Gui.Windows.MainWindow (this);
+
+			if (show_about) {
+				Konv.App.show_about_dialog ((Gtk.Window) this.main_window);
+			}
+
 			this.main_window.show_all ();
 		}
 
@@ -104,7 +109,7 @@ namespace Konv {
 					"SkyzohKey <skyzohkey@konv.im>"
 				},
 				website: Konv.Constants.WEBSITE_URL,
-				website_label: "Konv.im official website"
+				website_label: _("Konv.im official website")
 			);
 		}
 
@@ -123,10 +128,6 @@ namespace Konv {
 			if (display_version) {
 				stdout.printf ("%s version %s-%s\n", Konv.Constants.APP_NAME, Konv.Constants.VERSION, Konv.Constants.VERSION_INFO);
 				return 0;
-			}
-
-			if (show_about) {
-				Konv.App.show_about_dialog ();
 			}
 
 			return new Konv.App (argv).run (argv);

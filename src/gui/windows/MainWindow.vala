@@ -192,7 +192,7 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
     });
 
     this.menuitem_help_about.activate.connect (() => {
-      Konv.App.show_about_dialog ();
+      Konv.App.show_about_dialog ((Gtk.Window) this);
     });
 
     this.menuitem_preferences.activate.connect (() => {
