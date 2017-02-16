@@ -2,6 +2,7 @@ using GLib;
 using Gtk;
 using Konv;
 using Konv.Gui.Components;
+using Konv.Gui.Windows;
 // using Konv.Core; // Uncomment later once core is ready.
 
 [GtkTemplate (ui="/im/konv/client/interfaces/windows/MainWindow.ui")]
@@ -42,6 +43,9 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
   // Main boxes.
   [GtkChild] private Gtk.Box box_left_side;
   [GtkChild] private Gtk.Box box_right_side;
+
+  // Windows.
+  private Windows.SettingsWindow preferences_window { get; set; }
 
   private Components.HeaderBar header { get; set; }
   private Components.TabNavbar navbar { get; set; }
@@ -155,6 +159,12 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
       } catch (Error e) {
         error (@"Cannot find default handler for issues tracker. Error: $(e.message)");
       }
+    });
+
+    this.menuitem_preferences.activate.connect (() => {
+      this.preferences_window = new Windows.SettingsWindow ();
+      this.preferences_window.set_transient_for (this);
+      this.preferences_window.show_all ();
     });
 
     /* TEMP DEV ZONE.

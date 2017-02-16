@@ -16,9 +16,11 @@ vala_precompile (VALA_C ${EXEC_NAME}
   ${CMAKE_CURRENT_BINARY_DIR}/Config.vala
   Konv.vala
   gui/components/HeaderBar.vala
+  gui/components/SettingsListBox.vala
   gui/components/TabContainer.vala
   gui/components/TabNavbar.vala
   gui/windows/MainWindow.vala
+  gui/windows/SettingsWindow.vala
 
   # List the package that we need.
   PACKAGES
