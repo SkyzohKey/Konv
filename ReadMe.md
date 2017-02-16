@@ -28,7 +28,7 @@ serves as a sort of Roadmap for me.
 files, avatars ;
 - [ ] Simple and convenient way to share a contact (drag&drop, right click) ;
 - [ ] Customizable interface ;
-- [ ] Intuitive and not cluttered settings interface (advanced mode?) ;
+- [x] Intuitive and not cluttered settings interface (advanced mode?) ;
 - [ ] Group chats, with simple way to add people inside ;
 - [ ] Avatars, status messages, presence ;
 - [ ] Audio calls, video calls, desktop sharing/streaming ;
