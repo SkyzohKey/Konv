@@ -12,7 +12,7 @@ primordial in this post-Snowden era. Free speech enables **real** sharing of
 ideas, concepts, researchs, etc. That's how I want to contribute saving what
 stays of people liberties and rights.
 
-| [![A screenshot of Konv's MainWindow + SettingsWindow running 0.1.0-looneypig](misc/screens/main-settings-dark-0.1.0.png)](Konv.im preview: https://a.doko.moe/jsfcgo.ogv) |
+| [![A screenshot of Konv's MainWindow + SettingsWindow running 0.1.0-looneypig](misc/screens/main-settings-dark-0.1.0.png)](https://a.doko.moe/jsfcgo.ogv) |
 |:--:|
 | Click the screenshot to see the **preview** video. |
 
