@@ -16,12 +16,14 @@ public class Konv.Gui.Windows.SettingsWindow : Gtk.Window {
   private Gtk.Box network_box;
   private Gtk.Box files_box;
   private Gtk.Box av_box;
+  private Gtk.Box plugins_box;
 
   public SettingsWindow () {
     Object (type: Gtk.WindowType.TOPLEVEL);
 
     this.set_title (_("Preferences - %s").printf (Konv.Constants.APP_NAME));
-    this.set_resizable (false);
+    this.set_position (Gtk.WindowPosition.CENTER_ON_PARENT);
+    //this.set_resizable (false);
     this.set_size_request (650, 400);
     this.set_border_width (0);
     this.set_modal (true);
@@ -30,6 +32,7 @@ public class Konv.Gui.Windows.SettingsWindow : Gtk.Window {
     this.add (canvas);
 
     this.stack = new Gtk.Stack ();
+    this.stack.set_size_request (400, 1);
     //this.stack.set_transition_type (Gtk.StackTransitionType.OVER_UP_DOWN);
     canvas.pack_end (this.stack, true, true, 0);
 
@@ -47,6 +50,7 @@ public class Konv.Gui.Windows.SettingsWindow : Gtk.Window {
     this.stack.add_titled (this.network_box, "network", _("Network"));
     this.stack.add_titled (this.files_box, "files", _("File transfers"));
     this.stack.add_titled (this.av_box, "av", _("Audio/video"));
+    this.stack.add_titled (this.plugins_box, "plugins", _("Addons"));
 
     this.show_all ();
   }
@@ -59,6 +63,7 @@ public class Konv.Gui.Windows.SettingsWindow : Gtk.Window {
     this.make_network_box ();
     this.make_files_box ();
     this.make_av_box ();
+    this.make_plugins_box ();
   }
 
   private void make_general_box () {
@@ -79,6 +84,7 @@ public class Konv.Gui.Windows.SettingsWindow : Gtk.Window {
       _("Choose the language that Konv interface will be displayed in.")
     );
 
+    // Behavior section.
     listbox.new_section (_("Behavior"));
 
     Gtk.Switch switch_boot_start = new Gtk.Switch ();
@@ -88,14 +94,62 @@ public class Konv.Gui.Windows.SettingsWindow : Gtk.Window {
     );
 
     Gtk.Switch switch_show_system_tray = new Gtk.Switch ();
+    switch_show_system_tray.active = true;
     listbox.new_row (switch_show_system_tray,
-      _("Show system tray icon"),
+      _("System tray icon"),
       _("Display an icon in the system tray for easier control of the app.")
+    );
+
+    Gtk.Switch switch_tray_closing = new Gtk.Switch ();
+    listbox.new_row (switch_tray_closing,
+      _("Close to system tray"),
+      _("Hide the window instead of closing it when requested,\nwindow can be shown again by right clicking the system tray icon.")
     );
   }
 
   private void make_interface_box () {
     this.interface_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+
+    Components.SettingsListBox listbox = new Components.SettingsListBox ();
+    this.interface_box.pack_start (listbox, true, true, 0);
+
+    // Font section.
+    listbox.new_section ("Font");
+
+    Gtk.FontButton button_font = new Gtk.FontButton ();
+    listbox.new_row (button_font,
+      _("Interface font"),
+      _("Choose which font should be used in the %s interface.").printf (Konv.Constants.APP_NAME)
+    );
+
+    Gtk.ComboBoxText comboboxtext_text_format = new Gtk.ComboBoxText ();
+    comboboxtext_text_format.append_text ("Plaintext");
+    comboboxtext_text_format.append_text ("Markdown");
+    comboboxtext_text_format.append_text ("Plain Markdown");
+    comboboxtext_text_format.active = 1;
+    listbox.new_row (comboboxtext_text_format,
+      _("Text formating"),
+      _("Select your prefered text parsing method.")
+    );
+
+    // Theme section.
+    listbox.new_section ("Theme");
+
+    Gtk.Switch switch_dark_variant = new Gtk.Switch ();
+    switch_dark_variant.active = true;
+    listbox.new_row (switch_dark_variant,
+      _("Dark theme"),
+      _("Use the dark variant of the theme for the %s interface.").printf (Konv.Constants.APP_NAME)
+    );
+
+    Gtk.ComboBoxText comboboxtext_custom_theme = new Gtk.ComboBoxText ();
+    comboboxtext_custom_theme.append_text ("GTK+3 theme");
+    comboboxtext_custom_theme.active = 0;
+    listbox.new_row (comboboxtext_custom_theme,
+      _("Custom theme"),
+      _("Choose a custom theme between those installed.")
+    );
+
   }
 
   private void make_chatview_box () {
@@ -116,5 +170,9 @@ public class Konv.Gui.Windows.SettingsWindow : Gtk.Window {
 
   private void make_av_box () {
     this.av_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+  }
+
+  private void make_plugins_box () {
+    this.plugins_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
   }
 }
