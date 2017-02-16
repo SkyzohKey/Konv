@@ -35,6 +35,7 @@ namespace Konv.Gui.Components {
 
     public SettingsListBox () {
       this.set_orientation (Gtk.Orientation.HORIZONTAL);
+      this.set_size_request (400, 1);
 
       Gtk.ScrolledWindow scroll = new Gtk.ScrolledWindow (null, null);
       scroll.set_size_request (400, 1);
@@ -46,6 +47,10 @@ namespace Konv.Gui.Components {
       this.scrolled_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
       this.scrolled_box.set_size_request (400, 1);
       hbox.pack_start (this.scrolled_box, true, true, 0);
+
+      this.listbox = new Gtk.ListBox ();
+      this.listbox.set_selection_mode (Gtk.SelectionMode.NONE);
+      this.scrolled_box.pack_start (this.listbox, false, false, 0);
     }
 
     public Gtk.Box new_section (string name) {
@@ -53,8 +58,8 @@ namespace Konv.Gui.Components {
       this.scrolled_box.pack_start (box, false, false, 5);
 
       Gtk.Label label = new Gtk.Label (null);
-      label.set_line_wrap (true);
       label.set_markup (@"<b>$name</b>");
+      label.set_line_wrap (true);
       label.set_margin_top (4);
       label.set_margin_start (6);
       box.pack_start (label, false, false, 2);
@@ -86,6 +91,7 @@ namespace Konv.Gui.Components {
       if (help != null) {
         label = new Gtk.Label (null);
         label.set_xalign (0);
+        label.set_line_wrap (true);
         label.set_sensitive (false);
         label.set_markup (@"<small>$help</small>");
         vbox.pack_start (label, false, false, 0);

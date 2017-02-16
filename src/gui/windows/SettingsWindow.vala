@@ -49,11 +49,11 @@ public class Konv.Gui.Windows.SettingsWindow : Gtk.Window {
     this.set_title (_("Preferences - %s").printf (Konv.Constants.APP_NAME));
     this.set_position (Gtk.WindowPosition.CENTER_ON_PARENT);
     this.set_transient_for (parent);
-
-    //this.set_resizable (false);
     this.set_size_request (650, 400);
     this.set_border_width (0);
-    this.set_modal (true);
+
+    //this.set_resizable (false);
+    //this.set_modal (true);
 
     Gtk.Box canvas = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 2);
     this.add (canvas);
@@ -75,7 +75,7 @@ public class Konv.Gui.Windows.SettingsWindow : Gtk.Window {
     this.stack.add_titled (this.chatview_box, "conversations", _("Conversations"));
     this.stack.add_titled (this.notifications_box, "notifications", _("Notifications"));
     this.stack.add_titled (this.network_box, "network", _("Network"));
-    this.stack.add_titled (this.files_box, "files", _("File transfers"));
+    this.stack.add_titled (this.files_box, "files", _("Files & downloads"));
     this.stack.add_titled (this.av_box, "av", _("Audio/video"));
     this.stack.add_titled (this.plugins_box, "plugins", _("Addons"));
 
@@ -202,6 +202,27 @@ public class Konv.Gui.Windows.SettingsWindow : Gtk.Window {
     // Messages section.
     listbox.new_section (_("Messages"));
 
+    Gtk.Box box_emojis = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 5);
+
+    Gtk.ComboBoxText combo_emojis = new Gtk.ComboBoxText ();
+    combo_emojis.append_text ("Emojione");
+    combo_emojis.append_text ("Twitter");
+    combo_emojis.append_text ("iOS");
+    combo_emojis.append_text ("Noto");
+    combo_emojis.append_text ("kde4");
+    combo_emojis.active = 0;
+
+    Gtk.Switch switch_emojis = new Gtk.Switch ();
+    switch_emojis.active = true;
+
+    box_emojis.pack_start (switch_emojis, false, false, 0);
+    box_emojis.pack_start (combo_emojis, false, false, 0);
+
+    listbox.new_row (box_emojis,
+      _("Enable emojis"),
+      _("Convert unicode to emojis in messages.")
+    );
+
     Gtk.Switch switch_bubbles = new Gtk.Switch ();
     switch_bubbles.active = true;
     listbox.new_row (switch_bubbles,
@@ -224,25 +245,25 @@ public class Konv.Gui.Windows.SettingsWindow : Gtk.Window {
     **/
 
     Gtk.ComboBoxText combo_time_format = new Gtk.ComboBoxText ();
-    combo_time_format.append_text ("HH:mm");
-    combo_time_format.append_text ("HH:mm:ss t");
-    combo_time_format.append_text ("hh:mm AP");
-    combo_time_format.append_text ("hh:mm:ss AP");
-    combo_time_format.append_text ("hh:mm");
-    combo_time_format.active = 0;
+    combo_time_format.append_text ("17:36"); // HH:mm
+    combo_time_format.append_text ("17:36:21"); // hh:mm
+    combo_time_format.append_text ("17:36:21 CET"); // HH:mm:ss t
+    combo_time_format.append_text ("05:36 PM"); // hh:mm AP
+    combo_time_format.append_text ("05:36:21 PM"); // hh:mm:ss AP
+    combo_time_format.active = 1;
     listbox.new_row (combo_time_format,
       _("Timestamp format"),
       _("Select your prefered timestamp format.")
     );
 
     Gtk.ComboBoxText combo_date_format = new Gtk.ComboBoxText ();
-    combo_date_format.append_text ("yyyy-MM-dd");
-    combo_date_format.append_text ("dddd d MMMM yyyy");
-    combo_date_format.append_text ("dd/MM/yyyy");
-    combo_date_format.append_text ("dd-MM-yyyy");
-    combo_date_format.append_text ("d-MM-yyyy");
-    combo_date_format.append_text ("dddd dd-MM-yyyy");
-    combo_date_format.append_text ("dddd d-MM");
+    combo_date_format.append_text ("2017-02-16"); // yyyy-MM-dd
+    combo_date_format.append_text ("Jeudi 16 Février 2016"); // dddd d MMMM yyyy
+    combo_date_format.append_text ("16/02/2017"); // dd/MM/yyyy
+    combo_date_format.append_text ("01-02-2017"); // dd-MM-yyyy
+    combo_date_format.append_text ("1-02-2017"); // d-MM-yyyy
+    combo_date_format.append_text ("Jeudi 01-02-2017"); // dddd dd-MM-yyyy
+    combo_date_format.append_text ("Jeudi 16-02"); // dddd d-MM
     combo_date_format.active = 1;
     listbox.new_row (combo_date_format,
       _("Date format"),
@@ -255,6 +276,13 @@ public class Konv.Gui.Windows.SettingsWindow : Gtk.Window {
     Components.SettingsListBox listbox = new Components.SettingsListBox ();
     this.notifications_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
     this.notifications_box.pack_start (listbox, true, true, 0);
+
+    Gtk.Switch switch_notify_blink = new Gtk.Switch ();
+    switch_notify_blink.active = true;
+    listbox.new_row (switch_notify_blink,
+      _("Blink on notification"),
+      _("Make the %s icon to blink in the taskbar on notification(s).").printf (Konv.Constants.APP_NAME)
+    );
 
     // Contacts section.
     listbox.new_section (_("Contacts"));
@@ -305,10 +333,10 @@ public class Konv.Gui.Windows.SettingsWindow : Gtk.Window {
     );
 
     // Group chats section.
-    listbox.new_section (_("Notifications"));
+    listbox.new_section (_("Group chats"));
 
     Gtk.Switch switch_notify_group_messages = new Gtk.Switch ();
-    switch_notify_group_messages.active = true;
+    switch_notify_group_messages.active = false;
     listbox.new_row (switch_notify_group_messages,
       _("Messages"),
       _("Show notification for each messages in a group chat.")
@@ -353,7 +381,7 @@ public class Konv.Gui.Windows.SettingsWindow : Gtk.Window {
     this.switch_enable_proxy.active = false;
     listbox.new_row (this.switch_enable_proxy,
       _("Enable proxy"),
-      _("Ask %s to make external requests through a proxy.").printf (Konv.Constants.APP_NAME)
+      _("Make external requests through a proxy.")
     );
 
     this.box_proxy = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 5);
@@ -395,14 +423,14 @@ public class Konv.Gui.Windows.SettingsWindow : Gtk.Window {
     switch_enable_udp.active = true;
     listbox.new_row (switch_enable_udp,
       _("Enable UDP"),
-      _("Ask %s to make external requests in UDP mode.").printf (Konv.Constants.APP_NAME)
+      _("Make external requests in UDP mode.")
     );
 
     Gtk.Switch switch_enable_tcp = new Gtk.Switch ();
     switch_enable_tcp.active = false;
     listbox.new_row (switch_enable_tcp,
       _("Enable TCP"),
-      _("Ask %s to make external requests in TCP mode.").printf (Konv.Constants.APP_NAME)
+      _("Make external requests in TCP mode.")
     );
   }
 
@@ -410,12 +438,144 @@ public class Konv.Gui.Windows.SettingsWindow : Gtk.Window {
     Components.SettingsListBox listbox = new Components.SettingsListBox ();
     this.files_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
     this.files_box.pack_start (listbox, true, true, 0);
+
+    // Connection section.
+    listbox.new_section (_("File transfers"));
+
+    Gtk.Box box_save_path = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 5);
+    Gtk.Entry entry_save_path = new Gtk.Entry ();
+    entry_save_path.text = Environment.get_user_special_dir (UserDirectory.DOWNLOAD);
+    entry_save_path.editable = false;
+    Gtk.Button button_save_path = new Gtk.Button.with_mnemonic ("...");
+    button_save_path.tooltip_text = _("Choose a folder");
+    box_save_path.pack_start (entry_save_path, true, false, 0);
+    box_save_path.pack_start (button_save_path, false, false, 0);
+
+    listbox.new_row (box_save_path,
+      _("Files save path"),
+      _("Where does %s should store downloaded files?").printf (Konv.Constants.APP_NAME)
+    );
+
+    Gtk.Box box_auto_save = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 5);
+    Gtk.Switch switch_auto_save = new Gtk.Switch ();
+    switch_auto_save.active = true;
+    Gtk.SpinButton spin_auto_save = new Gtk.SpinButton.with_range (0, 200, 10);
+    spin_auto_save.value = 2.5;
+    Gtk.Label label_auto_save = new Gtk.Label ("Mb");
+
+    box_auto_save.pack_start (switch_auto_save, false, false, 0);
+    box_auto_save.pack_start (spin_auto_save, false, false, 0);
+    box_auto_save.pack_start (label_auto_save, false, false, 0);
+
+    listbox.new_row (box_auto_save,
+      _("Auto-accept files"),
+      _("Automatically save files that are lower than the specified size.")
+    );
+
+    // Avatars section.
+    listbox.new_section (_("Cache"));
+
+    Gtk.Button button_clear_avatars_cache = new Gtk.Button.with_mnemonic ("Clear avatars");
+    listbox.new_row (button_clear_avatars_cache,
+      _("Avatars"),
+      _("Remove every contact's avatar from the %s cache.").printf (Konv.Constants.APP_NAME)
+    );
+
+    Gtk.Button button_clear_transfers_cache = new Gtk.Button.with_mnemonic ("Clear file transfers");
+    listbox.new_row (button_clear_transfers_cache,
+      _("File transfers"),
+      _("Remove every file transfers from the %s cache.").printf (Konv.Constants.APP_NAME)
+    );
+
+    Gtk.Button button_clear_logs_cache = new Gtk.Button.with_mnemonic ("Clear logs");
+    listbox.new_row (button_clear_logs_cache,
+      _("Chat logs"),
+      _("Remove every chat logs from the %s cache.").printf (Konv.Constants.APP_NAME)
+    );
   }
 
   private void make_av_box () {
     Components.SettingsListBox listbox = new Components.SettingsListBox ();
     this.av_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
     this.av_box.pack_start (listbox, true, true, 0);
+
+    // Audio section.
+    listbox.new_section (_("Audio"));
+
+    /**
+    * TODO: Populate the list beside with connected/supported speakers.
+    **/
+    Gtk.Box box_speakers_device = new Gtk.Box (Gtk.Orientation.VERTICAL, 5);
+    Gtk.ComboBoxText combo_speakers_device = new Gtk.ComboBoxText ();
+    combo_speakers_device.append_text ("JBL Bluetooth speaker");
+    combo_speakers_device.append_text ("---");
+    combo_speakers_device.active = 0;
+
+    Gtk.Scale scale_speakers_volume = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, 0, 100, 10);
+    scale_speakers_volume.format_value.connect ((percent) => {
+      return @"$(percent)%";
+    });
+
+    box_speakers_device.pack_start (combo_speakers_device, false, false, 0);
+    box_speakers_device.pack_start (scale_speakers_volume, false, false, 0);
+
+    listbox.new_row (box_speakers_device,
+      _("Speakers"),
+      _("Select the speakers you want to use.")
+    );
+
+    // -- volume
+
+    /**
+    * TODO: Populate the list beside with connected/supported micro device.
+    **/
+    Gtk.Box box_microphone_device = new Gtk.Box (Gtk.Orientation.VERTICAL, 5);
+    Gtk.ComboBoxText combo_microphone_device = new Gtk.ComboBoxText ();
+    combo_microphone_device.append_text ("Integrated microphone");
+    combo_microphone_device.append_text ("---");
+    combo_microphone_device.active = 0;
+
+    Gtk.Scale scale_microphone_volume = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, 0, 100, 10);
+    scale_microphone_volume.format_value.connect ((percent) => {
+      return @"$(percent)%";
+    });
+
+    box_microphone_device.pack_start (combo_microphone_device, false, false, 0);
+    box_microphone_device.pack_start (scale_microphone_volume, false, false, 0);
+
+    listbox.new_row (box_microphone_device,
+      _("Microphone"),
+      _("Select the microphone you want to use.")
+    );
+
+    // -- volume
+
+    // Video section.
+    listbox.new_section (_("Video"));
+
+    /**
+    * TODO: Populate the list beside with connected/supported video devices.
+    **/
+    Gtk.ComboBoxText combo_video_device = new Gtk.ComboBoxText ();
+    combo_video_device.append_text ("Integrated webcam");
+    combo_video_device.append_text ("---");
+    combo_video_device.active = 0;
+    listbox.new_row (combo_video_device,
+      _("Webcam/camera"),
+      _("Select the webcam/camera you want to use.")
+    );
+
+    /**
+    * TODO: Populate the list beside with supported webcam resolutions.
+    **/
+    Gtk.ComboBoxText combo_video_resolution = new Gtk.ComboBoxText ();
+    combo_video_resolution.append_text ("Default resolution");
+    combo_video_resolution.append_text ("---");
+    combo_video_resolution.active = 0;
+    listbox.new_row (combo_video_resolution,
+      _("Resolution"),
+      _("Choose the resolution video will be sent/received.")
+    );
   }
 
   private void make_plugins_box () {

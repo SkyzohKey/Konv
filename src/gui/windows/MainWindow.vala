@@ -196,7 +196,13 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
     });
 
     this.menuitem_preferences.activate.connect (() => {
-      this.preferences_window = new Windows.SettingsWindow (((Gtk.Window) this));
+      if (this.preferences_window == null) {
+        this.preferences_window = new Windows.SettingsWindow (((Gtk.Window) this));
+        this.preferences_window.destroy.connect (() => {
+          this.preferences_window = null; // Release the reference when not needed anymore.
+        });
+      }
+
       this.preferences_window.show_all ();
     });
   }
