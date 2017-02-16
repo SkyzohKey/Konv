@@ -1,3 +1,28 @@
+/**
+* Copyright (c) 2017 SkyzohKey <skyzohkey@konv.im>
+*
+* MIT License
+*
+* Permission is hereby granted, free of charge, to any person obtaining
+* a copy of this software and associated documentation files (the
+* "Software"), to deal in the Software without restriction, including
+* without limitation the rights to use, copy, modify, merge, publish,
+* distribute, sublicense, and/or sell copies of the Software, and to
+* permit persons to whom the Software is furnished to do so, subject to
+* the following conditions:
+*
+* The above copyright notice and this permission notice shall be
+* included in all copies or substantial portions of the Software.
+*
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+* EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+* MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+* NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+* LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+* OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+* WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+**/
+
 using GLib;
 using Gtk;
 using Konv;
@@ -53,9 +78,14 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
   public MainWindow (Gtk.Application app) {
     Object (application: app);
 
-    this.set_title (Konv.Constants.APP_NAME + " - v." + Konv.Constants.VERSION + "-" + Konv.Constants.VERSION_INFO);
+    this.set_title ("%s - v. %s-%s".printf (
+      Konv.Constants.APP_NAME, Konv.Constants.VERSION, Konv.Constants.VERSION_INFO
+    ));
     this.set_default_size (800, 450);
-    this.set_icon_name ("tox");
+
+    string logo = @"$(Konv.Constants.RES_PATH)/pixmaps/tox-logo-256.png";
+    Gdk.Pixbuf pixbuf = new Gdk.Pixbuf.from_resource_at_scale (logo, 48, 48, true);
+    this.set_default_icon (pixbuf);
 
     this.load_styles ();
     this.init_widgets ();
@@ -161,26 +191,19 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
       }
     });
 
-    this.menuitem_preferences.activate.connect (() => {
-      this.preferences_window = new Windows.SettingsWindow ();
-      this.preferences_window.set_transient_for (this);
-      this.preferences_window.show_all ();
+    this.menuitem_help_about.activate.connect (() => {
+      Konv.App.show_about_dialog ();
     });
 
-    /* TEMP DEV ZONE.
-    this.navbar.tab_changed.connect ((id, tab) => {
-      if (id == "calls") {
-        debug ("Calls called.");
-        this.navbar.remove_tab (id);
-      }
-    });*/
+    this.menuitem_preferences.activate.connect (() => {
+      this.preferences_window = new Windows.SettingsWindow (((Gtk.Window) this));
+      this.preferences_window.show_all ();
+    });
   }
 
   private void run_logic () {
     /**
     * TODO: Run the window logic here.
     **/
-
-    this.show_all ();
   }
 }
