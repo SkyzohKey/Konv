@@ -139,7 +139,7 @@ public class Konv.Gui.Windows.SettingsWindow : Gtk.Window {
     this.interface_box.pack_start (listbox, true, true, 0);
 
     // Font section.
-    listbox.new_section ("Font");
+    listbox.new_section (_("Font"));
 
     Gtk.FontButton button_font = new Gtk.FontButton ();
     listbox.new_row (button_font,
@@ -158,7 +158,7 @@ public class Konv.Gui.Windows.SettingsWindow : Gtk.Window {
     );
 
     // Theme section.
-    listbox.new_section ("Theme");
+    listbox.new_section (_("Theme"));
 
     Gtk.Switch switch_dark_variant = new Gtk.Switch ();
     switch_dark_variant.active = true;
@@ -175,7 +175,7 @@ public class Konv.Gui.Windows.SettingsWindow : Gtk.Window {
       _("Choose a custom theme between those installed.")
     );
 
-    listbox.new_section ("Misc");
+    listbox.new_section (_("Misc"));
 
     Gtk.Switch switch_compact_list = new Gtk.Switch ();
     switch_compact_list.active = true;
@@ -191,7 +191,7 @@ public class Konv.Gui.Windows.SettingsWindow : Gtk.Window {
     this.chatview_box.pack_start (listbox, true, true, 0);
 
     // Font section.
-    listbox.new_section ("Font");
+    listbox.new_section (_("Font"));
 
     Gtk.FontButton button_font = new Gtk.FontButton ();
     listbox.new_row (button_font,
@@ -200,7 +200,7 @@ public class Konv.Gui.Windows.SettingsWindow : Gtk.Window {
     );
 
     // Messages section.
-    listbox.new_section ("Messages");
+    listbox.new_section (_("Messages"));
 
     Gtk.Switch switch_bubbles = new Gtk.Switch ();
     switch_bubbles.active = true;
@@ -217,7 +217,7 @@ public class Konv.Gui.Windows.SettingsWindow : Gtk.Window {
     );
 
     // Time section
-    listbox.new_section ("Timestamps");
+    listbox.new_section (_("Timestamps"));
 
     /**
     * TODO: Find a better way to display the different formats to end-user.
@@ -257,7 +257,7 @@ public class Konv.Gui.Windows.SettingsWindow : Gtk.Window {
     this.notifications_box.pack_start (listbox, true, true, 0);
 
     // Contacts section.
-    listbox.new_section ("Contacts");
+    listbox.new_section (_("Contacts"));
 
     Gtk.Switch switch_notify_contacts = new Gtk.Switch ();
     switch_notify_contacts.active = true;
@@ -288,7 +288,7 @@ public class Konv.Gui.Windows.SettingsWindow : Gtk.Window {
     );
 
     // Calls section.
-    listbox.new_section ("Calls");
+    listbox.new_section (_("Calls"));
 
     Gtk.Switch switch_notify_audio_call = new Gtk.Switch ();
     switch_notify_audio_call.active = true;
@@ -305,7 +305,7 @@ public class Konv.Gui.Windows.SettingsWindow : Gtk.Window {
     );
 
     // Group chats section.
-    listbox.new_section ("Notifications");
+    listbox.new_section (_("Notifications"));
 
     Gtk.Switch switch_notify_group_messages = new Gtk.Switch ();
     switch_notify_group_messages.active = true;
@@ -322,7 +322,7 @@ public class Konv.Gui.Windows.SettingsWindow : Gtk.Window {
     );
 
     // File transfers section.
-    listbox.new_section ("File transfers");
+    listbox.new_section (_("File transfers"));
 
     Gtk.Switch switch_notify_file_complete = new Gtk.Switch ();
     switch_notify_file_complete.active = true;
@@ -339,19 +339,88 @@ public class Konv.Gui.Windows.SettingsWindow : Gtk.Window {
     );
   }
 
+  private Gtk.Switch switch_enable_proxy;
+  private Gtk.Box box_proxy;
   private void make_network_box () {
+    Components.SettingsListBox listbox = new Components.SettingsListBox ();
     this.network_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+    this.network_box.pack_start (listbox, true, true, 0);
+
+    // Proxy section.
+    listbox.new_section (_("Proxy"));
+
+    this.switch_enable_proxy = new Gtk.Switch ();
+    this.switch_enable_proxy.active = false;
+    listbox.new_row (this.switch_enable_proxy,
+      _("Enable proxy"),
+      _("Ask %s to make external requests through a proxy.").printf (Konv.Constants.APP_NAME)
+    );
+
+    this.box_proxy = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 5);
+    Gtk.ComboBoxText combo_proxy_type = new Gtk.ComboBoxText ();
+    combo_proxy_type.append_text ("SOCKS5");
+    combo_proxy_type.append_text ("HTTP");
+    combo_proxy_type.active = 0;
+    Gtk.Label proxy_scheme = new Gtk.Label ("://");
+    Gtk.Entry entry_proxy_ip = new Gtk.Entry ();
+    entry_proxy_ip.placeholder_text = "127.0.0.1";
+    Gtk.Label separator = new Gtk.Label (":");
+    Gtk.SpinButton spin_proxy_port = new Gtk.SpinButton.with_range (0, 65535, 1);
+    spin_proxy_port.value = (float)9050;
+
+    this.box_proxy.pack_start (combo_proxy_type, false, false, 0);
+    this.box_proxy.pack_start (proxy_scheme, false, false, 0);
+    this.box_proxy.pack_start (entry_proxy_ip, false, false, 0);
+    this.box_proxy.pack_start (separator, false, false, 0);
+    this.box_proxy.pack_start (spin_proxy_port, false, false, 0);
+    this.box_proxy.sensitive = false;
+
+    this.switch_enable_proxy.activate.connect (() => {
+      this.box_proxy.sensitive = this.switch_enable_proxy.active;
+    });
+
+    listbox.new_row (this.box_proxy, "");
+
+    // Connection section.
+    listbox.new_section (_("Connection type (advanced users only)"));
+
+    Gtk.Switch switch_auto_reconnect = new Gtk.Switch ();
+    switch_auto_reconnect.active = true;
+    listbox.new_row (switch_auto_reconnect,
+      _("Auto-reconnect"),
+      _("Attempt to reconnect to the network if connection get lost.")
+    );
+
+    Gtk.Switch switch_enable_udp = new Gtk.Switch ();
+    switch_enable_udp.active = true;
+    listbox.new_row (switch_enable_udp,
+      _("Enable UDP"),
+      _("Ask %s to make external requests in UDP mode.").printf (Konv.Constants.APP_NAME)
+    );
+
+    Gtk.Switch switch_enable_tcp = new Gtk.Switch ();
+    switch_enable_tcp.active = false;
+    listbox.new_row (switch_enable_tcp,
+      _("Enable TCP"),
+      _("Ask %s to make external requests in TCP mode.").printf (Konv.Constants.APP_NAME)
+    );
   }
 
   private void make_files_box () {
+    Components.SettingsListBox listbox = new Components.SettingsListBox ();
     this.files_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+    this.files_box.pack_start (listbox, true, true, 0);
   }
 
   private void make_av_box () {
+    Components.SettingsListBox listbox = new Components.SettingsListBox ();
     this.av_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+    this.av_box.pack_start (listbox, true, true, 0);
   }
 
   private void make_plugins_box () {
+    Components.SettingsListBox listbox = new Components.SettingsListBox ();
     this.plugins_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+    this.plugins_box.pack_start (listbox, true, true, 0);
   }
 }
