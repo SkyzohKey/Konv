@@ -1,5 +1,7 @@
 # Konv.im - Secure P2P instant messenger
 
+[![CircleCI](https://circleci.com/gh/SkyzohKey/Konv.svg?style=svg)](https://circleci.com/gh/SkyzohKey/Konv)
+
 <!-- TODO: Add logo, one global screenshot or banner and links. -->
 
 [Konv.im] is an open-source, libre and secure instant messaging application that
@@ -10,9 +12,8 @@ primordial in this post-Snowden era. Free speech enables **real** sharing of
 ideas, concepts, researchs, etc. That's how I want to contribute saving what
 stays of people liberties and rights.
 
-| [![CircleCI](https://circleci.com/gh/SkyzohKey/Konv.svg?style=svg)](https://circleci.com/gh/SkyzohKey/Konv) |
-|:--:|
 | [![A screenshot of Konv's MainWindow + SettingsWindow running 0.1.0-looneypig](misc/screens/main-settings-dark-0.1.0.png)](Konv.im preview: https://a.doko.moe/jsfcgo.ogv) |
+|:--:|
 | Click the screenshot to see the **preview** video. |
 
 ## Features
