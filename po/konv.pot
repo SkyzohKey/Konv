@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-14 15:14+0100\n"
+"POT-Creation-Date: 2017-02-16 18:58+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,52 +17,465 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/gui/components/TabNavbar.vala:93
+#: ../src/gui/components/TabNavbar.vala:118
 msgid "Search or add a contact..."
 msgstr ""
 
-#: ../src/gui/components/TabNavbar.vala:99
+#: ../src/gui/components/TabNavbar.vala:128
 msgid "Search results loading here..."
 msgstr ""
 
-#: ../src/gui/components/TabNavbar.vala:119
+#: ../src/gui/components/TabNavbar.vala:148
 msgid "Search results"
 msgstr ""
 
-#: ../src/gui/windows/MainWindow.vala:90
-msgid "Recent conversations shows here."
+#: ../src/gui/windows/SettingsWindow.vala:49
+msgid "Preferences - %s"
 msgstr ""
 
-#: ../src/gui/windows/MainWindow.vala:92
-msgid "Recent conversations"
+#: ../src/gui/windows/SettingsWindow.vala:73
+msgid "General"
 msgstr ""
 
-#: ../src/gui/windows/MainWindow.vala:96
-msgid "Contact list displays here."
+#: ../src/gui/windows/SettingsWindow.vala:74
+msgid "Interface"
 msgstr ""
 
-#: ../src/gui/windows/MainWindow.vala:98
+#: ../src/gui/windows/SettingsWindow.vala:75
+msgid "Conversations"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:76
+msgid "Notifications"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:77
+msgid "Network"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:78
+msgid "Files & downloads"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:79
+msgid "Audio/video"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:80
+msgid "Addons"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:102
+msgid "Language"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:109
+msgid "Software language"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:110
+msgid "Choose the language that Konv interface will be displayed in."
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:114
+msgid "Behavior"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:118
+msgid "Start %s on computer boot"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:119
+msgid "Control whether or not %s should start with the computer."
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:125
+msgid "System tray icon"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:126
+msgid "Display an icon in the system tray for easier control of the app."
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:131
+msgid "Close to system tray"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:132
+msgid ""
+"Hide the window instead of closing it when requested,\n"
+"window can be shown again by right clicking the system tray icon."
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:142
+#: ../src/gui/windows/SettingsWindow.vala:194
+msgid "Font"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:146
+msgid "Interface font"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:147
+msgid "Choose which font should be used in the %s interface."
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:156
+msgid "Text formating"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:157
+msgid "Select your prefered text parsing method."
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:161
+msgid "Theme"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:166
+msgid "Dark theme"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:167
+msgid "Use the dark variant of the theme for the %s interface."
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:174
+msgid "Custom theme"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:175
+msgid "Choose a custom theme between those installed."
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:178
+msgid "Misc"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:183
+msgid "Compact list"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:184
+#: ../data/interfaces/windows/MainWindow.ui:222
+msgid "Lists are rendered as taller than possible to display more items."
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:198
+msgid "Conversations font"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:199
+msgid "Choose which font should be used in the conversations."
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:203
+#: ../src/gui/windows/SettingsWindow.vala:341
+msgid "Messages"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:222
+msgid "Enable emojis"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:223
+msgid "Convert unicode to emojis in messages."
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:229
+msgid "Enable bubbles"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:230
+msgid "Display messages in bubbles instead of plaintext."
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:236
+msgid "Avatar instead of username"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:237
+msgid "Display avatar in place of username, and username in a tooltip."
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:241
+msgid "Timestamps"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:255
+msgid "Timestamp format"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:256
+msgid "Select your prefered timestamp format."
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:269
+msgid "Date format"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:270
+msgid "Select your prefered date format."
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:283
+msgid "Blink on notification"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:284
+msgid "Make the %s icon to blink in the taskbar on notification(s)."
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:288
+#: ../src/gui/windows/MainWindow.vala:133
 msgid "Contacts"
 msgstr ""
 
-#: ../src/gui/windows/MainWindow.vala:102
-msgid "All file transfers goes here."
+#: ../src/gui/windows/SettingsWindow.vala:293
+msgid "Presence"
 msgstr ""
 
-#: ../src/gui/windows/MainWindow.vala:104
+#: ../src/gui/windows/SettingsWindow.vala:294
+msgid "Show notification when contacts connects or disconnect."
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:300
+msgid "Message"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:301
+msgid "Show notification when you receive a message from a contact."
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:307
+msgid "Name"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:308
+msgid "Show notification when contacts name changes."
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:314
+msgid "Status message"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:315
+msgid "Show notification when contacts status message changes."
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:319
+msgid "Calls"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:324
+msgid "Audio call"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:325
+msgid "Show a notification when you receive an audio call."
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:331
+msgid "Video call"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:332
+msgid "Show notification when you receive a video call"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:336
+msgid "Group chats"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:342
+msgid "Show notification for each messages in a group chat."
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:348
+msgid "Mentions"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:349
+msgid "Show notification when you are mentioned in a group chat."
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:353
+#: ../src/gui/windows/SettingsWindow.vala:443
+#: ../src/gui/windows/SettingsWindow.vala:486
+#: ../src/gui/windows/MainWindow.vala:139
 msgid "File transfers"
 msgstr ""
 
-#: ../src/gui/windows/MainWindow.vala:108
+#: ../src/gui/windows/SettingsWindow.vala:358
+msgid "Transfer complete"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:359
+msgid "Show notification when file transfer is complete."
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:365
+msgid "Transfer failed"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:366
+msgid "Show notification when file transfer fails."
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:378
+msgid "Proxy"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:383
+msgid "Enable proxy"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:384
+msgid "Make external requests through a proxy."
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:413
+msgid "Connection type (advanced users only)"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:418
+msgid "Auto-reconnect"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:419
+msgid "Attempt to reconnect to the network if connection get lost."
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:425
+msgid "Enable UDP"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:426
+msgid "Make external requests in UDP mode."
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:432
+msgid "Enable TCP"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:433
+msgid "Make external requests in TCP mode."
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:450
+msgid "Choose a folder"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:455
+msgid "Files save path"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:456
+msgid "Where does %s should store downloaded files?"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:471
+msgid "Auto-accept files"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:472
+msgid "Automatically save files that are lower than the specified size."
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:476
+msgid "Cache"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:480
+msgid "Avatars"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:481
+msgid "Remove every contact's avatar from the %s cache."
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:487
+msgid "Remove every file transfers from the %s cache."
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:492
+msgid "Chat logs"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:493
+msgid "Remove every chat logs from the %s cache."
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:503
+msgid "Audio"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:523
+msgid "Speakers"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:524
+msgid "Select the speakers you want to use."
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:547
+msgid "Microphone"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:548
+msgid "Select the microphone you want to use."
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:554
+msgid "Video"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:564
+msgid "Webcam/camera"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:565
+msgid "Select the webcam/camera you want to use."
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:576
+msgid "Resolution"
+msgstr ""
+
+#: ../src/gui/windows/SettingsWindow.vala:577
+msgid "Choose the resolution video will be sent/received."
+msgstr ""
+
+#: ../src/gui/windows/MainWindow.vala:125
+msgid "Recent conversations shows here."
+msgstr ""
+
+#: ../src/gui/windows/MainWindow.vala:127
+msgid "Recent conversations"
+msgstr ""
+
+#: ../src/gui/windows/MainWindow.vala:131
+msgid "Contact list displays here."
+msgstr ""
+
+#: ../src/gui/windows/MainWindow.vala:137
+msgid "All file transfers goes here."
+msgstr ""
+
+#: ../src/gui/windows/MainWindow.vala:143
 msgid "Missed calls will be listed here."
 msgstr ""
 
-#: ../src/gui/windows/MainWindow.vala:110
+#: ../src/gui/windows/MainWindow.vala:145
 msgid "Missed calls"
 msgstr ""
 
-#: ../src/Konv.vala:47
+#: ../src/Konv.vala:91
 msgid "%s v.%s started..."
+msgstr ""
+
+#: ../src/Konv.vala:112
+msgid "Konv.im official website"
 msgstr ""
 
 #: ../data/interfaces/components/HeaderBar.ui:14
@@ -131,10 +544,6 @@ msgstr ""
 
 #: ../data/interfaces/windows/MainWindow.ui:212
 msgid "_View"
-msgstr ""
-
-#: ../data/interfaces/windows/MainWindow.ui:222
-msgid "Display list with a minimal height to allow viewing more items."
 msgstr ""
 
 #: ../data/interfaces/windows/MainWindow.ui:223
