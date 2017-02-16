@@ -2,6 +2,7 @@
 
 function install_deps {
   sudo add-apt-repository -y ppa:vala-team/ppa
+  sudo add-apt-repository -y ppa:rebuntu16/glade-3.19+-trusty
   sudo apt-get update
   sudo apt-get install -y build-essential vala-0.30 valac libgtk-3-dev libjson-glib-dev libsoup2.4-dev
 }
