@@ -5,6 +5,3 @@ dependencies:
 compile:
   override:
     - ./misc/build-linux.sh --build && ./misc/build-linux.sh --install
-test:
-  override:
-    - echo TODO; Write tests then run them here.
