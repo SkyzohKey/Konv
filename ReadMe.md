@@ -1,6 +1,8 @@
 # Konv.im - Secure P2P instant messenger
 
-[![CircleCI](https://circleci.com/gh/SkyzohKey/Konv.svg?style=svg)](https://circleci.com/gh/SkyzohKey/Konv)
+| [![CircleCI][3]][2] |     |
+|:-------------:|:-------------:|
+| [Install Konv](#install) | [Join us on IRC][1] |
 
 <!-- TODO: Add logo, one global screenshot or banner and links. -->
 
@@ -44,7 +46,7 @@ client].
 ToxCore (the Tox core library) provides an easy and intuitive API for building
 secure communication platforms. It is maintained by [The TokTok Project].
 
-I'm not using the old [irungentoo/toxcore] library for convenience and
+I'm using [TokTok/c-toxcore] instead of the old [irungentoo/toxcore] library for convenience and
 security related concerns.
 
 ## Install
@@ -75,6 +77,11 @@ licensed under [The GPLv3 License].
 [the Tox protocol]: https://tox.chat
 [Tox client]: https://tox.chat/clients.html
 [The TokTok Project]: https://toktok.ltd
+[TokTok/c-toxcore]: https://github.com/TokTok/c-toxcore
 [irungentoo/toxcore]: https://github.com/irungentoo/toxcore
 [The MIT License]: License.txt
 [The GPLv3 License]: https://github.com/TokTok/c-toxcore/blob/master/COPYING
+
+[1]: http://webchat.freenode.net/?channels=%23konv%2C%23tox%2C%23tox-dev&uio=MTY9dHJ1ZSY5PXRydWUmMTU9dHJ1ZQ3d
+[2]: https://circleci.com/gh/SkyzohKey/Konv
+[3]: https://circleci.com/gh/SkyzohKey/Konv.svg?style=svg
