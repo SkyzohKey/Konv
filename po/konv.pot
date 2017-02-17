@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-16 18:58+0100\n"
+"POT-Creation-Date: 2017-02-17 13:40+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -227,7 +227,7 @@ msgid "Make the %s icon to blink in the taskbar on notification(s)."
 msgstr ""
 
 #: ../src/gui/windows/SettingsWindow.vala:288
-#: ../src/gui/windows/MainWindow.vala:133
+#: ../src/gui/windows/MainWindow.vala:146
 msgid "Contacts"
 msgstr ""
 
@@ -302,7 +302,7 @@ msgstr ""
 #: ../src/gui/windows/SettingsWindow.vala:353
 #: ../src/gui/windows/SettingsWindow.vala:443
 #: ../src/gui/windows/SettingsWindow.vala:486
-#: ../src/gui/windows/MainWindow.vala:139
+#: ../src/gui/windows/MainWindow.vala:152
 msgid "File transfers"
 msgstr ""
 
@@ -446,27 +446,27 @@ msgstr ""
 msgid "Choose the resolution video will be sent/received."
 msgstr ""
 
-#: ../src/gui/windows/MainWindow.vala:125
+#: ../src/gui/windows/MainWindow.vala:138
 msgid "Recent conversations shows here."
 msgstr ""
 
-#: ../src/gui/windows/MainWindow.vala:127
+#: ../src/gui/windows/MainWindow.vala:140
 msgid "Recent conversations"
 msgstr ""
 
-#: ../src/gui/windows/MainWindow.vala:131
+#: ../src/gui/windows/MainWindow.vala:144
 msgid "Contact list displays here."
 msgstr ""
 
-#: ../src/gui/windows/MainWindow.vala:137
+#: ../src/gui/windows/MainWindow.vala:150
 msgid "All file transfers goes here."
 msgstr ""
 
-#: ../src/gui/windows/MainWindow.vala:143
+#: ../src/gui/windows/MainWindow.vala:156
 msgid "Missed calls will be listed here."
 msgstr ""
 
-#: ../src/gui/windows/MainWindow.vala:145
+#: ../src/gui/windows/MainWindow.vala:158
 msgid "Missed calls"
 msgstr ""
 
@@ -608,4 +608,14 @@ msgstr ""
 
 #: ../data/interfaces/windows/MainWindow.ui:347
 msgid "_About Konv..."
+msgstr ""
+
+#: ../data/interfaces/windows/MainWindow.ui:410
+msgid "Welcome back to Konv, %s !"
+msgstr ""
+
+#: ../data/interfaces/windows/MainWindow.ui:429
+msgid ""
+"Start a new conversation by selecting a contact or a group chat from the "
+"left panel."
 msgstr ""

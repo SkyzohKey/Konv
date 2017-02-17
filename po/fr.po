@@ -1,7 +1,7 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Konv.im French language
+# Copyright (C) 2017 SkyzohKey <skyzohkey@protonmail.com>
+# This file is distributed under the same license as the Konv package.
+# SkyzohKey <skyzohkey@protonmail.com>, 2017.
 
 msgid ""
 msgstr ""
@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-16 18:58+0100\n"
 "PO-Revision-Date: 2017-02-17 13:39+0100\n"
-"Last-Translator: SkyzohKey <SkyzohKey@protonmail.com>, 2017\n"
+"Last-Translator: SkyzohKey <skyzohkey@protonmail.com>, 2017\n"
 "Language-Team: French (https://www.transifex.com/ricinapp/teams/71954/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -239,7 +239,7 @@ msgstr ""
 "une/des notification(s)."
 
 #: ../src/gui/windows/SettingsWindow.vala:288
-#: ../src/gui/windows/MainWindow.vala:133
+#: ../src/gui/windows/MainWindow.vala:146
 msgid "Contacts"
 msgstr "Contacts"
 
@@ -320,7 +320,7 @@ msgstr ""
 #: ../src/gui/windows/SettingsWindow.vala:353
 #: ../src/gui/windows/SettingsWindow.vala:443
 #: ../src/gui/windows/SettingsWindow.vala:486
-#: ../src/gui/windows/MainWindow.vala:139
+#: ../src/gui/windows/MainWindow.vala:152
 msgid "File transfers"
 msgstr "Transferts de fichiers"
 
@@ -466,27 +466,27 @@ msgstr "Définition"
 msgid "Choose the resolution video will be sent/received."
 msgstr "Choisir la définition des vidéos que vous recevez et envoyez."
 
-#: ../src/gui/windows/MainWindow.vala:125
+#: ../src/gui/windows/MainWindow.vala:138
 msgid "Recent conversations shows here."
 msgstr "Conversations récentes."
 
-#: ../src/gui/windows/MainWindow.vala:127
+#: ../src/gui/windows/MainWindow.vala:140
 msgid "Recent conversations"
 msgstr "Conversations récentes."
 
-#: ../src/gui/windows/MainWindow.vala:131
+#: ../src/gui/windows/MainWindow.vala:144
 msgid "Contact list displays here."
 msgstr "Liste des contacts."
 
-#: ../src/gui/windows/MainWindow.vala:137
+#: ../src/gui/windows/MainWindow.vala:150
 msgid "All file transfers goes here."
 msgstr "Transferts de fichiers."
 
-#: ../src/gui/windows/MainWindow.vala:143
+#: ../src/gui/windows/MainWindow.vala:156
 msgid "Missed calls will be listed here."
 msgstr "Appels manqués."
 
-#: ../src/gui/windows/MainWindow.vala:145
+#: ../src/gui/windows/MainWindow.vala:158
 msgid "Missed calls"
 msgstr "Appels manqués."
 
@@ -639,3 +639,15 @@ msgstr "_Signaler un bug..."
 #: ../data/interfaces/windows/MainWindow.ui:347
 msgid "_About Konv..."
 msgstr "_À propos de Konv..."
+
+#: ../data/interfaces/windows/MainWindow.ui:410
+msgid "Welcome back to Konv, %s !"
+msgstr "Ravis de vous revoir sur Konv, %s !"
+
+#: ../data/interfaces/windows/MainWindow.ui:429
+msgid ""
+"Start a new conversation by selecting a contact or a group chat from the "
+"left panel."
+msgstr ""
+"Démarrez une nouvelle conversation en choisissant un contact ou un groupe "
+"depuis le panneau de gauche."
