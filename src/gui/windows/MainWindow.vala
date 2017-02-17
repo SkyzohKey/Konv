@@ -132,6 +132,14 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
       this.image_left_arrow.set_from_resource ("/im/konv/client/pixmaps/left-arrow-dark.svg");
     }
 
+    Gtk.Settings.get_default ().notify["gtk-application-prefer-dark-theme"].connect ((o, p) => {
+      if (Gtk.Settings.get_default ().gtk_application_prefer_dark_theme == true) {
+        this.image_left_arrow.set_from_resource ("/im/konv/client/pixmaps/left-arrow-white.svg");
+      } else {
+        this.image_left_arrow.set_from_resource ("/im/konv/client/pixmaps/left-arrow-dark.svg");
+      }
+    });
+
     this.navbar = new Components.TabNavbar ();
     this.header = new Components.HeaderBar ();
 
