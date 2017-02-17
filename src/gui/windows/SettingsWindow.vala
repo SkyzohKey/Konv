@@ -148,9 +148,9 @@ public class Konv.Gui.Windows.SettingsWindow : Gtk.Window {
     );
 
     Gtk.ComboBoxText comboboxtext_text_format = new Gtk.ComboBoxText ();
-    comboboxtext_text_format.append_text ("Plaintext");
-    comboboxtext_text_format.append_text ("Markdown");
-    comboboxtext_text_format.append_text ("Plain Markdown");
+    comboboxtext_text_format.append_text (_("Plaintext"));
+    comboboxtext_text_format.append_text (_("Markdown"));
+    comboboxtext_text_format.append_text (_("Plain Markdown"));
     comboboxtext_text_format.active = 1;
     listbox.new_row (comboboxtext_text_format,
       _("Text formating"),

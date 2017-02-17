@@ -37,7 +37,8 @@ list (APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/src")
 set (DATADIR "${CMAKE_INSTALL_PREFIX}/share")
 set (PKGDIR "${DATADIR}/${PROJECT_NAME}")
 set (GETTEXT_PACKAGE "${CMAKE_PROJECT_NAME}")
-SET (GETTEXT_PATH "${CMAKE_INSTALL_PREFIX}/${COMMON_DATA_DIR}/locale")
+set (GETTEXT_PATH "${CMAKE_INSTALL_PREFIX}/share/locale")
+#set (GETTEXT_PATH "${CMAKE_BINARY_DIR}/po")
 
 set (EXEC_NAME "${PROJECT_NAME}")
 set (APP_NAME "Konv")
@@ -75,4 +76,4 @@ add_subdirectory ("po")
 add_subdirectory ("src")
 
 # Install the .desktop file.
-install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/im.konv.client.desktop DESTINATION ${DATADIR}/applications/)
+install (FILES ${CMAKE_BINARY_DIR}/data/im.konv.client.desktop DESTINATION ${DATADIR}/applications/)
