@@ -73,7 +73,7 @@ namespace Konv {
 		}
 
 		public override void activate () {
-			Gtk.Settings.get_default().set("gtk-application-prefer-dark-theme", true);
+			Gtk.Settings.get_default ().set ("gtk-application-prefer-dark-theme", true);
 			this.main_window = new Konv.Gui.Windows.MainWindow (this);
 
 			if (show_about) {

@@ -69,6 +69,12 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
   [GtkChild] private Gtk.Box box_left_side;
   [GtkChild] private Gtk.Box box_right_side;
 
+  // Welcome screen.
+  [GtkChild] private Gtk.Box box_welcome;
+    [GtkChild] private Gtk.Label label_welcome_user;
+    [GtkChild] private Gtk.Label label_welcome_help;
+    [GtkChild] private Gtk.Image image_left_arrow;
+
   // Windows.
   private Windows.SettingsWindow preferences_window { get; set; }
 
@@ -118,6 +124,13 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
     * TODO: Initialize the window widgets here.
     * @note Widgets properties MUST be defined in the UI file, if possible.
     **/
+
+    this.label_welcome_user.set_text (this.label_welcome_user.label.printf ("SkyzohKey"));
+    if (Gtk.Settings.get_default ().gtk_application_prefer_dark_theme == true) {
+      this.image_left_arrow.set_from_resource ("/im/konv/client/pixmaps/left-arrow-white.svg");
+    } else {
+      this.image_left_arrow.set_from_resource ("/im/konv/client/pixmaps/left-arrow-dark.svg");
+    }
 
     this.navbar = new Components.TabNavbar ();
     this.header = new Components.HeaderBar ();

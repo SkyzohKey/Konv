@@ -1,6 +1,6 @@
 # Konv.im - Secure P2P instant messenger
 
-| [![CircleCI][3]][2] |     |
+| [![CircleCI][3]][2] ||
 |:-------------:|:-------------:|
 | [Install Konv](#install) | [Join us on IRC][1] |
 

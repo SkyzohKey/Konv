@@ -36,6 +36,9 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <file>pixmaps/status/online.png</file>
     <file>pixmaps/avatar.jpg</file>
     <file>pixmaps/tox-logo-256.png</file>
+    <file>pixmaps/welcome-left-arrow.svg</file>
+    <file>pixmaps/left-arrow-white.svg</file>
+    <file>pixmaps/left-arrow-dark.svg</file>
 
     <!-- Stylesheets -->
     <file compressed="true">resources/styles/helpers.css</file>
