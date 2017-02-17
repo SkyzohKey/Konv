@@ -1,6 +1,6 @@
 # Konv.im - Secure P2P instant messenger
 
-| [![CircleCI][3]][2] ||
+| [![CircleCI][3]][2] | [Help us translating Konv][4] |
 |:-------------:|:-------------:|
 | [Install Konv](#install) | [Join us on IRC][1] |
 
@@ -85,3 +85,4 @@ licensed under [The GPLv3 License].
 [1]: http://webchat.freenode.net/?channels=%23konv%2C%23tox%2C%23tox-dev&uio=MTY9dHJ1ZSY5PXRydWUmMTU9dHJ1ZQ3d
 [2]: https://circleci.com/gh/SkyzohKey/Konv
 [3]: https://circleci.com/gh/SkyzohKey/Konv.svg?style=svg
+[4]: https://www.transifex.com/ricinapp/im-konv-client/
