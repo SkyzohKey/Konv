@@ -15,6 +15,7 @@ function build {
 }
 
 function install {
+  cd build/
   sudo make install
 }
 
