@@ -8,14 +8,20 @@ function install_deps {
 }
 
 function build {
-  mkdir build/
+  mkdir -p build/
   cd build/
   cmake .. -DCMAKE_INSTALL_PREFIX=/usr
   make
+}
+
+function install {
+  sudo make install
 }
 
 if [[ "$1" == "--deps" ]]; then
   install_deps
 elif [[ "$1" == "--build" ]]; then
   build
+elif [[ "$1" == "--install" ]]; then
+  install
 fi

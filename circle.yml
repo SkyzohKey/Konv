@@ -7,4 +7,4 @@ compile:
     - ./misc/build-linux.sh --build
 test:
   override:
-    - echo TODO
+    - ./misc/build-linux.sh --install
