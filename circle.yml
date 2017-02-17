@@ -4,4 +4,4 @@ dependencies:
 
 compile:
   override:
-    - ./misc/build-linux.sh --build && ./misc/build-linux.sh --install
+    - ./misc/build-linux.sh --build
