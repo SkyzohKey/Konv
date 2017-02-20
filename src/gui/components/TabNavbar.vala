@@ -23,8 +23,8 @@
 * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 **/
 
-using Konv;
 using Gtk;
+using Konv;
 
 namespace Konv.Gui.Components {
   public errordomain TabError {
@@ -124,15 +124,19 @@ namespace Konv.Gui.Components {
       this.searchentry.get_style_context ().add_class ("no-borders-horizontal");
       this.searchentry.get_style_context ().add_class ("no-border-top");
 
-      this.search_container = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+      this.search_container = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
       Gtk.Label search = new Gtk.Label.with_mnemonic (_ ("Search results loading here..."));
+      search.wrap = true;
+      search.wrap_mode = Pango.WrapMode.WORD;
+      search.justify = Gtk.Justification.CENTER;
       Gtk.Spinner spinner = new Gtk.Spinner ();
       spinner.active = true;
 
-      Gtk.Box vbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+      Gtk.Box vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
       vbox.pack_start (spinner, false, false, 10);
       vbox.pack_start (search, false, false, 0);
       vbox.halign = Gtk.Align.CENTER;
+      vbox.valign = Gtk.Align.CENTER;
 
       this.search_container.pack_start (vbox, true, true, 0);
 
@@ -144,7 +148,7 @@ namespace Konv.Gui.Components {
       this.pack_start (this.searchentry, false, true, 0);
       this.pack_start (this.tabs, true, true, 0);
 
-      TabContainer search_tab = new TabContainer ("search", Gtk.Orientation.VERTICAL);
+      TabContainer search_tab = new TabContainer ("search", Gtk.Orientation.HORIZONTAL);
       search_tab.title = _ ("Search results");
       search_tab.icon_name = "system-search-symbolic";
       search_tab.pack_start (this.search_container, true, true, 0);
