@@ -2,7 +2,7 @@
 
 | [![CircleCI][3]][2] | [Help us translating Konv][4] |
 |:-------------:|:-------------:|
-| [Install Konv](#install) | [Join us on IRC][1] |
+| **[Install Konv](#install)** | **[Join us on Rocket.chat][1]** |
 
 <!-- TODO: Add logo, one global screenshot or banner and links. -->
 
@@ -35,7 +35,8 @@ files, avatars ;
 - [ ] Avatars, status messages, presence ;
 - [ ] Audio calls, video calls, desktop sharing/streaming ;
 - [ ] Secure way to add peoples from an user-friendly ID (no ToxID,
-  decentralized ToxMe-like).
+  decentralized ToxMe-like) ;
+- [ ] Custom bootstrap nodes list.
 
 ## Protocol
 
@@ -82,7 +83,7 @@ licensed under [The GPLv3 License].
 [The MIT License]: License.txt
 [The GPLv3 License]: https://github.com/TokTok/c-toxcore/blob/master/COPYING
 
-[1]: http://webchat.freenode.net/?channels=%23konv%2C%23tox%2C%23tox-dev&uio=MTY9dHJ1ZSY5PXRydWUmMTU9dHJ1ZQ3d
+[1]: https://chat.konv.im
 [2]: https://circleci.com/gh/SkyzohKey/Konv
 [3]: https://circleci.com/gh/SkyzohKey/Konv.svg?style=svg
 [4]: https://www.transifex.com/ricinapp/im-konv-client/
