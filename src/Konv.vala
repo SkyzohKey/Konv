@@ -94,6 +94,16 @@ namespace Konv {
       });
       this.set_accels_for_action ("app.show-about", { "<Primary><Ctrl><Shift>H" });
       this.add_action (action_about);
+
+      SimpleAction action_show_preferences = new SimpleAction ("show-preferences", null);
+      action_show_preferences.activate.connect ((variant) => {
+        if (this.main_window == null) {
+          return;
+        }
+        this.main_window.show_preferences ();
+      });
+      this.set_accels_for_action ("app.show-preferences", { "<Primary><Ctrl><Shift>P" });
+      this.add_action (action_show_preferences);
     }
 
     public override void activate () {

@@ -171,15 +171,20 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
     this.box_left_side.pack_start (this.navbar, true, true, 0);
     this.box_left_side.pack_start (this.header, false, true, 0);
 
-    this.checkmenuitem_toggle_menubar.accel_path = "app.toggle-menubar";
+    //this.checkmenuitem_toggle_menubar.accel_path = "app.toggle-menubar";
     var label_toggle_menubar = ((Gtk.AccelLabel) this.checkmenuitem_toggle_menubar.get_child ());
     label_toggle_menubar.set_accel (Gdk.keyval_from_name("M"),
                                     Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.SHIFT_MASK);
 
-    this.menuitem_help_about.accel_path = "app.show-about";
+    //this.menuitem_help_about.accel_path = "app.show-about";
     var label_help_about = ((Gtk.AccelLabel) this.menuitem_help_about.get_child ());
     label_help_about.set_accel (Gdk.keyval_from_name("H"),
-                                    Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.SHIFT_MASK);
+                                Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.SHIFT_MASK);
+
+    //this.menuitem_preferences.accel_path = "app.show-preferences";
+    var label_preferences = ((Gtk.AccelLabel) this.menuitem_preferences.get_child ());
+    label_preferences.set_accel (Gdk.keyval_from_name("P"),
+                                Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.SHIFT_MASK);
   }
 
   private void connect_signals () {
@@ -224,14 +229,7 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
     });
 
     this.menuitem_preferences.activate.connect (() => {
-      if (this.preferences_window == null) {
-        this.preferences_window = new Windows.SettingsWindow (((Gtk.Window) this));
-        this.preferences_window.destroy.connect (() => {
-          this.preferences_window = null; // Release the reference when not needed anymore.
-        });
-      }
-
-      this.preferences_window.show_all ();
+      this.show_preferences ();
     });
 
     this.header.clicked.connect (() => {
@@ -263,5 +261,16 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
     }
 
     print ("Toggled menubar_main.\n");
+  }
+
+  public void show_preferences () {
+    if (this.preferences_window == null) {
+      this.preferences_window = new Windows.SettingsWindow (((Gtk.Window) this));
+      this.preferences_window.destroy.connect (() => {
+        this.preferences_window = null; // Release the reference when not needed anymore.
+      });
+    }
+
+    this.preferences_window.show_all ();
   }
 }
