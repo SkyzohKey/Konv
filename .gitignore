@@ -1,6 +1,6 @@
 # Build files.
 build/*
-locale/*
+build-*/*
 
 # Glade temp files.
 *.ui~

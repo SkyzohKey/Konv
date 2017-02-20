@@ -38,6 +38,7 @@ glib_compile_resources (GLIB_RESOURCES_KONV
 
 vala_precompile (VALA_C ${EXEC_NAME}
   # List the sources files that needs to be compiled.
+  #pthread/pthread.h
   ${CMAKE_CURRENT_BINARY_DIR}/Config.vala
   Konv.vala
   gui/components/HeaderBar.vala

@@ -1,5 +1,5 @@
 name: "Build & run"
-cmd: cd build && cmake .. -DCMAKE_INSTALL_PREFIX=/usr && make && ./src/konv
+cmd: cd build && cmake .. -DCMAKE_INSTALL_PREFIX=/usr && make && LANG=C ./src/konv
 sh: true
 errorMatch: (?<file>[\\/0-9a-zA-Z\\._]+):(?<line>\\d+)\.(?<col>\\d+)\-(?<line_end>\\d+)\.(?<col_end>\\d+):\\s+(?<message>.+)
 
