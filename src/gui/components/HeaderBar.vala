@@ -65,7 +65,9 @@ namespace Konv.Gui.Components {
     }
 
     private void connect_signals () {
-      this.button_profile.clicked.connect (() => { this.clicked (); });
+      this.button_profile.clicked.connect (() => {
+        this.clicked ();
+      });
     }
   }
 }

@@ -32,108 +32,108 @@ using Konv.Gui;
 **/
 namespace Konv {
 
-	public class App : Gtk.Application {
+  public class App : Gtk.Application {
 
-		private static bool display_version = false;
-		private static bool show_about = false;
-		private const OptionEntry[] OPTIONS = {
-		  { "version", 'v', 0, OptionArg.NONE, ref display_version, "Display the application version.", null },
-		  { "about", 'a', 0, OptionArg.NONE, ref show_about, "Show the about window.", null },
-		  { null } // List terminator
-		};
+    private static bool display_version = false;
+    private static bool show_about = false;
+    private const OptionEntry[] OPTIONS = {
+      { "version", 'v', 0, OptionArg.NONE, ref display_version, "Display the application version.", null },
+      { "about", 'a', 0, OptionArg.NONE, ref show_about, "Show the about window.", null },
+      { null } // List terminator
+    };
 
-		private List<Gtk.Window> windows;
+    private List<Gtk.Window> windows;
 
-		/**
-		* @private {string} args - The arguments used in this instance.
-		**/
-		private string[] args = {};
+    /**
+    * @private {string} args - The arguments used in this instance.
+    **/
+    private string[] args = {};
 
-		/**
-		*	@public {Konv.Gui.Windows.MainWindow} main_window - The main window used by the app.
-		**/
-		public Konv.Gui.Windows.MainWindow main_window { get; set; default = null; }
+    /**
+    *	@public {Konv.Gui.Windows.MainWindow} main_window - The main window used by the app.
+    **/
+    public Konv.Gui.Windows.MainWindow main_window { get; set; default = null; }
 
-		/**
-		* @constructor Konv.App
-		* @param {string[]} args - The arguments array to parse.
-		**/
-		public App (string[] args) {
-			GLib.Object (
-	      application_id: "im.konv.client",
-	      flags: ApplicationFlags.FLAGS_NONE
-	    );
+    /**
+    * @constructor Konv.App
+    * @param {string[]} args - The arguments array to parse.
+    **/
+    public App (string[] args) {
+      GLib.Object (
+        application_id: "im.konv.client",
+        flags: ApplicationFlags.FLAGS_NONE
+      );
 
-			this.init_gettext ();
-			this.init_actions ();
+      this.init_gettext ();
+      this.init_actions ();
 
-			this.args = args;
-		}
+      this.args = args;
+    }
 
-		private void init_gettext () {
-			Intl.setlocale(LocaleCategory.MESSAGES, "");
-	    Intl.textdomain(Konv.Constants.GETTEXT_PACKAGE);
-	    Intl.bind_textdomain_codeset(Konv.Constants.GETTEXT_PACKAGE, "utf-8");
-	    Intl.bindtextdomain(Konv.Constants.GETTEXT_PACKAGE, Konv.Constants.GETTEXT_PATH);
-		}
+    private void init_gettext () {
+      Intl.setlocale (LocaleCategory.MESSAGES, "");
+      Intl.textdomain (Konv.Constants.GETTEXT_PACKAGE);
+      Intl.bind_textdomain_codeset (Konv.Constants.GETTEXT_PACKAGE, "utf-8");
+      Intl.bindtextdomain (Konv.Constants.GETTEXT_PACKAGE, Konv.Constants.GETTEXT_PATH);
+    }
 
-		private void init_actions () {
-			SimpleAction action_about = new SimpleAction ("show-about", null);
-			action_about.activate.connect ((variant) => {
-				Konv.App.show_about_dialog ();
-				print ("app.show-about: activated.\n");
-			});
-			this.set_accels_for_action ("app.show-about", { "<Primary><Ctrl><Shift>H" });
-			this.add_action (action_about);
-		}
+    private void init_actions () {
+      SimpleAction action_about = new SimpleAction ("show-about", null);
+      action_about.activate.connect ((variant) => {
+        Konv.App.show_about_dialog ();
+        print ("app.show-about: activated.\n");
+      });
+      this.set_accels_for_action ("app.show-about", { "<Primary><Ctrl><Shift>H" });
+      this.add_action (action_about);
+    }
 
-		public override void activate () {
-			Gtk.Settings.get_default ().set ("gtk-application-prefer-dark-theme", true);
-			this.main_window = new Konv.Gui.Windows.MainWindow (this);
+    public override void activate () {
+      Gtk.Settings.get_default ().set ("gtk-application-prefer-dark-theme", true);
+      this.main_window = new Konv.Gui.Windows.MainWindow (this);
 
-			if (show_about) {
-				Konv.App.show_about_dialog ((Gtk.Window) this.main_window);
-			}
+      if (show_about) {
+        Konv.App.show_about_dialog ((Gtk.Window) this.main_window);
+      }
 
-			this.main_window.show_all ();
-		}
+      this.main_window.show_all ();
+    }
 
-		public static void show_about_dialog (Gtk.Window? window = null) {
-			Gtk.show_about_dialog (window,
-				program_name: Konv.Constants.APP_NAME,
-				comments: Konv.Constants.RELEASE_NAME,
-				version: "%s-%s".printf (Konv.Constants.VERSION, Konv.Constants.VERSION_INFO),
-				license: "TODO: MIT License.",
-				wrap_license: true,
-				copyright: "Copyright © 2017 SkyzohKey <skyzohkey@konv.im>",
-				authors: new string[]{
-					"SkyzohKey <skyzohkey@konv.im>"
-				},
-				website: Konv.Constants.WEBSITE_URL,
-				website_label: _("Konv.im official website")
-			);
-		}
+    public static void show_about_dialog (Gtk.Window? window = null) {
+      Gtk.show_about_dialog (window,
+                             program_name: Konv.Constants.APP_NAME,
+                             comments: Konv.Constants.RELEASE_NAME,
+                             version: "%s-%s".printf (Konv.Constants.VERSION, Konv.Constants.VERSION_INFO),
+                             license: "TODO: MIT License.",
+                             wrap_license: true,
+                             copyright: "Copyright © 2017 SkyzohKey <skyzohkey@konv.im>",
+      authors: new string[] {
+        "SkyzohKey <skyzohkey@konv.im>"
+      },
+      website: Konv.Constants.WEBSITE_URL,
+      website_label: _ ("Konv.im official website")
+                            );
+    }
 
-		public static int main (string[] argv) {
-			try {
-		    var opt_context = new OptionContext ("- %s: %s".printf (Konv.Constants.APP_NAME, Konv.Constants.RELEASE_NAME));
-		    opt_context.set_help_enabled (true);
-		    opt_context.add_main_entries (OPTIONS, null);
-		    opt_context.parse (ref argv);
-		  } catch (OptionError e) {
-		    stdout.printf ("error: %s\n", e.message);
-		    stdout.printf ("Run '%s --help' to see a full list of available command line options.\n", argv[0]);
-		    return 1;
-		  }
+    public static int main (string[] argv) {
+      try {
+        var opt_context = new OptionContext ("- %s: %s".printf (Konv.Constants.APP_NAME, Konv.Constants.RELEASE_NAME));
+        opt_context.set_help_enabled (true);
+        opt_context.add_main_entries (OPTIONS, null);
+        opt_context.parse (ref argv);
+      } catch (OptionError e) {
+        print ("error: %s\n", e.message);
+        print ("Run '%s --help' to see a full list of available command line options.\n", argv[0]);
+        return 1;
+      }
 
-			if (display_version) {
-				stdout.printf ("%s version %s-%s\n", Konv.Constants.APP_NAME, Konv.Constants.VERSION, Konv.Constants.VERSION_INFO);
-				return 0;
-			}
+      if (display_version) {
+        print ("%s version %s-%s\n", Konv.Constants.APP_NAME, Konv.Constants.VERSION, Konv.Constants.VERSION_INFO);
+        return 0;
+      }
 
-			Konv.App app = new Konv.App (argv);
-			app.register (null);
-			return app.run (argv);
-		}
-	}
+      Konv.App app = new Konv.App (argv);
+      app.register (null);
+      return app.run (argv);
+    }
+  }
 }

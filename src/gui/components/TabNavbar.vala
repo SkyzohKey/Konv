@@ -115,7 +115,7 @@ namespace Konv.Gui.Components {
       this.tabs_header.homogeneous = true;
 
       this.searchentry = new Gtk.SearchEntry ();
-      this.searchentry.placeholder_text = _("Search or add a contact...");
+      this.searchentry.placeholder_text = _ ("Search or add a contact...");
 
       this.tabs_header.get_style_context ().add_class ("no-radius");
       this.tabs_header.get_style_context ().add_class ("no-borders-h-sides");
@@ -125,7 +125,7 @@ namespace Konv.Gui.Components {
       this.searchentry.get_style_context ().add_class ("no-border-top");
 
       this.search_container = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-      Gtk.Label search = new Gtk.Label.with_mnemonic (_("Search results loading here..."));
+      Gtk.Label search = new Gtk.Label.with_mnemonic (_ ("Search results loading here..."));
       Gtk.Spinner spinner = new Gtk.Spinner ();
       spinner.active = true;
 
@@ -145,7 +145,7 @@ namespace Konv.Gui.Components {
       this.pack_start (this.tabs, true, true, 0);
 
       TabContainer search_tab = new TabContainer ("search", Gtk.Orientation.VERTICAL);
-      search_tab.title = _("Search results");
+      search_tab.title = _ ("Search results");
       search_tab.icon_name = "system-search-symbolic";
       search_tab.pack_start (this.search_container, true, true, 0);
 
@@ -190,7 +190,7 @@ namespace Konv.Gui.Components {
       });
 
       this.tabs.notify["visible-child-name"].connect ((obj, props) => {
-        GLib.Idle.add(() => {
+        GLib.Idle.add (() => {
           TabContainer container = ((TabContainer) this.tabs.get_visible_child ());
           if (container == null || container.id == "search") {
             return false;
@@ -281,7 +281,7 @@ namespace Konv.Gui.Components {
         throw new TabError.NULL_TAB ("No tab with given `id` exists.");
       }
 
-      GLib.Idle.add(() => {
+      GLib.Idle.add (() => {
         TabContainer tab = this.get_tab (id);
         this.tabs.set_visible_child (tab);
 

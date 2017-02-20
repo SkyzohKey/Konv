@@ -7,3 +7,6 @@ build-*/*
 *.ui#
 *.vala~
 *~
+
+# AStyle orig files.
+*.orig

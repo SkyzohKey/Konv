@@ -23,7 +23,6 @@
 * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 **/
 
-using GLib;
 using Gtk;
 using Konv;
 using Konv.Gui.Components;
@@ -34,36 +33,36 @@ using Konv.Gui.Windows;
 public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
   // Application menu.
   [GtkChild] private Gtk.MenuBar menubar_main;
-    // File menu.
-    [GtkChild] private Gtk.MenuItem menuitem_file;
-    [GtkChild] private Gtk.Menu menu_file;
-      [GtkChild] private Gtk.ImageMenuItem menuitem_load_profile;
-      [GtkChild] private Gtk.ImageMenuItem menuitem_new_profile;
-      [GtkChild] private Gtk.ImageMenuItem menuitem_quit;
-    // Edit menu.
-    [GtkChild] private Gtk.MenuItem menuitem_edit;
-    [GtkChild] private Gtk.Menu menu_edit;
-      [GtkChild] private Gtk.ImageMenuItem menuitem_copy_toxid;
-      [GtkChild] private Gtk.ImageMenuItem menuitem_save_qrcode;
-      [GtkChild] private Gtk.ImageMenuItem menuitem_change_nospam;
-      [GtkChild] private Gtk.ImageMenuItem menuitem_preferences;
-    // View menu.
-    [GtkChild] private Gtk.MenuItem menuitem_view;
-    [GtkChild] private Gtk.Menu menu_view;
-      [GtkChild] private Gtk.CheckMenuItem checkmenuitem_enable_compact_list;
-      [GtkChild] private Gtk.CheckMenuItem checkmenuitem_enable_bubbles;
-      [GtkChild] private Gtk.ImageMenuItem menuitem_text_format;
-      [GtkChild] private Gtk.Menu menu_text_format;
-        [GtkChild] private Gtk.RadioMenuItem radiomenuitem_plain_text;
-        [GtkChild] private Gtk.RadioMenuItem radiomenuitem_markdown;
-        [GtkChild] private Gtk.RadioMenuItem radiomenuitem_plain_markdown;
-    // About menu.
-    [GtkChild] private Gtk.MenuItem menuitem_help;
-    [GtkChild] private Gtk.Menu menu_help;
-      [GtkChild] private Gtk.ImageMenuItem menuitem_help_website;
-      [GtkChild] private Gtk.ImageMenuItem menuitem_help_source;
-      [GtkChild] private Gtk.ImageMenuItem menuitem_help_bugs;
-      [GtkChild] private Gtk.ImageMenuItem menuitem_help_about;
+  // File menu.
+  [GtkChild] private Gtk.MenuItem menuitem_file;
+  [GtkChild] private Gtk.Menu menu_file;
+  [GtkChild] private Gtk.ImageMenuItem menuitem_load_profile;
+  [GtkChild] private Gtk.ImageMenuItem menuitem_new_profile;
+  [GtkChild] private Gtk.ImageMenuItem menuitem_quit;
+  // Edit menu.
+  [GtkChild] private Gtk.MenuItem menuitem_edit;
+  [GtkChild] private Gtk.Menu menu_edit;
+  [GtkChild] private Gtk.ImageMenuItem menuitem_copy_toxid;
+  [GtkChild] private Gtk.ImageMenuItem menuitem_save_qrcode;
+  [GtkChild] private Gtk.ImageMenuItem menuitem_change_nospam;
+  [GtkChild] private Gtk.ImageMenuItem menuitem_preferences;
+  // View menu.
+  [GtkChild] private Gtk.MenuItem menuitem_view;
+  [GtkChild] private Gtk.Menu menu_view;
+  [GtkChild] private Gtk.CheckMenuItem checkmenuitem_enable_compact_list;
+  [GtkChild] private Gtk.CheckMenuItem checkmenuitem_enable_bubbles;
+  [GtkChild] private Gtk.ImageMenuItem menuitem_text_format;
+  [GtkChild] private Gtk.Menu menu_text_format;
+  [GtkChild] private Gtk.RadioMenuItem radiomenuitem_plain_text;
+  [GtkChild] private Gtk.RadioMenuItem radiomenuitem_markdown;
+  [GtkChild] private Gtk.RadioMenuItem radiomenuitem_plain_markdown;
+  // About menu.
+  [GtkChild] private Gtk.MenuItem menuitem_help;
+  [GtkChild] private Gtk.Menu menu_help;
+  [GtkChild] private Gtk.ImageMenuItem menuitem_help_website;
+  [GtkChild] private Gtk.ImageMenuItem menuitem_help_source;
+  [GtkChild] private Gtk.ImageMenuItem menuitem_help_bugs;
+  [GtkChild] private Gtk.ImageMenuItem menuitem_help_about;
 
   // Main boxes.
   [GtkChild] private Gtk.Box box_left_side;
@@ -71,9 +70,9 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
 
   // Welcome screen.
   [GtkChild] private Gtk.Box box_welcome;
-    [GtkChild] private Gtk.Label label_welcome_user;
-    [GtkChild] private Gtk.Label label_welcome_help;
-    [GtkChild] private Gtk.Image image_left_arrow;
+  [GtkChild] private Gtk.Label label_welcome_user;
+  [GtkChild] private Gtk.Label label_welcome_help;
+  [GtkChild] private Gtk.Image image_left_arrow;
 
   // Windows.
   private Windows.SettingsWindow preferences_window { get; set; }
@@ -86,8 +85,8 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
 
     this.set_default_size (800, 450);
     this.set_title ("%s - v. %s-%s".printf (
-      Konv.Constants.APP_NAME, Konv.Constants.VERSION, Konv.Constants.VERSION_INFO
-    ));
+                      Konv.Constants.APP_NAME, Konv.Constants.VERSION, Konv.Constants.VERSION_INFO
+                    ));
 
     string logo = @"$(Konv.Constants.RES_PATH)/pixmaps/tox-logo-256.png";
     Gdk.Pixbuf pixbuf = new Gdk.Pixbuf.from_resource_at_scale (logo, 48, 48, true);
@@ -103,10 +102,10 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
     CssProvider provider = new CssProvider ();
     provider.parsing_error.connect ((section, e) => {
       warning ("%s:[%u:%u]:[%u:%u]: CSS parsing error: %s".printf (
-        section.get_file ().get_basename (), section.get_start_line (),
-        section.get_end_line (), section.get_start_position (),
-        section.get_end_position (), e.message
-      ));
+                 section.get_file ().get_basename (), section.get_start_line (),
+                 section.get_end_line (), section.get_start_position (),
+                 section.get_end_position (), e.message
+               ));
     });
 
     provider.load_from_resource (@"$(Konv.Constants.RES_PATH)/resources/styles/helpers.css");
@@ -143,27 +142,27 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
     this.navbar = new Components.TabNavbar ();
     this.header = new Components.HeaderBar ();
 
-    Gtk.Label label_recent = new Gtk.Label.with_mnemonic (_("Recent conversations shows here."));
+    Gtk.Label label_recent = new Gtk.Label.with_mnemonic (_ ("Recent conversations shows here."));
     TabContainer recent = new TabContainer ("recent", Gtk.Orientation.VERTICAL);
-    recent.title = _("Recent conversations");
+    recent.title = _ ("Recent conversations");
     recent.icon_name = "document-open-recent-symbolic";
     recent.pack_start (label_recent, true, true, 0);
 
-    Gtk.Label label_contacts = new Gtk.Label.with_mnemonic (_("Contact list displays here."));
+    Gtk.Label label_contacts = new Gtk.Label.with_mnemonic (_ ("Contact list displays here."));
     TabContainer contacts = new TabContainer ("contacts", Gtk.Orientation.VERTICAL);
-    contacts.title = _("Contacts");
+    contacts.title = _ ("Contacts");
     contacts.icon_name = "system-users-symbolic";
     contacts.pack_start (label_contacts, true, true, 0);
 
-    Gtk.Label label_transfers = new Gtk.Label.with_mnemonic (_("All file transfers goes here."));
+    Gtk.Label label_transfers = new Gtk.Label.with_mnemonic (_ ("All file transfers goes here."));
     TabContainer transfers = new TabContainer ("transfers", Gtk.Orientation.VERTICAL);
-    transfers.title = _("File transfers");
+    transfers.title = _ ("File transfers");
     transfers.icon_name = "mail-send-receive-symbolic";
     transfers.pack_start (label_transfers, true, true, 0);
 
-    Gtk.Label label_missed_calls = new Gtk.Label.with_mnemonic (_("Missed calls will be listed here."));
+    Gtk.Label label_missed_calls = new Gtk.Label.with_mnemonic (_ ("Missed calls will be listed here."));
     TabContainer missed_calls = new TabContainer ("calls", Gtk.Orientation.VERTICAL);
-    missed_calls.title = _("Missed calls");
+    missed_calls.title = _ ("Missed calls");
     missed_calls.icon_name = "call-missed-symbolic";
     missed_calls.pack_start (label_missed_calls, true, true, 0);
 
