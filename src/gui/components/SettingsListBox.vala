@@ -103,5 +103,18 @@ namespace Konv.Gui.Components {
 
       return box;
     }
+
+    public void new_widget (Gtk.Widget child, bool expand = true, bool fill = true, uint padding = 0) {
+      Gtk.ListBoxRow row = new Gtk.ListBoxRow ();
+      row.set_size_request (1, 50);
+      this.listbox.add (row);
+
+      Gtk.Box box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+      row.add (box);
+
+      Gtk.Box vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+      vbox.set_center_widget (child);
+      box.pack_end (vbox, expand, fill, padding);
+    }
   }
 }

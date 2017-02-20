@@ -35,14 +35,14 @@ namespace Konv {
 	public class App : Gtk.Application {
 
 		private static bool display_version = false;
-
 		private static bool show_about = false;
-
 		private const OptionEntry[] OPTIONS = {
 		  { "version", 'v', 0, OptionArg.NONE, ref display_version, "Display the application version.", null },
 		  { "about", 'a', 0, OptionArg.NONE, ref show_about, "Show the about window.", null },
 		  { null } // List terminator
 		};
+
+		private List<Gtk.Window> windows;
 
 		/**
 		* @private {string} args - The arguments used in this instance.
@@ -64,12 +64,27 @@ namespace Konv {
 	      flags: ApplicationFlags.FLAGS_NONE
 	    );
 
+			this.init_gettext ();
+			this.init_actions ();
+
+			this.args = args;
+		}
+
+		private void init_gettext () {
 			Intl.setlocale(LocaleCategory.MESSAGES, "");
 	    Intl.textdomain(Konv.Constants.GETTEXT_PACKAGE);
 	    Intl.bind_textdomain_codeset(Konv.Constants.GETTEXT_PACKAGE, "utf-8");
 	    Intl.bindtextdomain(Konv.Constants.GETTEXT_PACKAGE, Konv.Constants.GETTEXT_PATH);
+		}
 
-			this.args = args;
+		private void init_actions () {
+			SimpleAction action_about = new SimpleAction ("show-about", null);
+			action_about.activate.connect ((variant) => {
+				Konv.App.show_about_dialog ();
+				print ("app.show-about: activated.\n");
+			});
+			this.set_accels_for_action ("app.show-about", { "<Primary><Ctrl><Shift>H" });
+			this.add_action (action_about);
 		}
 
 		public override void activate () {
@@ -81,20 +96,6 @@ namespace Konv {
 			}
 
 			this.main_window.show_all ();
-		}
-
-		/**
-		* @public start - Init & start the application.
-		* @return {int} - Returns 0 if no error, any number if errored.
-		**/
-		public int start () {
-			stdout.printf (_("%s v.%s started..."), Konv.Constants.APP_NAME, Konv.Constants.VERSION);
-
-			/**
-			* TODO: Parse this.args and dispatch.
-			**/
-
-			return 0;
 		}
 
 		public static void show_about_dialog (Gtk.Window? window = null) {
@@ -130,7 +131,9 @@ namespace Konv {
 				return 0;
 			}
 
-			return new Konv.App (argv).run (argv);
+			Konv.App app = new Konv.App (argv);
+			app.register (null);
+			return app.run (argv);
 		}
 	}
 }

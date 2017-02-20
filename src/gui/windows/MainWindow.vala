@@ -84,10 +84,10 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
   public MainWindow (Gtk.Application app) {
     Object (application: app);
 
+    this.set_default_size (800, 450);
     this.set_title ("%s - v. %s-%s".printf (
       Konv.Constants.APP_NAME, Konv.Constants.VERSION, Konv.Constants.VERSION_INFO
     ));
-    this.set_default_size (800, 450);
 
     string logo = @"$(Konv.Constants.RES_PATH)/pixmaps/tox-logo-256.png";
     Gdk.Pixbuf pixbuf = new Gdk.Pixbuf.from_resource_at_scale (logo, 48, 48, true);
@@ -213,7 +213,8 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
     });
 
     this.menuitem_help_about.activate.connect (() => {
-      Konv.App.show_about_dialog ((Gtk.Window) this);
+      this.application.activate_action ("app.show-about", null);
+      //Konv.App.show_about_dialog ((Gtk.Window) this);
     });
 
     this.menuitem_preferences.activate.connect (() => {
@@ -225,6 +226,20 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
       }
 
       this.preferences_window.show_all ();
+    });
+
+    this.header.clicked.connect (() => {
+      Gtk.Image image = new Gtk.Image.from_icon_name ("tox", Gtk.IconSize.DIALOG);
+
+      Notification notif = new Notification ("Test notification.");
+      notif.set_body ("This is a cool notification, it doesn't use any external lib!");
+      notif.set_icon (image.gicon);
+      notif.set_priority (NotificationPriority.URGENT);
+      notif.add_button_with_target_value ("Konv", "app.about", null);
+      notif.add_button_with_target_value ("is", "app.about", null);
+      notif.add_button_with_target_value ("AWESOME", "app.about", null);
+
+      this.application.send_notification ("notify.app", notif);
     });
   }
 

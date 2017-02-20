@@ -42,6 +42,7 @@ public class Konv.Gui.Windows.SettingsWindow : Gtk.Window {
   private Gtk.Box files_box;
   private Gtk.Box av_box;
   private Gtk.Box plugins_box;
+  private Gtk.Box advanced_box;
 
   public SettingsWindow (Gtk.Window? parent) {
     Object (type: Gtk.WindowType.TOPLEVEL);
@@ -49,7 +50,7 @@ public class Konv.Gui.Windows.SettingsWindow : Gtk.Window {
     this.set_title (_("Preferences - %s").printf (Konv.Constants.APP_NAME));
     this.set_position (Gtk.WindowPosition.CENTER_ON_PARENT);
     this.set_transient_for (parent);
-    this.set_size_request (650, 400);
+    this.set_size_request (650, 425);
     this.set_border_width (0);
 
     //this.set_resizable (false);
@@ -78,6 +79,7 @@ public class Konv.Gui.Windows.SettingsWindow : Gtk.Window {
     this.stack.add_titled (this.files_box, "files", _("Files & downloads"));
     this.stack.add_titled (this.av_box, "av", _("Audio/video"));
     this.stack.add_titled (this.plugins_box, "plugins", _("Addons"));
+    this.stack.add_titled (this.advanced_box, "advanced", _("Advanced"));
 
     this.show_all ();
   }
@@ -91,6 +93,7 @@ public class Konv.Gui.Windows.SettingsWindow : Gtk.Window {
     this.make_files_box ();
     this.make_av_box ();
     this.make_plugins_box ();
+    this.make_advanced_box ();
   }
 
   private void make_general_box () {
@@ -162,6 +165,10 @@ public class Konv.Gui.Windows.SettingsWindow : Gtk.Window {
 
     Gtk.Switch switch_dark_variant = new Gtk.Switch ();
     switch_dark_variant.active = true;
+    switch_dark_variant.activate.connect (() => {
+      var is_dark = (Gtk.Settings.get_default ().gtk_application_prefer_dark_theme == true);
+      Gtk.Settings.get_default ().set("gtk-application-prefer-dark-theme", !!is_dark);
+    });
     listbox.new_row (switch_dark_variant,
       _("Dark theme"),
       _("Use the dark variant of the theme for the %s interface.").printf (Konv.Constants.APP_NAME)
@@ -582,5 +589,78 @@ public class Konv.Gui.Windows.SettingsWindow : Gtk.Window {
     Components.SettingsListBox listbox = new Components.SettingsListBox ();
     this.plugins_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
     this.plugins_box.pack_start (listbox, true, true, 0);
+  }
+
+  private void make_advanced_box () {
+    Components.SettingsListBox listbox = new Components.SettingsListBox ();
+    this.advanced_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+    this.advanced_box.pack_start (listbox, true, true, 0);
+
+    listbox.new_section ("Bootstraping nodes");
+
+    Gtk.Switch switch_random_node = new Gtk.Switch ();
+    switch_random_node.active = true;
+    listbox.new_row (switch_random_node,
+      _("Random bootstrap nodes"),
+      _("Randomize bootstraping nodes at start time with a freshly downloaded list of nodes or from a custom list, defined bellow.")
+    );
+
+    Gtk.Switch switch_custom_nodes = new Gtk.Switch ();
+    listbox.new_row (switch_custom_nodes,
+      _("Custom bootstrap nodes"),
+      _("Add and remove the bootstrap nodes you wish to use instead of the predefined ones.")
+    );
+
+    listbox.new_section (_("Custom nodes"));
+
+    Gtk.ListStore liststore = new Gtk.ListStore (5,
+      typeof (string?), typeof (int),
+      typeof (string), typeof (string), typeof (string)
+    );
+    Gtk.TreeIter iter;
+
+    liststore.append (out iter);
+    liststore.set (iter,
+      0, "tox.zodiaclabs.org", 1, 33445,
+      2, "A09162D68618E742FFBCA1C2C70385E6679604B2D80EA6E84AD0996A1AC8A074",
+      3, "stal", 4, "Online");
+
+    liststore.append (out iter);
+    liststore.set (iter,
+      0, "biribiri.org", 1, 33445,
+      2, "F404ABAA1C99A9D37D61AB54898F56793E1DEF8BD46B1038B9D822E8460FAB67",
+      3, "nurupo", 4, "Online");
+
+    liststore.append (out iter);
+    liststore.set (iter,
+      0, "nodes.tox.chat", 1, 33445,
+      2, "6FC41E2BD381D37E9748FC0E0328CE086AF9598BECC8FEB7DDF2E440475F300E",
+      3, "Impyy", 4, "Online");
+
+    liststore.append (out iter);
+    liststore.set (iter,
+      0, "46.38.239.179", 1, 33445,
+      2, "F5A1A38EFB6BD3C2C8AF8B10D85F0F89E931704D349F1D0720C3C4059AF2440A",
+      3, "MartinSchröder", 4, "Offline");
+
+    Gtk.TreeView view = new Gtk.TreeView.with_model (liststore);
+    view.rules_hint = true;
+
+    Gtk.CellRendererText cell_normal = new Gtk.CellRendererText ();
+    cell_normal.editable = true;
+    cell_normal.xalign = (float)0.0;
+
+    Gtk.CellRendererText cell_short = new Gtk.CellRendererText ();
+    cell_short.ellipsize = Pango.EllipsizeMode.END;
+    cell_short.editable = true;
+    cell_short.xalign = (float)0.0;
+
+		view.insert_column_with_attributes (-1, "IPv4/IPv6 address", cell_normal, "text", 0);
+		view.insert_column_with_attributes (-1, "Port", cell_normal, "text", 1);
+		view.insert_column_with_attributes (-1, "Public key", cell_short, "text", 2);
+		view.insert_column_with_attributes (-1, "Maintainer", cell_normal, "text", 3);
+		view.insert_column_with_attributes (-1, "Status", cell_normal, "text", 4);
+
+    listbox.new_widget (view, true, true, 0);
   }
 }

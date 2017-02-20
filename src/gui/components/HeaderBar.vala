@@ -31,17 +31,20 @@ namespace Konv.Gui.Components {
   [GtkTemplate (ui = "/im/konv/client/interfaces/components/HeaderBar.ui")]
   public class HeaderBar : Gtk.Box {
 
-    [GtkChild] public Gtk.Button button_profile;
+    [GtkChild] private Gtk.Button button_profile;
     [GtkChild] private Gtk.Label label_profile_name;
     [GtkChild] private Gtk.Label label_profile_status;
     [GtkChild] private Gtk.Image image_avatar;
     [GtkChild] private Gtk.Image image_status;
+
+    public signal void clicked ();
 
     /**
     * @constructor HeaderBar - The HeaderBar component constructor.
     **/
     public HeaderBar () {
       this.init_widgets ();
+      this.connect_signals ();
     }
 
     /**
@@ -59,6 +62,10 @@ namespace Konv.Gui.Components {
 
       this.image_avatar.set_from_resource (@"$(Konv.Constants.RES_PATH)/pixmaps/avatar.jpg");
       this.image_status.set_from_resource (@"$(Konv.Constants.RES_PATH)/pixmaps/status/online.png");
+    }
+
+    private void connect_signals () {
+      this.button_profile.clicked.connect (() => { this.clicked (); });
     }
   }
 }
