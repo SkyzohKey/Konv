@@ -8,4 +8,4 @@ compile:
 
 test:
   override:
-    - echo TODO
+    - ruby /misc/lint.rb
