@@ -56,6 +56,7 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
   [GtkChild] private Gtk.RadioMenuItem radiomenuitem_plain_text;
   [GtkChild] private Gtk.RadioMenuItem radiomenuitem_markdown;
   [GtkChild] private Gtk.RadioMenuItem radiomenuitem_plain_markdown;
+  [GtkChild] private Gtk.CheckMenuItem checkmenuitem_toggle_menubar;
   // About menu.
   [GtkChild] private Gtk.MenuItem menuitem_help;
   [GtkChild] private Gtk.Menu menu_help;
@@ -63,11 +64,9 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
   [GtkChild] private Gtk.ImageMenuItem menuitem_help_source;
   [GtkChild] private Gtk.ImageMenuItem menuitem_help_bugs;
   [GtkChild] private Gtk.ImageMenuItem menuitem_help_about;
-
   // Main boxes.
   [GtkChild] private Gtk.Box box_left_side;
   [GtkChild] private Gtk.Box box_right_side;
-
   // Welcome screen.
   [GtkChild] private Gtk.Box box_welcome;
   [GtkChild] private Gtk.Label label_welcome_user;
@@ -117,13 +116,6 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
   }
 
   private void init_widgets () {
-    //this.ntm_laput ();
-
-    /**
-    * TODO: Initialize the window widgets here.
-    * @note Widgets properties MUST be defined in the UI file, if possible.
-    **/
-
     this.label_welcome_user.set_text (this.label_welcome_user.label.printf ("SkyzohKey"));
     if (Gtk.Settings.get_default ().gtk_application_prefer_dark_theme == true) {
       this.image_left_arrow.set_from_resource ("/im/konv/client/pixmaps/left-arrow-white.svg");
@@ -178,12 +170,27 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
 
     this.box_left_side.pack_start (this.navbar, true, true, 0);
     this.box_left_side.pack_start (this.header, false, true, 0);
+
+    this.checkmenuitem_toggle_menubar.accel_path = "app.toggle-menubar";
+    var label_toggle_menubar = ((Gtk.AccelLabel) this.checkmenuitem_toggle_menubar.get_child ());
+    label_toggle_menubar.set_accel (Gdk.keyval_from_name("M"),
+                                    Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.SHIFT_MASK);
+
+    this.menuitem_help_about.accel_path = "app.show-about";
+    var label_help_about = ((Gtk.AccelLabel) this.menuitem_help_about.get_child ());
+    label_help_about.set_accel (Gdk.keyval_from_name("H"),
+                                    Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.SHIFT_MASK);
   }
 
   private void connect_signals () {
     // File menu !
     this.menuitem_quit.activate.connect (() => {
       this.close ();
+    });
+
+    // View menu !
+    this.checkmenuitem_toggle_menubar.activate.connect (() => {
+      this.toggle_menubar ();
     });
 
     // Help menu !
@@ -246,5 +253,15 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
     /**
     * TODO: Run the window logic here.
     **/
+  }
+
+  public void toggle_menubar () {
+    if (this.menubar_main.visible) {
+      this.menubar_main.hide ();
+    } else {
+      this.menubar_main.show ();
+    }
+
+    print ("Toggled menubar_main.\n");
   }
 }

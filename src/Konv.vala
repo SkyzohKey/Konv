@@ -65,7 +65,6 @@ namespace Konv {
       );
 
       this.init_gettext ();
-      this.init_actions ();
 
       this.args = args;
     }
@@ -78,6 +77,16 @@ namespace Konv {
     }
 
     private void init_actions () {
+      SimpleAction action_menubar_toggle = new SimpleAction ("toggle-menubar", null);
+      action_menubar_toggle.activate.connect ((variant) => {
+        if (this.main_window == null) {
+          return;
+        }
+        this.main_window.toggle_menubar ();
+      });
+      this.set_accels_for_action ("app.toggle-menubar", { "<Primary><Ctrl><Shift>M" });
+      this.add_action (action_menubar_toggle);
+
       SimpleAction action_about = new SimpleAction ("show-about", null);
       action_about.activate.connect ((variant) => {
         Konv.App.show_about_dialog ();
@@ -90,6 +99,8 @@ namespace Konv {
     public override void activate () {
       Gtk.Settings.get_default ().set ("gtk-application-prefer-dark-theme", true);
       this.main_window = new Konv.Gui.Windows.MainWindow (this);
+
+      this.init_actions ();
 
       if (show_about) {
         Konv.App.show_about_dialog ((Gtk.Window) this.main_window);
