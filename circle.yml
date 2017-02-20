@@ -8,4 +8,4 @@ compile:
 
 test:
   override:
-    - ruby /misc/lint.rb
+    - ruby ./misc/lint.rb
