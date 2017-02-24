@@ -64,9 +64,9 @@ namespace Konv {
         flags: ApplicationFlags.FLAGS_NONE
       );
 
-      this.init_gettext ();
-
       this.args = args;
+
+      this.init_gettext ();
     }
 
     private void init_gettext () {
@@ -79,60 +79,49 @@ namespace Konv {
     private void init_actions () {
       SimpleAction action_menubar_toggle = new SimpleAction ("toggle-menubar", null);
       action_menubar_toggle.activate.connect ((variant) => {
-        if (this.main_window == null) {
-          return;
+        if (this.main_window != null) {
+          this.main_window.toggle_menubar ();
         }
-        this.main_window.toggle_menubar ();
       });
-      this.set_accels_for_action ("app.toggle-menubar", { "<Primary><Ctrl><Shift>M" });
-      this.add_action (action_menubar_toggle);
 
       SimpleAction action_about = new SimpleAction ("show-about", null);
       action_about.activate.connect ((variant) => {
-        Konv.App.show_about_dialog ();
-        print ("app.show-about: activated.\n");
+        if (this.main_window != null) {
+          this.main_window.show_about ();
+        }
       });
-      this.set_accels_for_action ("app.show-about", { "<Primary><Ctrl><Shift>H" });
-      this.add_action (action_about);
 
       SimpleAction action_show_preferences = new SimpleAction ("show-preferences", null);
       action_show_preferences.activate.connect ((variant) => {
-        if (this.main_window == null) {
-          return;
+        if (this.main_window != null) {
+          this.main_window.show_preferences ();
         }
-        this.main_window.show_preferences ();
       });
+
+      this.set_accels_for_action ("app.toggle-menubar", { "<Primary><Ctrl><Shift>M" });
+      this.set_accels_for_action ("app.show-about", { "<Primary><Ctrl><Shift>H" });
       this.set_accels_for_action ("app.show-preferences", { "<Primary><Ctrl><Shift>P" });
+
+      this.add_action (action_menubar_toggle);
+      this.add_action (action_about);
       this.add_action (action_show_preferences);
     }
 
     public override void activate () {
+      /**
+       * TODO: Load settings and show app in correct theme variant (dark/white).
+       **/
       Gtk.Settings.get_default ().set ("gtk-application-prefer-dark-theme", true);
-      this.main_window = new Konv.Gui.Windows.MainWindow (this);
 
+      this.main_window = new Konv.Gui.Windows.MainWindow (this);
       this.init_actions ();
 
-      if (show_about) {
-        Konv.App.show_about_dialog ((Gtk.Window) this.main_window);
+      if (show_about && this.main_window != null) {
+        this.main_window.show_about ();
+        return;
       }
 
       this.main_window.show_all ();
-    }
-
-    public static void show_about_dialog (Gtk.Window? window = null) {
-      Gtk.show_about_dialog (window,
-                             program_name: Konv.Constants.APP_NAME,
-                             comments: Konv.Constants.RELEASE_NAME,
-                             version: "%s-%s".printf (Konv.Constants.VERSION, Konv.Constants.VERSION_INFO),
-                             license: "TODO: MIT License.",
-                             wrap_license: true,
-                             copyright: "Copyright © 2017 SkyzohKey <skyzohkey@konv.im>",
-      authors: new string[] {
-        "SkyzohKey <skyzohkey@konv.im>"
-      },
-      website: Konv.Constants.WEBSITE_URL,
-      website_label: _ ("Konv.im official website")
-                            );
     }
 
     public static int main (string[] argv) {
@@ -149,11 +138,17 @@ namespace Konv {
 
       if (display_version) {
         print ("%s version %s-%s\n", Konv.Constants.APP_NAME, Konv.Constants.VERSION, Konv.Constants.VERSION_INFO);
+        print ("libtoxcore version %lu.%lu.%lu\n", ToxCore.Version.MAJOR, ToxCore.Version.MINOR, ToxCore.Version.PATCH);
         return 0;
       }
 
       Konv.App app = new Konv.App (argv);
-      app.register (null);
+
+      try {
+        app.register (null);
+      } catch (Error e) {
+        print (@"Cannot register app. Error: $(e.message)");
+      }
       return app.run (argv);
     }
   }

@@ -1,6 +1,8 @@
 # Build files.
 build/*
 build-*/*
+.buildconfig
+*.proj
 
 # Glade temp files.
 *.ui~

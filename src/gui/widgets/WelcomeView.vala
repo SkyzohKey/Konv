@@ -23,46 +23,47 @@
 * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 **/
 
-using Konv;
-using Gtk;
+namespace Konv.Gui.Widgets {
 
-namespace Konv.Gui.Components {
+  [GtkTemplate (ui="/im/konv/client/interfaces/widgets/WelcomeView.ui")]
+  public class WelcomeView : Gtk.Box {
 
-  [GtkTemplate (ui = "/im/konv/client/interfaces/components/HeaderBar.ui")]
-  public class HeaderBar : Gtk.Box {
+    // Welcome screen.
+    [GtkChild] private Gtk.Label label_welcome_user;
+    [GtkChild] private Gtk.Label label_welcome_help;
+    [GtkChild] private Gtk.Image image_left_arrow;
 
-    [GtkChild] private Gtk.Button button_profile;
-    [GtkChild] private Gtk.Label label_profile_name;
-    [GtkChild] private Gtk.Label label_profile_status;
-    [GtkChild] private Gtk.Image image_avatar;
-    [GtkChild] private Gtk.Image image_status;
+    private string user_name { get; private set; default = ""; }
 
-    public signal void clicked ();
+    public WelcomeView (string user_name) {
+      this.user_name = user_name;
 
-    /**
-    * @constructor HeaderBar - The HeaderBar component constructor.
-    **/
-    public HeaderBar () {
       this.init_widgets ();
       this.connect_signals ();
     }
 
-    /**
-    * @private init_widgets - Initialize the widgets, only that. KISS.
-    **/
     private void init_widgets () {
-      this.button_profile.get_style_context ().add_class ("no-radius");
-      this.button_profile.get_style_context ().add_class ("no-border-bottom");
-      this.button_profile.get_style_context ().add_class ("no-borders-horizontal");
-
-      this.image_avatar.set_from_resource (@"$(Konv.Constants.RES_PATH)/pixmaps/avatar.jpg");
-      this.image_status.set_from_resource (@"$(Konv.Constants.RES_PATH)/pixmaps/status/online.png");
+      this.set_welcome_sentence ();
+      this.set_arrow_accent ();
     }
 
     private void connect_signals () {
-      this.button_profile.clicked.connect (() => {
-        this.clicked ();
+      Gtk.Settings.get_default ().notify["gtk-application-prefer-dark-theme"].connect ((o, p) => {
+        this.set_arrow_accent ();
       });
+    }
+
+    public void set_arrow_accent () {
+      if (Gtk.Settings.get_default ().gtk_application_prefer_dark_theme == true) {
+        this.image_left_arrow.set_from_resource (@"$(Konv.Constants.RES_PATH)/pixmaps/left-arrow-white.svg");
+      } else {
+        this.image_left_arrow.set_from_resource (@"$(Konv.Constants.RES_PATH)/pixmaps/left-arrow-dark.svg");
+      }
+    }
+
+    public void set_welcome_sentence () {
+      string welcome = this.label_welcome_user.label;
+      this.label_welcome_user.set_text (welcome.printf (this.user_name));
     }
   }
 }

@@ -643,7 +643,6 @@ public class Konv.Gui.Windows.SettingsWindow : Gtk.Window {
                    3, "MartinSchröder", 4, "Offline");
 
     Gtk.TreeView view = new Gtk.TreeView.with_model (liststore);
-    view.rules_hint = true;
 
     Gtk.CellRendererText cell_normal = new Gtk.CellRendererText ();
     cell_normal.editable = true;

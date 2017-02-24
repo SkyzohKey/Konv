@@ -1,9 +1,14 @@
 # Build files.
 build/*
 build-*/*
+.buildconfig
+*.proj
 
 # Glade temp files.
 *.ui~
 *.ui#
 *.vala~
 *~
+
+# AStyle orig files.
+*.orig

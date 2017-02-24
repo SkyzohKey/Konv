@@ -56,8 +56,8 @@ find_package (PkgConfig)
 pkg_check_modules (DEPS REQUIRED
   gtk+-3.0
   json-glib-1.0
-  #libtoxcore
-  #libtoxav
+  libtoxcore
+  libtoxav
   #libsoup-2.4
 )
 

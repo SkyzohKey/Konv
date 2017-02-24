@@ -29,6 +29,9 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <!-- Windows -->
     <file preprocess="xml-stripblanks" compressed="true">interfaces/windows/MainWindow.ui</file>
 
+    <!-- Widgets -->
+    <file preprocess="xml-stripblanks" compressed="true">interfaces/widgets/WelcomeView.ui</file>
+
     <!-- Components -->
     <file preprocess="xml-stripblanks" compressed="true">interfaces/components/HeaderBar.ui</file>
 

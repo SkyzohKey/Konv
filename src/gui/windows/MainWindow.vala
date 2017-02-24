@@ -24,9 +24,9 @@
 **/
 
 using Gtk;
-using Konv;
 using Konv.Gui.Components;
 using Konv.Gui.Windows;
+using Konv.Gui.Widgets;
 // using Konv.Core; // Uncomment later once core is ready.
 
 [GtkTemplate (ui="/im/konv/client/interfaces/windows/MainWindow.ui")]
@@ -67,15 +67,14 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
   // Main boxes.
   [GtkChild] private Gtk.Box box_left_side;
   [GtkChild] private Gtk.Box box_right_side;
-  // Welcome screen.
-  [GtkChild] private Gtk.Box box_welcome;
-  [GtkChild] private Gtk.Label label_welcome_user;
-  [GtkChild] private Gtk.Label label_welcome_help;
-  [GtkChild] private Gtk.Image image_left_arrow;
 
   // Windows.
   private Windows.SettingsWindow preferences_window { get; set; }
 
+  // Widgets.
+  private Widgets.WelcomeView welcome_view { get; set; default = null; }
+
+  // Components.
   private Components.HeaderBar header { get; set; }
   private Components.TabNavbar navbar { get; set; }
 
@@ -88,8 +87,13 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
                     ));
 
     string logo = @"$(Konv.Constants.RES_PATH)/pixmaps/tox-logo-256.png";
-    Gdk.Pixbuf pixbuf = new Gdk.Pixbuf.from_resource_at_scale (logo, 48, 48, true);
-    this.set_default_icon (pixbuf);
+
+    try {
+      Gdk.Pixbuf pixbuf = new Gdk.Pixbuf.from_resource_at_scale (logo, 48, 48, true);
+      this.set_default_icon (pixbuf);
+    } catch (Error e) {
+      print (@"Cannot load default_icon pixbuf. Error: $(e.message)");
+    }
 
     this.load_styles ();
     this.init_widgets ();
@@ -116,21 +120,6 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
   }
 
   private void init_widgets () {
-    this.label_welcome_user.set_text (this.label_welcome_user.label.printf ("SkyzohKey"));
-    if (Gtk.Settings.get_default ().gtk_application_prefer_dark_theme == true) {
-      this.image_left_arrow.set_from_resource ("/im/konv/client/pixmaps/left-arrow-white.svg");
-    } else {
-      this.image_left_arrow.set_from_resource ("/im/konv/client/pixmaps/left-arrow-dark.svg");
-    }
-
-    Gtk.Settings.get_default ().notify["gtk-application-prefer-dark-theme"].connect ((o, p) => {
-      if (Gtk.Settings.get_default ().gtk_application_prefer_dark_theme == true) {
-        this.image_left_arrow.set_from_resource ("/im/konv/client/pixmaps/left-arrow-white.svg");
-      } else {
-        this.image_left_arrow.set_from_resource ("/im/konv/client/pixmaps/left-arrow-dark.svg");
-      }
-    });
-
     this.navbar = new Components.TabNavbar ();
     this.header = new Components.HeaderBar ();
 
@@ -185,6 +174,8 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
     var label_preferences = ((Gtk.AccelLabel) this.menuitem_preferences.get_child ());
     label_preferences.set_accel (Gdk.keyval_from_name("P"),
                                 Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.SHIFT_MASK);
+
+    this.show_welcome_view ();
   }
 
   private void connect_signals () {
@@ -200,32 +191,19 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
 
     // Help menu !
     this.menuitem_help_website.activate.connect (() => {
-      try {
-        AppInfo.launch_default_for_uri (Konv.Constants.WEBSITE_URL, null);
-      } catch (Error e) {
-        error (@"Cannot find default handler for website. Error: $(e.message)");
-      }
+      this.open_uri (Konv.Constants.WEBSITE_URL);
     });
 
     this.menuitem_help_source.activate.connect (() => {
-      try {
-        AppInfo.launch_default_for_uri (Konv.Constants.SOURCE_URL, null);
-      } catch (Error e) {
-        error (@"Cannot find default handler for source code. Error: $(e.message)");
-      }
+      this.open_uri (Konv.Constants.SOURCE_URL);
     });
 
     this.menuitem_help_bugs.activate.connect (() => {
-      try {
-        AppInfo.launch_default_for_uri (Konv.Constants.ISSUES_URL, null);
-      } catch (Error e) {
-        error (@"Cannot find default handler for issues tracker. Error: $(e.message)");
-      }
+      this.open_uri (Konv.Constants.ISSUES_URL);
     });
 
     this.menuitem_help_about.activate.connect (() => {
-      this.application.activate_action ("app.show-about", null);
-      //Konv.App.show_about_dialog ((Gtk.Window) this);
+      this.show_about ();
     });
 
     this.menuitem_preferences.activate.connect (() => {
@@ -233,17 +211,7 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
     });
 
     this.header.clicked.connect (() => {
-      Gtk.Image image = new Gtk.Image.from_icon_name ("tox", Gtk.IconSize.DIALOG);
-
-      Notification notif = new Notification ("Test notification.");
-      notif.set_body ("This is a cool notification, it doesn't use any external lib!");
-      notif.set_icon (image.gicon);
-      notif.set_priority (NotificationPriority.URGENT);
-      notif.add_button_with_target_value ("Konv", "app.about", null);
-      notif.add_button_with_target_value ("is", "app.about", null);
-      notif.add_button_with_target_value ("AWESOME", "app.about", null);
-
-      this.application.send_notification ("notify.app", notif);
+      this.send_test_notification ();
     });
   }
 
@@ -263,6 +231,18 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
     print ("Toggled menubar_main.\n");
   }
 
+  public void show_welcome_view () {
+    if (this.welcome_view == null) {
+      this.welcome_view = new Widgets.WelcomeView ("SkyzohKey");
+      this.welcome_view.destroy.connect (() => {
+          this.welcome_view = null;
+      });
+    }
+
+    this.box_right_side.pack_start (this.welcome_view, true, true, 0);
+    this.welcome_view.show_all ();
+  }
+
   public void show_preferences () {
     if (this.preferences_window == null) {
       this.preferences_window = new Windows.SettingsWindow (((Gtk.Window) this));
@@ -272,5 +252,44 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
     }
 
     this.preferences_window.show_all ();
+  }
+
+  public void show_about () {
+    Gtk.show_about_dialog (
+      this,
+      program_name: Konv.Constants.APP_NAME,
+      comments: Konv.Constants.RELEASE_NAME,
+      version: "%s-%s".printf (Konv.Constants.VERSION, Konv.Constants.VERSION_INFO),
+      license: "TODO: MIT License.",
+      wrap_license: true,
+      copyright: "Copyright © 2017 SkyzohKey <skyzohkey@konv.im>",
+      authors: new string[] {
+        "SkyzohKey <skyzohkey@konv.im>"
+      },
+      website: Konv.Constants.WEBSITE_URL,
+      website_label: _ ("Konv.im official website")
+    );
+  }
+
+  public void open_uri (string uri) {
+    try {
+      AppInfo.launch_default_for_uri (uri, null);
+    } catch (Error e) {
+      error (@"Cannot find default handler for uri. Error: $(e.message)");
+    }
+  }
+
+  private void send_test_notification () {
+    Gtk.Image image = new Gtk.Image.from_icon_name ("tox", Gtk.IconSize.DIALOG);
+
+    Notification notif = new Notification ("Test notification.");
+    notif.set_body ("This is a cool notification, it doesn't use any external lib!");
+    notif.set_icon (image.gicon);
+    notif.set_priority (NotificationPriority.URGENT);
+    notif.add_button_with_target_value ("Konv", "app.about", null);
+    notif.add_button_with_target_value ("is", "app.about", null);
+    notif.add_button_with_target_value ("AWESOME", "app.about", null);
+
+    this.application.send_notification ("notify.app", notif);
   }
 }

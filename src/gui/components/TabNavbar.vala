@@ -106,11 +106,6 @@ namespace Konv.Gui.Components {
     * @private init_widgets - Initialize the widgets, only that. KISS.
     **/
     private void init_widgets () {
-      /**
-      * TODO: Initialize the widgets here.
-      * @notes Widgets properties MUST be defined in the UI file, if possible.
-      **/
-
       this.tabs_header.set_stack (this.tabs);
       this.tabs_header.homogeneous = true;
 
@@ -164,14 +159,6 @@ namespace Konv.Gui.Components {
     * @private connect_signals - Connect the signals, only that. KISS.
     **/
     private void connect_signals () {
-      this.notify["direction"].connect ((obj, props) => {
-        /**
-        * TODO: Do handle direction changes, then repack the component.
-        **/
-
-        // At the end of the operation call `this.init_widgets` to redraw.
-      });
-
       this.searchentry.search_changed.connect (() => {
         string search_text = this.searchentry.get_text ().down ();
 

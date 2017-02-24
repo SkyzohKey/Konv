@@ -38,13 +38,18 @@ glib_compile_resources (GLIB_RESOURCES_KONV
 
 vala_precompile (VALA_C ${EXEC_NAME}
   # List the sources files that needs to be compiled.
-  #pthread/pthread.h
   ${CMAKE_CURRENT_BINARY_DIR}/Config.vala
+
+  #pthread/pthread.h
+  core/ToxSession.vala
+
   Konv.vala
   gui/components/HeaderBar.vala
   gui/components/SettingsListBox.vala
   gui/components/TabContainer.vala
   gui/components/TabNavbar.vala
+  gui/widgets/BaseView.vala
+  gui/widgets/WelcomeView.vala
   gui/windows/MainWindow.vala
   gui/windows/SettingsWindow.vala
 
@@ -52,13 +57,14 @@ vala_precompile (VALA_C ${EXEC_NAME}
   PACKAGES
     gtk+-3.0
     json-glib-1.0
-    #libtoxcore
+    libtoxcore
+    libtoxav
     #libtoxav
     #libsoup-2.4
 
   # Valac options
   OPTIONS
-    --vapidir="${CMAKE_SOURCE_DIR}/vapis"
+    --vapidir="${CMAKE_SOURCE_DIR}/src/vapis"
     --target-glib="2.38"
     --gresources=${CMAKE_SOURCE_DIR}/data/konv.gresource.xml
     --disable-warnings # Remove this in development.
