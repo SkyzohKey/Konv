@@ -34,9 +34,11 @@ namespace Konv.Gui.Widgets {
     [GtkChild] private Gtk.Image image_left_arrow;
 
     private string user_name { get; private set; default = ""; }
+    private string welcome_text { get; private set; default = ""; }
 
     public WelcomeView (string user_name) {
       this.user_name = user_name;
+      this.welcome_text = this.label_welcome_user.label;
 
       this.init_widgets ();
       this.connect_signals ();
@@ -62,7 +64,7 @@ namespace Konv.Gui.Widgets {
     }
 
     public void set_welcome_sentence () {
-      string welcome = this.label_welcome_user.label;
+      string welcome = this.welcome_text;
       this.label_welcome_user.set_text (welcome.printf (this.user_name));
     }
   }

@@ -262,7 +262,7 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
       version: "%s-%s".printf (Konv.Constants.VERSION, Konv.Constants.VERSION_INFO),
       license: "TODO: MIT License.",
       wrap_license: true,
-      copyright: "Copyright © 2017 SkyzohKey <skyzohkey@konv.im>",
+      copyright: _("Copyright © 2017 SkyzohKey <skyzohkey@konv.im>"),
       authors: new string[] {
         "SkyzohKey <skyzohkey@konv.im>"
       },
