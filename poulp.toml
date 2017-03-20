@@ -63,7 +63,6 @@ run = [ "poulp build", "./$(POULP_BUILD_OUPUT)" ]
 "gtk+-3.0" = "*"
 "json-glib-1.0" = "*"
 "libtoxcore" = ">=0.1.0"
-"libtoxav" = ">=0.1.0"
 
 [dev-dependencies]
 valadate = "^0.1.0"

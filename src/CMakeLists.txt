@@ -58,8 +58,6 @@ vala_precompile (VALA_C ${EXEC_NAME}
     gtk+-3.0
     json-glib-1.0
     libtoxcore
-    libtoxav
-    #libtoxav
     #libsoup-2.4
 
   # Valac options
