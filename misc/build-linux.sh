@@ -32,7 +32,7 @@ function install_libsodium {
   git checkout tags/1.0.11
   ./autogen.sh
   ./configure && make check
-  sudo checkinstall --install --pkgname libsodium --pkgversion 1.0.0 --nodoc
+  sudo checkinstall --default --install --pkgname libsodium --pkgversion 1.0.0 --nodoc
   sudo ldconfig
   cd ..
 }
