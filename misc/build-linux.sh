@@ -39,8 +39,8 @@ function install_libsodium {
 function install_libvpx {
   git clone https://chromium.googlesource.com/webm/libvpx
   cd libvpx
-  ./configure
-  make -j3
+  ./configure -fPIC
+  make -j3 -fPIC
   sudo make install
   cd ..
 }
