@@ -37,6 +37,7 @@ files, avatars ;
 - [ ] Secure way to add peoples from an user-friendly ID (no ToxID,
   decentralized ToxMe-like) ;
 - [ ] Custom bootstrap nodes list.
+- [x] Social welcome screen.
 
 ## Protocol
 
