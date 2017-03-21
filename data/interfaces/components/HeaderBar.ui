@@ -71,16 +71,15 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <child>
-                  <object class="GtkImage" id="image_avatar">
-                    <property name="width_request">48</property>
-                    <property name="height_request">48</property>
+                  <object class="GtkBox" id="box_avatar">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="pixel_size">48</property>
-                    <property name="resource">/im/konv/desktop/pixmaps/avatar</property>
+                    <property name="orientation">vertical</property>
+                    <child>
+                      <placeholder/>
+                    </child>
                   </object>
                   <packing>
-                    <property name="pass_through">True</property>
                     <property name="index">-1</property>
                   </packing>
                 </child>
@@ -91,6 +90,8 @@
                     <property name="tooltip_text" translatable="yes">Status (online)</property>
                     <property name="halign">end</property>
                     <property name="valign">end</property>
+                    <property name="margin_left">2</property>
+                    <property name="margin_top">2</property>
                     <property name="pixel_size">18</property>
                     <property name="resource">/im/konv/desktop/pixmaps/status/online</property>
                   </object>

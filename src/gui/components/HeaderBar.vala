@@ -24,6 +24,7 @@
 **/
 
 using Konv;
+using Konv.Gui.Widgets;
 using Gtk;
 
 namespace Konv.Gui.Components {
@@ -34,8 +35,10 @@ namespace Konv.Gui.Components {
     [GtkChild] private Gtk.Button button_profile;
     [GtkChild] private Gtk.Label label_profile_name;
     [GtkChild] private Gtk.Label label_profile_status;
-    [GtkChild] private Gtk.Image image_avatar;
+    [GtkChild] private Gtk.Box box_avatar;
     [GtkChild] private Gtk.Image image_status;
+
+    private Avatar avatar;
 
     public signal void clicked ();
 
@@ -55,7 +58,8 @@ namespace Konv.Gui.Components {
       this.button_profile.get_style_context ().add_class ("no-border-bottom");
       this.button_profile.get_style_context ().add_class ("no-borders-horizontal");
 
-      this.image_avatar.set_from_resource (@"$(Konv.Constants.RES_PATH)/pixmaps/avatar.jpg");
+      this.avatar = new Avatar.from_resource (@"$(Konv.Constants.RES_PATH)/pixmaps/tmp/avatar.png", 48, 48);
+      this.box_avatar.pack_start (this.avatar);
       this.image_status.set_from_resource (@"$(Konv.Constants.RES_PATH)/pixmaps/status/online.png");
     }
 

@@ -26,7 +26,6 @@ bugs = {
 
 # Dev team members informations.
 author = "SkyzohKey <skyzohkey@konv.im>"
-contributors = []
 maintainers = [
   "SkyzohKey <skyzohkey@konv.im>"
 ]

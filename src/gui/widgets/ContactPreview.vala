@@ -23,31 +23,24 @@
 * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 **/
 
-.avatar { border-radius: 100%; }
+namespace Konv.Gui.Widgets {
 
-.text-little {
-  font-size: 10px;
-  font-weight: lighter;
-}
+  [GtkTemplate (ui="/im/konv/client/interfaces/widgets/ContactPreview.ui")]
+  public class ContactPreview : Gtk.Button {
+    [GtkChild] private Gtk.Label name;
+    [GtkChild] private Gtk.Box box_avatar;
+    [GtkChild] private Gtk.Image status;
 
-.no-radius, .no-radius * { border-radius: 0; }
-.no-border, .no-border * {
-  border-image: none;
-  border: none;
+    private Avatar avatar;
+
+    public ContactPreview (string name, string avatar, string status) {
+      this.name.set_text (name);
+      this.name.get_style_context ().add_class ("text-little");
+
+      this.avatar = new Avatar.from_resource (avatar, 48, 48);
+      this.box_avatar.pack_start (this.avatar);
+
+      this.status.set_from_resource (@"$(Konv.Constants.RES_PATH)/pixmaps/status/$status.png");
+    }
+  }
 }
-.no-borders-horizontal {
-  border-left: 0;
-  border-right: 0;
-}
-.no-borders-vertical {
-  border-bottom: 0;
-  border-top: 0;
-}
-.no-borders-h-sides:first-child { border-left: 0; }
-.no-borders-h-sides:last-child { border-right: 0; }
-.no-borders-v-sides:first-child { border-top: 0; }
-.no-borders-v-sides:last-child { border-bottom: 0; }
-.no-border-top { border-top: 0; }
-.no-border-bottom { border-bottom: 0; }
-.no-border-left { border-left: 0; }
-.no-border-right { border-right: 0; }

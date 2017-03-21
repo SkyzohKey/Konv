@@ -23,31 +23,28 @@
 * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 **/
 
-.avatar { border-radius: 100%; }
+using Cairo;
 
-.text-little {
-  font-size: 10px;
-  font-weight: lighter;
-}
+namespace Konv.Gui.Utils {
 
-.no-radius, .no-radius * { border-radius: 0; }
-.no-border, .no-border * {
-  border-image: none;
-  border: none;
+  /**
+   * Adds a closed sub-path rounded rectangle of the given size and border radius to the current path
+   * at position (x, y) in user-space coordinates.
+   *
+   * @param cr a {@link Cairo.Context}
+   * @param x the X coordinate of the top left corner of the rounded rectangle
+   * @param y the Y coordinate to the top left corner of the rounded rectangle
+   * @param width the width of the rounded rectangle
+   * @param height the height of the rounded rectangle
+   * @param radius the border radius of the rounded rectangle
+   */
+  public static void cairo_rounded_rectangle (Cairo.Context cr, double x, double y, double width, double height, double radius) {
+
+    cr.move_to (x + radius, y);
+    cr.arc (x + width - radius, y + radius, radius, Math.PI * 1.5, Math.PI * 2);
+    cr.arc (x + width - radius, y + height - radius, radius, 0, Math.PI * 0.5);
+    cr.arc (x + radius, y + height - radius, radius, Math.PI * 0.5, Math.PI);
+    cr.arc (x + radius, y + radius, radius, Math.PI, Math.PI * 1.5);
+    cr.close_path ();
+  }
 }
-.no-borders-horizontal {
-  border-left: 0;
-  border-right: 0;
-}
-.no-borders-vertical {
-  border-bottom: 0;
-  border-top: 0;
-}
-.no-borders-h-sides:first-child { border-left: 0; }
-.no-borders-h-sides:last-child { border-right: 0; }
-.no-borders-v-sides:first-child { border-top: 0; }
-.no-borders-v-sides:last-child { border-bottom: 0; }
-.no-border-top { border-top: 0; }
-.no-border-bottom { border-bottom: 0; }
-.no-border-left { border-left: 0; }
-.no-border-right { border-right: 0; }

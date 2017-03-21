@@ -44,12 +44,15 @@ vala_precompile (VALA_C ${EXEC_NAME}
   core/ToxSession.vala
 
   Konv.vala
+  utils/RoundImage.vala
   gui/components/HeaderBar.vala
   gui/components/SettingsListBox.vala
   gui/components/TabContainer.vala
   gui/components/TabNavbar.vala
   gui/widgets/BaseView.vala
   gui/widgets/WelcomeView.vala
+  gui/widgets/AvatarWidget.vala
+  gui/widgets/ContactPreview.vala
   gui/windows/MainWindow.vala
   gui/windows/SettingsWindow.vala
 

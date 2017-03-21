@@ -33,6 +33,9 @@ namespace Konv.Gui.Widgets {
     [GtkChild] private Gtk.Label label_welcome_help;
     [GtkChild] private Gtk.Image image_left_arrow;
 
+    // Online contacts.
+    [GtkChild] private Gtk.Box box_online_contacts;
+
     private string user_name { get; private set; default = ""; }
     private string welcome_text { get; private set; default = ""; }
 
@@ -47,6 +50,7 @@ namespace Konv.Gui.Widgets {
     private void init_widgets () {
       this.set_welcome_sentence ();
       this.set_arrow_accent ();
+      this.init_online_contacts ();
     }
 
     private void connect_signals () {
@@ -66,6 +70,26 @@ namespace Konv.Gui.Widgets {
     public void set_welcome_sentence () {
       string welcome = this.welcome_text;
       this.label_welcome_user.set_text (welcome.printf (this.user_name));
+    }
+
+    public void init_online_contacts () {
+      // Clear the online contacts.
+      List<Gtk.Widget> contacts = this.box_online_contacts.get_children ();
+      foreach (Gtk.Widget item in contacts) {
+        this.box_online_contacts.remove (item);
+      }
+
+      ContactPreview prev = new ContactPreview ("Dumby", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/gun.png", "online");
+      this.box_online_contacts.pack_start (prev, true, true, 0);
+
+      prev = new ContactPreview ("Lil Wayne", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/lil-wayne.jpg", "idle");
+      this.box_online_contacts.pack_start (prev, true, true, 0);
+
+      prev = new ContactPreview ("Rihanna", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/rihanna.jpg", "busy");
+      this.box_online_contacts.pack_start (prev, true, true, 0);
+
+      prev = new ContactPreview ("The Rock", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/the-rock.jpg", "busy");
+      this.box_online_contacts.pack_start (prev, true, true, 0);
     }
   }
 }
