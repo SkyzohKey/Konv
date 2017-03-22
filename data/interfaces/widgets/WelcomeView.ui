@@ -30,6 +30,9 @@
                 <property name="can_focus">False</property>
                 <property name="halign">start</property>
                 <property name="label" translatable="yes">Online contacts</property>
+                <attributes>
+                  <attribute name="weight" value="semibold"/>
+                </attributes>
               </object>
               <packing>
                 <property name="expand">False</property>
