@@ -60,6 +60,8 @@ namespace Konv.Gui.Components {
 
       this.avatar = new Avatar.from_resource (@"$(Konv.Constants.RES_PATH)/pixmaps/tmp/avatar.png", 48, 48);
       this.box_avatar.pack_start (this.avatar);
+      this.avatar.get_style_context ().remove_class ("avatar");
+
       this.image_status.set_from_resource (@"$(Konv.Constants.RES_PATH)/pixmaps/status/online.png");
     }
 

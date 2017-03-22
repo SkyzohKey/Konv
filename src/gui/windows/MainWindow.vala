@@ -123,17 +123,47 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
     this.navbar = new Components.TabNavbar ();
     this.header = new Components.HeaderBar ();
 
+    Gtk.ScrolledWindow scroll_recent = new Gtk.ScrolledWindow (null, null);
+    Gtk.ScrolledWindow scroll_contacts = new Gtk.ScrolledWindow (null, null);
+
+    Gtk.Viewport viewport_recent = new Gtk.Viewport (null, null);
+    Gtk.Viewport viewport_contacts = new Gtk.Viewport (null, null);
+
+    scroll_recent.add (viewport_recent);
+    scroll_contacts.add (viewport_contacts);
+
+    Gtk.ListBox listbox_recent = new Gtk.ListBox ();
+    Gtk.ListBox listbox_contacts = new Gtk.ListBox ();
+    listbox_recent.selection_mode = SelectionMode.SINGLE;
+    listbox_contacts.selection_mode = SelectionMode.SINGLE;
+
+    viewport_recent.add (listbox_recent);
+    viewport_contacts.add (listbox_contacts);
+
+    listbox_recent.insert (new ContactListRow ("Lil Wayne", "Fuck that b*tch!", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/lil-wayne.jpg"), 0);
+    listbox_recent.insert (new ContactListRow ("Satan", "Earth needs to be destroyed.", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/satan.jpg"), 1);
+    listbox_recent.insert (new ContactListRow ("Rihanna", "Writing my new song: I suk.", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/rihanna.jpg"), 2);
+
+    listbox_contacts.insert (new ContactListRow ("Dumby", "Dumb and proud of if", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/gun.png"), 0);
+    listbox_contacts.insert (new ContactListRow ("Lil Wayne", "Fuck that b*tch!", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/lil-wayne.jpg"), 1);
+    listbox_contacts.insert (new ContactListRow ("Rihanna", "Writing my new song: I suk.", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/rihanna.jpg"), 2);
+    listbox_contacts.insert (new ContactListRow ("The Rock", "therock.me", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/the-rock.jpg"), 3);
+    listbox_contacts.insert (new ContactListRow ("Kungfu Panda", "Shaoliiiiiin!", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/kungfu-panda.jpg"), 4);
+    listbox_contacts.insert (new ContactListRow ("Ne-Yo", "Na na na na.", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/ne-yo.jpg"), 5);
+    listbox_contacts.insert (new ContactListRow ("Satan", "Earth needs to be destroyed.", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/satan.jpg"), 6);
+    listbox_contacts.insert (new ContactListRow ("Lacrim", "94 RPZ, aiight.", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/lacrim.jpg"), 7);
+
     Gtk.Label label_recent = new Gtk.Label.with_mnemonic (_ ("Recent conversations shows here."));
     TabContainer recent = new TabContainer ("recent", Gtk.Orientation.VERTICAL);
     recent.title = _ ("Recent conversations");
     recent.icon_name = "document-open-recent-symbolic";
-    recent.pack_start (label_recent, true, true, 0);
+    recent.pack_start (scroll_recent, true, true, 0);
 
     Gtk.Label label_contacts = new Gtk.Label.with_mnemonic (_ ("Contact list displays here."));
     TabContainer contacts = new TabContainer ("contacts", Gtk.Orientation.VERTICAL);
     contacts.title = _ ("Contacts");
     contacts.icon_name = "system-users-symbolic";
-    contacts.pack_start (label_contacts, true, true, 0);
+    contacts.pack_start (scroll_contacts, true, true, 0);
 
     Gtk.Label label_transfers = new Gtk.Label.with_mnemonic (_ ("All file transfers goes here."));
     TabContainer transfers = new TabContainer ("transfers", Gtk.Orientation.VERTICAL);

@@ -53,6 +53,7 @@ vala_precompile (VALA_C ${EXEC_NAME}
   gui/widgets/WelcomeView.vala
   gui/widgets/AvatarWidget.vala
   gui/widgets/ContactPreview.vala
+  gui/widgets/ContactListRow.vala
   gui/windows/MainWindow.vala
   gui/windows/SettingsWindow.vala
 

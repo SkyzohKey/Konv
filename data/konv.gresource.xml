@@ -32,6 +32,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <!-- Widgets -->
     <file preprocess="xml-stripblanks" compressed="true">interfaces/widgets/WelcomeView.ui</file>
     <file preprocess="xml-stripblanks" compressed="true">interfaces/widgets/ContactPreview.ui</file>
+    <file preprocess="xml-stripblanks" compressed="true">interfaces/widgets/ContactListRow.ui</file>
 
     <!-- Components -->
     <file preprocess="xml-stripblanks" compressed="true">interfaces/components/HeaderBar.ui</file>
@@ -41,11 +42,17 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <file>pixmaps/status/busy.png</file>
     <file>pixmaps/status/idle.png</file>
     <file>pixmaps/status/offline.png</file>
+
     <file>pixmaps/tmp/avatar.png</file>
     <file>pixmaps/tmp/gun.png</file>
     <file>pixmaps/tmp/rihanna.jpg</file>
     <file>pixmaps/tmp/the-rock.jpg</file>
     <file>pixmaps/tmp/lil-wayne.jpg</file>
+    <file>pixmaps/tmp/kungfu-panda.jpg</file>
+    <file>pixmaps/tmp/lacrim.jpg</file>
+    <file>pixmaps/tmp/ne-yo.jpg</file>
+    <file>pixmaps/tmp/satan.jpg</file>
+
     <file>pixmaps/tox-logo-256.png</file>
     <file>pixmaps/welcome-left-arrow.svg</file>
     <file>pixmaps/left-arrow-white.svg</file>

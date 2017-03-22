@@ -82,13 +82,25 @@ namespace Konv.Gui.Widgets {
       ContactPreview prev = new ContactPreview ("Dumby", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/gun.png", "online");
       this.box_online_contacts.pack_start (prev, true, true, 0);
 
-      prev = new ContactPreview ("Lil Wayne", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/lil-wayne.jpg", "idle");
+      prev = new ContactPreview ("Lil Wayne", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/lil-wayne.jpg", "online");
       this.box_online_contacts.pack_start (prev, true, true, 0);
 
-      prev = new ContactPreview ("Rihanna", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/rihanna.jpg", "busy");
+      prev = new ContactPreview ("Rihanna", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/rihanna.jpg", "online");
       this.box_online_contacts.pack_start (prev, true, true, 0);
 
       prev = new ContactPreview ("The Rock", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/the-rock.jpg", "busy");
+      this.box_online_contacts.pack_start (prev, true, true, 0);
+
+      prev = new ContactPreview ("Kungfu Panda", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/kungfu-panda.jpg", "busy");
+      this.box_online_contacts.pack_start (prev, true, true, 0);
+
+      prev = new ContactPreview ("Ne-Yo", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/ne-yo.jpg", "busy");
+      this.box_online_contacts.pack_start (prev, true, true, 0);
+
+      prev = new ContactPreview ("Satan", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/satan.jpg", "idle");
+      this.box_online_contacts.pack_start (prev, true, true, 0);
+
+      prev = new ContactPreview ("Lacrim", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/lacrim.jpg", "idle");
       this.box_online_contacts.pack_start (prev, true, true, 0);
     }
   }
