@@ -84,11 +84,11 @@ namespace Konv.Gui.Widgets {
 
       prev = new ContactPreview ("Lil Wayne", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/lil-wayne.jpg", "online");
       this.box_online_contacts.pack_start (prev, true, true, 0);
-
-      prev = new ContactPreview ("Rihanna", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/rihanna.jpg", "online");
+      
+      prev = new ContactPreview ("The Rock", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/the-rock.jpg", "busy");
       this.box_online_contacts.pack_start (prev, true, true, 0);
 
-      prev = new ContactPreview ("The Rock", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/the-rock.jpg", "busy");
+      prev = new ContactPreview ("Rihanna", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/rihanna.jpg", "busy");
       this.box_online_contacts.pack_start (prev, true, true, 0);
 
       prev = new ContactPreview ("Kungfu Panda", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/kungfu-panda.jpg", "busy");

@@ -36,7 +36,6 @@ namespace Konv.Gui.Components {
     [GtkChild] private Gtk.Label label_profile_name;
     [GtkChild] private Gtk.Label label_profile_status;
     [GtkChild] private Gtk.Box box_avatar;
-    [GtkChild] private Gtk.Image image_status;
 
     private Avatar avatar;
 
@@ -51,7 +50,7 @@ namespace Konv.Gui.Components {
     }
 
     /**
-    * @private init_widgets - Initialize the widgets, only that. KISS.
+    * @private init_widgits - Initialize the widgets, only that. KISS.
     **/
     private void init_widgets () {
       this.button_profile.get_style_context ().add_class ("no-radius");
@@ -61,8 +60,6 @@ namespace Konv.Gui.Components {
       this.avatar = new Avatar.from_resource (@"$(Konv.Constants.RES_PATH)/pixmaps/tmp/avatar.png", 48, 48);
       this.box_avatar.pack_start (this.avatar);
       this.avatar.get_style_context ().remove_class ("avatar");
-
-      this.image_status.set_from_resource (@"$(Konv.Constants.RES_PATH)/pixmaps/status/online.png");
     }
 
     private void connect_signals () {

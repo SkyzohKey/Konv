@@ -29,7 +29,6 @@ namespace Konv.Gui.Widgets {
   public class ContactPreview : Gtk.Button {
     [GtkChild] private Gtk.Label name;
     [GtkChild] private Gtk.Box box_avatar;
-    [GtkChild] private Gtk.Image status;
 
     private Avatar avatar;
 
@@ -40,7 +39,7 @@ namespace Konv.Gui.Widgets {
       this.avatar = new Avatar.from_resource (avatar, 48, 48);
       this.box_avatar.pack_start (this.avatar);
 
-      this.status.set_from_resource (@"$(Konv.Constants.RES_PATH)/pixmaps/status/$status.png");
+      this.avatar.set_status (status);
     }
   }
 }

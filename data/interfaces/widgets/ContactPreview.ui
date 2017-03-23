@@ -15,42 +15,21 @@
         <property name="orientation">vertical</property>
         <property name="spacing">5</property>
         <child>
-          <object class="GtkOverlay" id="overlay1">
+          <object class="GtkBox" id="box_avatar">
+            <property name="width_request">48</property>
+            <property name="height_request">48</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="halign">center</property>
+            <property name="valign">center</property>
+            <property name="orientation">vertical</property>
             <child>
-              <object class="GtkBox" id="box_avatar">
-                <property name="width_request">48</property>
-                <property name="height_request">48</property>
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="orientation">vertical</property>
-                <child>
-                  <placeholder/>
-                </child>
-              </object>
-              <packing>
-                <property name="index">-1</property>
-              </packing>
-            </child>
-            <child type="overlay">
-              <object class="GtkImage" id="status">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="halign">end</property>
-                <property name="valign">end</property>
-                <property name="pixel_size">18</property>
-                <property name="resource">/im/konv/desktop/pixmaps/status/online.png</property>
-              </object>
-              <packing>
-                <property name="pass_through">True</property>
-              </packing>
+              <placeholder/>
             </child>
           </object>
           <packing>
             <property name="expand">False</property>
-            <property name="fill">False</property>
+            <property name="fill">True</property>
             <property name="position">0</property>
           </packing>
         </child>

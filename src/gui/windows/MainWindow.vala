@@ -49,6 +49,7 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
   // View menu.
   [GtkChild] private Gtk.MenuItem menuitem_view;
   [GtkChild] private Gtk.Menu menu_view;
+  [GtkChild] private Gtk.MenuItem menuitem_show_welcome;
   [GtkChild] private Gtk.CheckMenuItem checkmenuitem_enable_compact_list;
   [GtkChild] private Gtk.CheckMenuItem checkmenuitem_enable_bubbles;
   [GtkChild] private Gtk.ImageMenuItem menuitem_text_format;
@@ -140,18 +141,33 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
     viewport_recent.add (listbox_recent);
     viewport_contacts.add (listbox_contacts);
 
-    listbox_recent.insert (new ContactListRow ("Lil Wayne", "Fuck that b*tch!", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/lil-wayne.jpg"), 0);
-    listbox_recent.insert (new ContactListRow ("Satan", "Earth needs to be destroyed.", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/satan.jpg"), 1);
-    listbox_recent.insert (new ContactListRow ("Rihanna", "Writing my new song: I suk.", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/rihanna.jpg"), 2);
+    var lilwayne = new ContactListRow ("Lil Wayne", "Please send me your latest lyrics", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/lil-wayne.jpg", "online");
+    lilwayne.set_second_text ("10:43 pm");
+    lilwayne.set_unread_count (3);
+    listbox_recent.insert (lilwayne, 0);
 
-    listbox_contacts.insert (new ContactListRow ("Dumby", "Dumb and proud of if", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/gun.png"), 0);
-    listbox_contacts.insert (new ContactListRow ("Lil Wayne", "Fuck that b*tch!", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/lil-wayne.jpg"), 1);
-    listbox_contacts.insert (new ContactListRow ("Rihanna", "Writing my new song: I suk.", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/rihanna.jpg"), 2);
-    listbox_contacts.insert (new ContactListRow ("The Rock", "therock.me", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/the-rock.jpg"), 3);
-    listbox_contacts.insert (new ContactListRow ("Kungfu Panda", "Shaoliiiiiin!", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/kungfu-panda.jpg"), 4);
-    listbox_contacts.insert (new ContactListRow ("Ne-Yo", "Na na na na.", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/ne-yo.jpg"), 5);
-    listbox_contacts.insert (new ContactListRow ("Satan", "Earth needs to be destroyed.", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/satan.jpg"), 6);
-    listbox_contacts.insert (new ContactListRow ("Lacrim", "94 RPZ, aiight.", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/lacrim.jpg"), 7);
+    var satan = new ContactListRow ("Satan", "Guy i'm going to fuck that world!", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/satan.jpg", "idle");
+    satan.set_second_text ("08:38 am");
+    listbox_recent.insert (satan, 1);
+
+    var rihanna = new ContactListRow ("Rihanna", "Thanks Skyzoh, just awesome!", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/rihanna.jpg", "busy");
+    rihanna.set_second_text ("Yesterday");
+    listbox_recent.insert (rihanna, 2);
+
+    var groupbot = new ContactListRow ("Group Bot", "Invalid command. Type `help` for a list of available commands.", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/bot.png", "offline");
+    groupbot.set_second_text ("3 days ago");
+    listbox_recent.insert (groupbot, 3);
+
+    listbox_contacts.insert (new ContactListRow ("Dumby", "Dumb and proud of if", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/gun.png", "online"), 0);
+    listbox_contacts.insert (new ContactListRow ("Lil Wayne", "Fuck that b*tch!", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/lil-wayne.jpg", "online"), 1);
+    listbox_contacts.insert (new ContactListRow ("Rihanna", "Writing my new song: I suk.", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/rihanna.jpg", "busy"), 2);
+    listbox_contacts.insert (new ContactListRow ("The Rock", "therock.me", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/the-rock.jpg", "busy"), 3);
+    listbox_contacts.insert (new ContactListRow ("Kungfu Panda", "Shaoliiiiiin!", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/kungfu-panda.jpg", "busy"), 4);
+    listbox_contacts.insert (new ContactListRow ("Ne-Yo", "Na na na na.", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/ne-yo.jpg", "busy"), 5);
+    listbox_contacts.insert (new ContactListRow ("Satan", "Earth needs to be destroyed.", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/satan.jpg", "idle"), 6);
+    listbox_contacts.insert (new ContactListRow ("Lacrim", "94 RPZ, aiight.", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/lacrim.jpg", "idle"), 7);
+    listbox_contacts.insert (new ContactListRow ("Group Bot", "Bot'ing in the bot space.", @"$(Konv.Constants.RES_PATH)/pixmaps/tmp/bot.png", "onffline"), 8);
+
 
     Gtk.Label label_recent = new Gtk.Label.with_mnemonic (_ ("Recent conversations shows here."));
     TabContainer recent = new TabContainer ("recent", Gtk.Orientation.VERTICAL);
@@ -190,19 +206,20 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
     this.box_left_side.pack_start (this.navbar, true, true, 0);
     this.box_left_side.pack_start (this.header, false, true, 0);
 
+    var label_show_welcome = ((Gtk.AccelLabel) this.menuitem_show_welcome.get_child ());
+    label_show_welcome.set_accel (Gdk.keyval_from_name ("H"), Gdk.ModifierType.CONTROL_MASK);
+
     //this.checkmenuitem_toggle_menubar.accel_path = "app.toggle-menubar";
     var label_toggle_menubar = ((Gtk.AccelLabel) this.checkmenuitem_toggle_menubar.get_child ());
-    label_toggle_menubar.set_accel (Gdk.keyval_from_name("M"),
-                                    Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.SHIFT_MASK);
+    label_toggle_menubar.set_accel (Gdk.keyval_from_name ("M"), Gdk.ModifierType.CONTROL_MASK);
 
     //this.menuitem_help_about.accel_path = "app.show-about";
     var label_help_about = ((Gtk.AccelLabel) this.menuitem_help_about.get_child ());
-    label_help_about.set_accel (Gdk.keyval_from_name("H"),
-                                Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.SHIFT_MASK);
+    label_help_about.set_accel (Gdk.keyval_from_name ("F1"), Gdk.ModifierType.CONTROL_MASK);
 
     //this.menuitem_preferences.accel_path = "app.show-preferences";
     var label_preferences = ((Gtk.AccelLabel) this.menuitem_preferences.get_child ());
-    label_preferences.set_accel (Gdk.keyval_from_name("P"),
+    label_preferences.set_accel (Gdk.keyval_from_name ("P"),
                                 Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.SHIFT_MASK);
 
     this.show_welcome_view ();
@@ -238,6 +255,10 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
 
     this.menuitem_preferences.activate.connect (() => {
       this.show_preferences ();
+    });
+
+    this.menuitem_show_welcome.activate.connect (() => {
+      this.show_welcome_screen ();
     });
 
     this.header.clicked.connect (() => {
@@ -282,6 +303,10 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
     }
 
     this.preferences_window.show_all ();
+  }
+
+  public void show_welcome_screen () {
+    print ("TODO: Implement this.\n");
   }
 
   public void show_about () {

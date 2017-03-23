@@ -56,7 +56,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">center</property>
-                        <property name="spacing">5</property>
+                        <property name="spacing">3</property>
                         <property name="homogeneous">True</property>
                         <child>
                           <placeholder/>

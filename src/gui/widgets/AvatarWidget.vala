@@ -25,17 +25,26 @@
  */
 public class Konv.Gui.Widgets.Avatar : Gtk.EventBox {
     private const string DEFAULT_ICON = "avatar-default";
-    private const string DEFAULT_STYLE = "avatar";
+    private const string DEFAULT_STYLE = "ic-avatar";
     private const int EXTRA_MARGIN = 4;
     private const int BORDER_RADIUS = 100;
     private bool draw_theme_background = true;
 
     public Gdk.Pixbuf? pixbuf { get; set; }
+    public bool border { get; set; default = true; }
+
+    private Gdk.RGBA status_color { get; set; default = Gdk.RGBA (){
+      red = 0.0,
+      green = 0.9,
+      blue = 0.4,
+      alpha = 0.7 };
+    }
 
     /**
      * Makes new Avatar widget
      */
     public Avatar () {
+      this.set_status ("idle");
     }
 
     /**
@@ -65,7 +74,7 @@ public class Konv.Gui.Widgets.Avatar : Gtk.EventBox {
     public Avatar.from_file (string filepath, int icon_size) {
         try {
             var size = icon_size * this.get_style_context ().get_scale ();
-            pixbuf = new Gdk.Pixbuf.from_file_at_size (filepath, size, size);
+            pixbuf = new Gdk.Pixbuf.from_file_at_size (filepath, size - 1, size - 1);
         } catch (Error e) {
             show_default (icon_size);
         }
@@ -94,10 +103,28 @@ public class Konv.Gui.Widgets.Avatar : Gtk.EventBox {
         notify["pixbuf"].disconnect (refresh_size_request);
     }
 
+    public void set_status (string status) {
+      if (status == "online") {
+        this.status_color = { 0.29, 0.68, 0.31, 1 };
+        this.set_tooltip_text (_("Online"));
+      } else if (status == "idle") {
+        this.status_color = { 1.00, 0.92, 0.23, 1 };
+        this.set_tooltip_text (_("Away"));
+      } else if (status == "busy") {
+        this.status_color = { 0.95, 0.26, 0.21, 1 };
+        this.set_tooltip_text (_("Busy"));
+      } else {
+        this.status_color = { 0.61, 0.61, 0.61, 1 };
+        this.set_tooltip_text (_("Offline"));
+      }
+
+      queue_draw ();
+    }
+
     private void refresh_size_request () {
         if (pixbuf != null) {
             var scale_factor = this.get_style_context ().get_scale ();
-            set_size_request (pixbuf.width / scale_factor + EXTRA_MARGIN * 2, pixbuf.height / scale_factor + EXTRA_MARGIN * 2);
+            set_size_request ((pixbuf.width - EXTRA_MARGIN / 2) / scale_factor + EXTRA_MARGIN * 2, (pixbuf.height - EXTRA_MARGIN / 2) / scale_factor + EXTRA_MARGIN * 2);
             draw_theme_background = true;
         } else {
             set_size_request (0, 0);
@@ -136,14 +163,23 @@ public class Konv.Gui.Widgets.Avatar : Gtk.EventBox {
             var border_radius = BORDER_RADIUS;
             var crop_radius = int.min (width / 2, border_radius * width / 100);
 
-            Utils.cairo_rounded_rectangle (cr, EXTRA_MARGIN, EXTRA_MARGIN, width, height, crop_radius);
+            Utils.cairo_rounded_rectangle (cr, EXTRA_MARGIN / 2 + 2, EXTRA_MARGIN / 2 + 2, width + EXTRA_MARGIN - 2, height + EXTRA_MARGIN - 2, crop_radius);
+            cr.set_source_rgba (
+              this.status_color.red,
+              this.status_color.green,
+              this.status_color.blue,
+              this.status_color.alpha
+            );
+            cr.fill_preserve ();
             cr.save ();
             cr.scale (1.0 / scale_factor, 1.0 / scale_factor);
+            cr.new_path ();
+            Utils.cairo_rounded_rectangle (cr, EXTRA_MARGIN + 2, EXTRA_MARGIN + 2, width - 2, height - 2, crop_radius);
             Gdk.cairo_set_source_pixbuf (cr, pixbuf, EXTRA_MARGIN * scale_factor, EXTRA_MARGIN * scale_factor);
             cr.fill_preserve ();
             cr.restore ();
-            style_context.render_background (cr, EXTRA_MARGIN, EXTRA_MARGIN, width, height);
-            style_context.render_frame (cr, EXTRA_MARGIN, EXTRA_MARGIN, width, height);
+            style_context.render_background (cr, EXTRA_MARGIN + 1, EXTRA_MARGIN + 1, width - 1, height - 1);
+            style_context.render_frame (cr, 0, 0, width, height);
 
         } else {
             cr.save ();

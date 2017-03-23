@@ -98,13 +98,22 @@ namespace Konv {
         }
       });
 
-      this.set_accels_for_action ("app.toggle-menubar", { "<Primary><Ctrl><Shift>M" });
+      SimpleAction action_show_welcome = new SimpleAction ("show-welcome", null);
+      action_show_welcome.activate.connect ((variant) => {
+        if (this.main_window != null) {
+          this.main_window.show_welcome_screen ();
+        }
+      });
+
+      this.set_accels_for_action ("app.toggle-menubar", { "<Primary><Ctrl>M" });
       this.set_accels_for_action ("app.show-about", { "<Primary><Ctrl><Shift>H" });
       this.set_accels_for_action ("app.show-preferences", { "<Primary><Ctrl><Shift>P" });
+      this.set_accels_for_action ("app.show-welcome", { "<Primary><Ctrl>H" });
 
       this.add_action (action_menubar_toggle);
       this.add_action (action_about);
       this.add_action (action_show_preferences);
+      this.add_action (action_show_welcome);
     }
 
     public override void activate () {

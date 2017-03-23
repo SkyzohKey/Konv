@@ -28,15 +28,14 @@ KonvGuiWindowsSettingsWindow > .horizontal > * {
   font-family: "Roboto", "Verdana", sans-serif;
 }
 
-.avatar {
-  box-shadow: 0 0 2px rgba(0, 0, 0, .8);
+.ic-avatar {
   border-radius: 200px;
 }
 
 .badge {
   padding: 4px;
 
-  background-color: green;
+  background-color: #4CAF50;
   border-radius: 200px;
   color: white;
   font-weight: bold;
