@@ -113,7 +113,8 @@ namespace Konv.Gui.Components {
       this.searchentry.placeholder_text = _ ("Search or add a contact...");
 
       this.tabs_header.get_style_context ().add_class ("no-radius");
-      this.tabs_header.get_style_context ().add_class ("no-borders-h-sides");
+      this.tabs_header.get_style_context ().add_class ("no-borders-horizontal");
+      this.tabs_header.get_style_context ().add_class ("no-border-top");
 
       this.searchentry.get_style_context ().add_class ("no-radius");
       this.searchentry.get_style_context ().add_class ("no-borders-horizontal");
