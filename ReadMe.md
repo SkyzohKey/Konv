@@ -1,8 +1,8 @@
 # Konv.im - Secure P2P instant messenger
 
-| [![CircleCI][3]][2] | [Help us translating Konv][4] |
+| [![CircleCI][3]][2] | [![Make a donation on Liberapay][5]][6] |
 |:-------------:|:-------------:|
-| **[Install Konv](#install)** | **[Join us on Rocket.chat][1]** |
+| **[Install Konv][7]** | [Help us translating Konv][4] |
 
 <!-- TODO: Add logo, one global screenshot or banner and links. -->
 
@@ -88,3 +88,6 @@ licensed under [The GPLv3 License].
 [2]: https://circleci.com/gh/SkyzohKey/Konv
 [3]: https://circleci.com/gh/SkyzohKey/Konv.svg?style=svg
 [4]: https://www.transifex.com/ricinapp/im-konv-client/
+[5]: https://liberapay.com/assets/widgets/donate.svg
+[6]: https://liberapay.com/SkyzohKey/donate
+[7]: #install
