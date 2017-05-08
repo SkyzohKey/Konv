@@ -190,7 +190,7 @@ public class Konv.Gui.Widgets.Avatar : Gtk.EventBox {
             #if SYSTEM_OSX
             cr.scale (0.5 / scale_factor, 0.5 / scale_factor);
             #else
-            cr.scale (1.0 / scale_facotr, 1.0 / scale_factor);
+            cr.scale (1.0 / scale_factor, 1.0 / scale_factor);
             #endif
 
             style_context.render_icon (cr, pixbuf, EXTRA_MARGIN, EXTRA_MARGIN);
