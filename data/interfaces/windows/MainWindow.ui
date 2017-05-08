@@ -399,6 +399,7 @@
             <property name="position_set">True</property>
             <child>
               <object class="GtkBox" id="box_left_side">
+                <property name="name">left-side</property>
                 <property name="width_request">230</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
@@ -414,6 +415,7 @@
             </child>
             <child>
               <object class="GtkBox" id="box_right_side">
+                <property name="name">right-side</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="orientation">vertical</property>

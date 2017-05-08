@@ -173,7 +173,7 @@ public class Konv.Gui.Widgets.Avatar : Gtk.EventBox {
             cr.fill_preserve ();
             cr.save ();
             #if SYSTEM_OSX
-            cr.scale (0.5 / scale_factor, 0.5 / scale_factor);
+            cr.scale (1.0 / scale_factor, 1.0 / scale_factor);
             #else
             cr.scale (1.0 / scale_factor, 1.0 / scale_factor);
             #endif
@@ -188,7 +188,7 @@ public class Konv.Gui.Widgets.Avatar : Gtk.EventBox {
         } else {
             cr.save ();
             #if SYSTEM_OSX
-            cr.scale (0.5 / scale_factor, 0.5 / scale_factor);
+            cr.scale (1.0 / scale_factor, 1.0 / scale_factor);
             #else
             cr.scale (1.0 / scale_factor, 1.0 / scale_factor);
             #endif

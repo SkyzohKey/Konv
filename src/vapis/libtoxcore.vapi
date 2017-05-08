@@ -1022,6 +1022,7 @@ namespace ToxCore {
          *
          * This event is triggered when a friend changes their name.
          */
+        [CCode (cname="tox_callback_friend_name", has_target=false, has_type_id=false)]
         public void callback_friend_name (FriendNameFunc callback);
 
         /**
@@ -1040,6 +1041,7 @@ namespace ToxCore {
          *
          * This event is triggered when a friend changes their status message.
          */
+        [CCode (cname="tox_callback_friend_status_message", has_target=false, has_type_id=false)]
         public void callback_friend_status_message (FriendStatusMessageFunc callback);
 
         /**
@@ -1055,6 +1057,7 @@ namespace ToxCore {
          *
          * This event is triggered when a friend changes their user status.
          */
+        [CCode (cname="tox_callback_friend_status", has_target=false, has_type_id=false)]
         public void callback_friend_status (FriendStatusFunc callback);
 
         /**
@@ -1075,6 +1078,7 @@ namespace ToxCore {
          * This callback is not called when adding friends. It is assumed that when
          * adding friends, their connection status is initially offline.
          */
+        [CCode (has_target=false)]
         public void callback_friend_connection_status (FriendConnectionStatusFunc callback);
 
         /**
@@ -1091,6 +1095,7 @@ namespace ToxCore {
          *
          * This event is triggered when a friend starts or stops typing.
          */
+        [CCode (cname="tox_callback_friend_typing", has_target=true, has_type_id=false)]
         public void callback_friend_typing (FriendTypingFunc callback);
 
         /**
@@ -1107,6 +1112,7 @@ namespace ToxCore {
          * This event is triggered when the friend receives the message sent with
          * tox_friend_send_message with the corresponding message ID.
          */
+        [CCode (cname="tox_callback_friend_read_receipt", has_target=false, has_type_id=false)]
         public void callback_friend_read_receipt (ReadReceiptFunc callback);
 
         /**
@@ -1122,6 +1128,7 @@ namespace ToxCore {
          *
          * This event is triggered when a friend request is received.
          */
+        [CCode (cname="tox_callback_friend_request", has_target=false, has_type_id=false)]
         public void callback_friend_request (FriendRequestFunc callback);
 
         /**
@@ -1137,6 +1144,7 @@ namespace ToxCore {
          *
          * This event is triggered when a message from a friend is received.
          */
+        [CCode (cname="tox_callback_friend_message", has_target=false, has_type_id=false)]
         public void callback_friend_message (FriendMessageFunc callback);
 
         /**
@@ -1148,7 +1156,7 @@ namespace ToxCore {
          *   associated with.
          * @param control The file control command received.
          */
-        [CCode (cname = "tox_file_recv_control_cb", has_target=true, has_type_id=false)]
+        //[CCode (cname = "tox_file_recv_control_cb", has_target=true, has_type_id=false)]
         public delegate void FileControlReceiveFunc (Tox self, uint32 friend_number, uint32 file_number, FileControl control);
 
         /**
@@ -1157,6 +1165,7 @@ namespace ToxCore {
          * This event is triggered when a file control command is received from a
          * friend.
          */
+        //[CCode (cname="tox_callback_file_recv_control", has_target=false, has_type_id=false)]
         public void callback_file_recv_control (FileControlReceiveFunc callback);
 
         /**
@@ -1181,7 +1190,7 @@ namespace ToxCore {
          * @param position The file or stream position from which to continue reading.
          * @param length The number of bytes requested for the current chunk.
          */
-        [CCode (cname = "tox_file_chunk_request_cb", has_target=true, has_type_id=false)]
+        //[CCode (cname = "tox_file_chunk_request_cb", has_target=true, has_type_id=false)]
         public delegate void FileChunkRequestFunc (Tox self, uint32 friend_number, uint32 file_number, uint64 position, size_t length);
 
         /**
@@ -1189,6 +1198,7 @@ namespace ToxCore {
          *
          * This event is triggered when Core is ready to send more file data.
          */
+        //[CCode (cname="tox_callback_file_chunk_request", has_target=false, has_type_id=false)]
         public void callback_file_chunk_request (FileChunkRequestFunc callback);
 
         /**
@@ -1209,7 +1219,7 @@ namespace ToxCore {
          *   name will be sent along with the file send request.
          * @param filename_length Size in bytes of the filename.
          */
-        [CCode (cname = "tox_file_recv_cb", has_target=true, has_type_id=false)]
+        //[CCode (cname = "tox_file_recv_cb", has_target=true, has_type_id=false)]
         public delegate void FileRecvFunc (Tox self, uint32 friend_number, uint32 file_number, FileKind kind, uint64 file_size, [CCode (array_length_type="size_t")] uint8[] filename);
 
         /**
@@ -1217,6 +1227,7 @@ namespace ToxCore {
          *
          * This event is triggered when a file transfer request is received.
          */
+        //[CCode (cname="tox_callback_file_recv", has_target=false, has_type_id=false)]
         public void callback_file_recv (FileRecvFunc callback);
 
         /**
@@ -1235,7 +1246,7 @@ namespace ToxCore {
          * @param data A byte array containing the received chunk.
          * @param length The length of the received chunk.
          */
-        [CCode (cname = "tox_file_recv_chunk_cb", has_target=true, has_type_id=false)]
+        //[CCode (cname = "tox_file_recv_chunk_cb", has_target=true, has_type_id=false)]
         public delegate void FileRecvChunkFunc (Tox self, uint32 friend_number, uint32 file_number, uint64 position, uint8[] data);
 
         /**
@@ -1244,6 +1255,7 @@ namespace ToxCore {
          * This event is first triggered when a file transfer request is received, and
          * subsequently when a chunk of file data for an accepted request was received.
          */
+        //[CCode (cname="tox_callback_file_recv_chunk", has_target=false, has_type_id=false)]
         public void callback_file_recv_chunk (FileRecvChunkFunc callback);
 
         /**
@@ -1263,6 +1275,7 @@ namespace ToxCore {
          *
          * TODO: how long should a client wait before bootstrapping again?
          */
+        [CCode (cname="tox_self_connection_status", has_target=false, has_type_id=false)]
         public void callback_self_connection_status (ConnectionStatusFunc callback);
 
         /**
@@ -1824,7 +1837,7 @@ namespace ToxCore {
          * The main loop that needs to be run in intervals of tox_iteration_interval()
          * milliseconds.
          */
-        public void iterate ();
+        public void iterate (Tox self);
 
         /**
          * Send a custom lossy packet to a friend.
@@ -1871,7 +1884,7 @@ namespace ToxCore {
          * @param data A byte array containing the received packet data.
          * @param length The length of the packet data byte array.
          */
-        [CCode (cname = "tox_file_recv_control_cb", has_target=true, has_type_id=false)]
+        [CCode (cname = "tox_callback_friend_lossy_packet_cb", has_target=true, has_type_id=false)]
         public delegate void FriendLossyPacketFunc (Tox self, uint32 friend_number, uint8[] data);
 
         /**
@@ -1884,7 +1897,7 @@ namespace ToxCore {
          * @param data A byte array containing the received packet data.
          * @param length The length of the packet data byte array.
          */
-        [CCode (cname = "tox_file_recv_control_cb", has_target=true, has_type_id=false)]
+        [CCode (cname = "tox_callback_friend_lossless_packet_cb", has_target=true, has_type_id=false)]
         public delegate void FriendLosslessPacketFunc (Tox self, uint32 friend_number, uint8[] data);
 
         /**
