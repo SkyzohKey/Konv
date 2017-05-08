@@ -42,7 +42,15 @@ ENDIF()
 
 IF(${CMAKE_SYSTEM_NAME} MATCHES "Linux") 
   set(KONV_BUILD_OS, "LINUX" 
-ENDIF() 
+ENDIF()
+
+IF(${CMAKE_SYSTEM_NAME} MATCHES "FreeBSD") 
+  set(KONV_BUILD_OS, "BSD")
+ENDIF()
+
+IF(${CMAKE_SYSTEM_NAME} MATCHES "Windows") 
+  set(KONV_BUILD_OS, "WIN32")
+ENDIF()
 
 vala_precompile (VALA_C ${EXEC_NAME}
   # List the sources files that needs to be compiled.
