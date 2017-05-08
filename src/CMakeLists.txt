@@ -36,6 +36,10 @@ glib_compile_resources (GLIB_RESOURCES_KONV
     ../data/konv.gresource.xml
 )
 
+IF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+set(KONV_BUILD_OS, "OSX")
+ENDIF6() 
+
 vala_precompile (VALA_C ${EXEC_NAME}
   # List the sources files that needs to be compiled.
   ${CMAKE_CURRENT_BINARY_DIR}/Config.vala
@@ -70,9 +74,8 @@ vala_precompile (VALA_C ${EXEC_NAME}
     --target-glib="2.38"
     --gresources=${CMAKE_SOURCE_DIR}/data/konv.gresource.xml
     --disable-warnings # Remove this in development.
-    IF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-    --DSYSTEM_OSX
-    ENDIF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    
+    --DSYSTEM_${KONV_BUILD_OS} 
 )
 
 # Tell CMake to build the executable.
