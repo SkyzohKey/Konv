@@ -340,7 +340,7 @@ public class Konv.Gui.Windows.MainWindow : Gtk.ApplicationWindow {
     Notification notif = new Notification ("Test notification.");
     notif.set_body ("This is a cool notification, it doesn't use any external lib!");
     notif.set_icon (image.gicon);
-    notif.set_priority (NotificationPriority.URGENT);
+    //notif.set_priority (NotificationPriority.URGENT);
     notif.add_button_with_target_value ("Konv", "app.about", null);
     notif.add_button_with_target_value ("is", "app.about", null);
     notif.add_button_with_target_value ("AWESOME", "app.about", null);
