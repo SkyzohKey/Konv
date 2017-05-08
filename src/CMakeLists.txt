@@ -38,7 +38,7 @@ glib_compile_resources (GLIB_RESOURCES_KONV
 
 IF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 set(KONV_BUILD_OS, "OSX")
-ENDIF6() 
+ENDIF() 
 
 vala_precompile (VALA_C ${EXEC_NAME}
   # List the sources files that needs to be compiled.
