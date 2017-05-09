@@ -173,12 +173,16 @@ public class Konv.Gui.Widgets.Avatar : Gtk.EventBox {
             cr.fill_preserve ();
             cr.save ();
             #if SYSTEM_OSX
-            cr.scale (1.0 / scale_factor, 1.0 / scale_factor);
+                cr.scale (2.0 / scale_factor, 2.0 / scale_factor);
             #else
-            cr.scale (1.0 / scale_factor, 1.0 / scale_factor);
+                cr.scale (1.0 / scale_factor, 1.0 / scale_factor);
             #endif
             cr.new_path ();
-            Utils.cairo_rounded_rectangle (cr, EXTRA_MARGIN + 2, EXTRA_MARGIN + 2, width - 2, height - 2, crop_radius);
+            #if SYSTEM_OSX
+              Utils.cairo_rounded_rectangle (cr, EXTRA_MARGIN + 4, EXTRA_MARGIN + 4, width, height, crop_radius);
+            #else
+              Utils.cairo_rounded_rectangle (cr, EXTRA_MARGIN + 2, EXTRA_MARGIN + 2, width - 2, height - 2, crop_radius);
+            #endif
             Gdk.cairo_set_source_pixbuf (cr, pixbuf, EXTRA_MARGIN * scale_factor, EXTRA_MARGIN * scale_factor);
             cr.fill_preserve ();
             cr.restore ();
@@ -188,9 +192,9 @@ public class Konv.Gui.Widgets.Avatar : Gtk.EventBox {
         } else {
             cr.save ();
             #if SYSTEM_OSX
-            cr.scale (1.0 / scale_factor, 1.0 / scale_factor);
+                cr.scale (2.0 / scale_factor, 2.0 / scale_factor);
             #else
-            cr.scale (1.0 / scale_factor, 1.0 / scale_factor);
+                cr.scale (1.0 / scale_factor, 1.0 / scale_factor);
             #endif
 
             style_context.render_icon (cr, pixbuf, EXTRA_MARGIN, EXTRA_MARGIN);
