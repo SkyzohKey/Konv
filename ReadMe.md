@@ -1,3 +1,25 @@
+# /!\ Disclaimer: Project moved to a new repository /!\
+
+*tl;dr. Project moved at [TheToxProject/client](https://github.com/TheToxProject/client).*
+
+Hey dear community!
+
+A lot of people have asked me about the state of Ricin & Konv projects, so let me clarify the situation.
+
+Ricin was mostly a "proof of concept" that permited me to learn to code in Vala. Once I was enough confident in developing with Vala, I realised that Ricin's source code was a shit-code. Nightmare to maintain, hard to update. So I decided to rewrite/rebrand it under the Konv project-name. I worked on Konv during some time before I had a vision.
+
+So let's talk about that vision. I dreamed people would just download Tox, and start to chat, without missing important IM features, nor security features. I dreamed that Tox would replace Skype, Messenger, Whatsapp and other IM apps, because it's decentralized, and would be looking good, with features parity with other IMs + gamification. User would see & use the same interface not depending on the device he is using. Whether it's desktop, mobile or web browser.
+
+The Universal Tox Client is my attempt to realize this.  
+You can find the new repository at [TheToxProject/client](https://github.com/TheToxProject/client).
+
+Also feel free to look at the contribute or donations part of the readme if you want to get involved ! :)
+
+I hope I clarified the situation enough.
+Thanks for the interest.
+
+----
+
 # Konv.im - Secure P2P instant messenger
 
 | [![CircleCI][3]][2] | [![Make a donation on Liberapay][5]][6] |
